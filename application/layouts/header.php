@@ -7,7 +7,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>::Docentes FUP::</title>
+        <title>::Biblioteca FUP::</title>
                 
         <link type="text/css" media="screen" rel="stylesheet" href="<?php echo BASEURL;?>public/css/zebra_form.css" />
            
