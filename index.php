@@ -18,7 +18,7 @@
     <article class="module width_full">
       <header><h3>Ingresar</h3></header>
         <div class="module_content">
-        <form id="frmLogin" class="post_message" method="post" action="application/general/controllers/UsuarioController.php">
+        <form id="frmLogin" class="post_message" method="post" action="application/usuario/controllers/UsuarioController.php">
           <table>
           <tr>
             <td>

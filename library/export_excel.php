@@ -3,7 +3,7 @@
 // esto le indica al navegador que muestre el diálogo de descarga aún sin haber descargado todo el contenido
 
 if(!isset($nombreReporte)){
-  $nombreReporte = "DocentesFUP";
+  $nombreReporte = "BiliotecaFUP";
 }
  
 header("Content-type: application/octet-stream");

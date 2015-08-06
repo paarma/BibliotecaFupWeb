@@ -11,7 +11,7 @@ class DbPdo {
     private $_dbh;
     private $_username = "root";
     private $_passwd = "12345678";
-    private $_dns = "mysql:host=localhost;dbname=docentesfup";
+    private $_dns = "mysql:host=localhost;dbname=BIBLIOTECA";
     
     
     private static $_instance = null;
