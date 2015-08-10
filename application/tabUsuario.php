@@ -1,0 +1,1 @@
+<p>Usuario: <u style="font-size: 16px;" > <?php echo $_SESSION['usuarioLogueado']->getPrimerNombre(); ?> </u></p>

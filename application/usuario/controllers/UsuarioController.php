@@ -6,13 +6,13 @@
  * @autor Pablo Manquillo
  * paarma80@gmail.com
  */
- 
  require_once $_SERVER["DOCUMENT_ROOT"] . '/BibliotecaFupWeb/config.ini.php';
  require_once BASEPATH . 'library/Inputfilter.php';
  require_once BASEPATH . 'library/Helpers.php';
  require_once BASEPATH . 'library/cliente.php';
- require_once BASEPATH . 'application/models/Usuario.php';
+ require_once BASEPATH . 'util/Autoload.php';
  require_once BASEPATH . 'util/UtilidadesBuscarPorId.php';
+ session_start();
  
   //Ingreso al sistema
    if (isset($_POST['btnAcceder']) && $_POST['btnAcceder'] == 'Acceder') {
@@ -30,8 +30,14 @@
 	 	foreach($response as $item){
 	 		//echo $item['PRIMER_NOMBRE'];
 	 		$usuario = obtenerUsuarioSoap($item);
+			
+			//Se almacena el usuario logueado en variable de session
+			//$_SESSION['usuarioLogueado'] = serialize($usuario);
+			$_SESSION['usuarioLogueado'] = $usuario;
 			break;
 	 	}
+		
+		header('location:' . BASEURL . 'application/inicio.php');
 	 }else{
 	   //Error consultando el usuario
        header('location:' . BASEURL . 'index.php?m=1');

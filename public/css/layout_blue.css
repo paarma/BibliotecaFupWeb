@@ -664,6 +664,7 @@ text-indent: 10px;
 background-position: 10px 6px;
 float: left;
 margin: 0 3.5%;
+background-color: #FFFFFF;
 }
 
 .post_message input[type=text]:focus {
@@ -747,6 +748,7 @@ display: block;
 float: left;
 width: 65%;
 margin: 0 10px;
+background-color: #FFFFFF;
 }
 
 

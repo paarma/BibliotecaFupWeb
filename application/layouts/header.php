@@ -1,6 +1,10 @@
-<?php require_once $_SERVER["DOCUMENT_ROOT"].'/BibliotecaFupWeb/config.ini.php';
+<?php 
+
+ require_once $_SERVER["DOCUMENT_ROOT"].'/BibliotecaFupWeb/config.ini.php';
  require_once BASEPATH .'library/Helpers.php';
+ require_once BASEPATH . 'util/Autoload.php';
  session_start();
+ 
 ?>
 
 <!DOCTYPE html>
