@@ -27,12 +27,40 @@ $(document).ready(function(){
                     return false;
 
   });
-  
-  //solo numeros
-  /*jQuery(document).ready(function() {
-    jQuery('.input_tel').keypress(function(tecla) {
-        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
-    });
-   );*/
+    
+  //Cargar combos
+  cargarCombos('EDITORIAL','cbxEditorial'); 
   
 });
+
+function cargarCombos(tabla,combo){
+	
+  $.ajax({
+    type : "POST",
+    async: true,
+    dataType: 'json',
+    url : "../../../util/CargarCombos.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "cargarCombo",
+      tabla : tabla
+    }
+  }).done(function(data) {
+      var html = "";
+      html +=  '<option value="">Seleccione...</option>';
+
+      var selected = "";
+      
+      $.each(data, function (index, item) 
+      {
+        
+        if(tabla == 'EDITORIAL'){
+          html += '<option value='+item.ID_EDITORIAL+'>'+item.DESCRIPCION+'</option>';
+        }
+        
+      });
+
+      $('#'+combo).append(html);   
+  });
+	
+}

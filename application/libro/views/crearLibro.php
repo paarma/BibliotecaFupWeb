@@ -131,7 +131,6 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <select id="cbxEditorial" name="cbxEditorial">
-                    <option value="">Seleccione...</option>
                   </select>
                 </td>
               </tr>
@@ -142,7 +141,6 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <select id="cbxArea" name="cbxArea">
-                    <option value="">Seleccione...</option>
                   </select>
                 </td>
               </tr>
@@ -153,7 +151,6 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <select id="cbxSede" name="cbxSede">
-                    <option value="">Seleccione...</option>
                   </select>
                 </td>
               </tr>
@@ -164,7 +161,6 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <select id="cbxPais" name="cbxPais">
-                    <option value="">Seleccione...</option>
                   </select>
                 </td>
               </tr>
@@ -175,7 +171,6 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <select id="cbxCiudad" name="cbxCiudad">
-                    <option value="">Seleccione...</option>
                   </select>
                 </td>
               </tr>
@@ -186,7 +181,6 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <select id="cbxAdquisicion" name="cbxAdquisicion">
-                    <option value="">Seleccione...</option>
                   </select>
                 </td>
               </tr>
@@ -197,7 +191,6 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <select id="cbxEstado" name="cbxEstado">
-                    <option value="">Seleccione...</option>
                   </select>
                 </td>
               </tr>

@@ -3,9 +3,9 @@ $(document).ready(function() {
   $("#msgValidacion").text("");
   $("#msgValidacion").hide();
     
-       
+    
+  ////////////////////////Guardar libro     
   $("#btnGuardarLibro").click(function(){
-	
 	var validaciones = true;
 	
 	//Validacion ISBN
@@ -20,7 +20,7 @@ $(document).ready(function() {
 	//Validacion Cod.Topografico
 	if($("#tbxCodTopografico").val().trim() != ""){
 	  if(verficarDatoEnBd('LIBRO','COD_TOPOGRAFICO',$("#tbxCodTopografico").val().trim())){
-        $("#msgValidacion").text("Código ya registrado");
+        $("#msgValidacion").text("Cod Topografico ya registrado");
         $("#msgValidacion").show();
         validaciones = false;
       }
@@ -32,7 +32,8 @@ $(document).ready(function() {
       $("#formAddLibro").submit();
     }
 	
-  });	 
+  });	
+  //////////////////////////Fin guardar libro. 
     
 });
 
