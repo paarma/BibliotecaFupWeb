@@ -26,8 +26,25 @@
 			if($tabla == "EDITORIAL"){
 				$editorialBuscar = new Editorial(); //Editorial por defecto (Listará todas las editoriales)
 				$param = array('descripcion' => $editorialBuscar->getDescripcion());			
-				$response = $client->call('listadoEditoriales',$param);
-				
+				$response = $client->call('listadoEditoriales',$param);	
+			}
+			
+			if($tabla == "AREA"){			
+				$response = $client->call('listadoAreas');
+			}
+			
+			if($tabla == "SEDE"){			
+				$response = $client->call('listadoSedes');
+			}
+			
+			if($tabla == "PAIS"){			
+				$response = $client->call('listadoPaises');
+			}
+			
+			if($tabla == "CIUDAD"){
+				$idPais = $_POST['idPais']; //En caso de 0 o vacio, listara todas las ciudades
+				$param = array('idPais' => $idPais);			
+				$response = $client->call('listadoCiudades',$param);
 			}
 			
 			echo json_encode($response);

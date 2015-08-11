@@ -181,6 +181,9 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <select id="cbxAdquisicion" name="cbxAdquisicion">
+                  	<option value="">Seleccione...</option>
+                  	<option value="COMPRADO">COMPRADO</option>
+                  	<option value="DONADO">DONADO</option>
                   </select>
                 </td>
               </tr>
@@ -191,6 +194,10 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <select id="cbxEstado" name="cbxEstado">
+                  	<option value="">Seleccione...</option>
+                  	<option value="BUENO">BUENO</option>
+                  	<option value="REGULAR">REGULAR</option>
+                  	<option value="MALO">MALO</option>
                   </select>
                 </td>
               </tr>

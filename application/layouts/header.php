@@ -48,6 +48,9 @@
     </head>
     
  <body>
+ 	
+ 	<!-- Campo oculto que contiene el valor de la ruta (Url del aplicativo)-->
+ 	<input type="hidden" id="baseUrl" name="baseUrl" value="<?php echo BASEURL; ?>" />
 
   <!-- <header id="header">
     <hgroup>
