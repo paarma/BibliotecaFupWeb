@@ -340,6 +340,10 @@ background: url(../images/icn_jump_back.png) no-repeat center left;
 #sidebar li.icn_trash a {
 background: url(../images/icn_trash.png) no-repeat center left;
 }
+#sidebar li.icn_search a {
+background: url(../images/icn_search.png) no-repeat center left;
+}
+
 
 #sidebar p {
 color: #666666;
@@ -935,4 +939,11 @@ height: 18px;
 /*Texto en mayusculas*/
 .textoMayusculas {
   text-transform:uppercase;
+}
+
+/*Color de fondo para todos los campos en general*/
+select, input[type=text]{
+	background-color: #FFFFFF;
+	border: 1px solid #A09F9F;
+	color: #434343; 
 }

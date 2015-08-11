@@ -64,7 +64,7 @@
         
     <footer>
       <hr />
-      <p><strong>Copyright &copy; 2014 Website</strong></p>
+      <p><strong>Copyright &copy; 2015 Website</strong></p>
       <p>Todos los derechos reservados. paarma80@gmail.com</p>
     </footer>
   </aside><!-- end of sidebar -->
