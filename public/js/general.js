@@ -30,3 +30,8 @@ $(document).ready(function(){
   
 
 });
+
+//Funcion encargada de eliminar una fina de una tabla
+function eliminarFila(fila) {
+	$(fila).parent().remove();
+}

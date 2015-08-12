@@ -33,6 +33,7 @@ if(!isset($_SESSION['usuarioLogueado']))
           
           <form id="formAddLibro" method="post" action="../controllers/LibroController.php">
             <input type="hidden" id="accionFormLibro" name="accionFormLibro" value="guardar">
+            <input type="hidden" id="arrayAutores" name="arrayAutores">
             
             <table>
               <tr>
@@ -202,10 +203,37 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
               </tr>
               
+              <tr>
+                <td>
+                  Autores:
+                  
+                </td>
+                <td>
+					<input type="button" id="addAutor" name="addAutor" class="btnSearch" />
+                </td>
+              </tr>
+              
+              <tr>
+              	<td colspan="2">
+              		<table id="tblAutores" name="tblAutores" style="margin-top: 10px;">
+              		</table>
+              	</td>
+              </tr>
+              
             </table>
             <br />
             <input type="button" id="btnGuardarLibro" name="btnGuardarLibro" value="Aceptar" />
           </form>
+          
+          
+          <!-- Dialog agregarAutor-->
+          <div id="dialogAddAutor" title="Autores">
+          	<select id="cbxAutor" name="cbxAutor">
+          	</select>
+          </div>
+          <!-- Fin dialog agregarAutor-->
+          
+          
           <br />
           <div id="msgValidacion" class="bad"></div>
           

@@ -31,7 +31,7 @@
 	'temas' => strtoupper(trim($_POST['tbxTemas'])), 'paginas' => trim($_POST['tbxPaginas']), 
 	'disponibilidad' => "", 'idUsuario' => (int) $_SESSION['usuarioLogueado']->getIdUsuario(), 
 	'idCiudad' => $_POST['cbxCiudad'], 'cantidad' => trim($_POST['tbxCantidad']),
-	'idAutoresConcatenados' => "");
+	'idAutoresConcatenados' => $_POST['arrayAutores']);
 	
 	$response = (int) $client->call('guardarLibro',$param);
 	

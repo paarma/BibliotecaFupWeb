@@ -3,35 +3,48 @@ $(document).ready(function() {
   $("#msgValidacion").text("");
   $("#msgValidacion").hide();
     
+  
+  //Dialog agregarAutor
+  $("#dialogAddAutor").dialog({
+      autoOpen: false,
+      resizable: false,
+      /*height:370,*/
+      width: 350,
+      modal: true,
+      show: {
+        effect: "clip",
+        duration: 300
+      },
+      hide: {
+        effect: "explode",
+        duration: 300
+      },
+      buttons: {
+        Aceptar: function() {
+          
+          if($("#cbxAutor").val() != ""){
+          	agregarAutor();
+          }
+          
+          $( this ).dialog( "close" );
+        },
+        Cancelar: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+    
+    //Agregar Autor
+    $("#addAutor" ).click(function() {
+      $("#dialogAddAutor" ).dialog( "open" );
+    });
+  
+  inicializar();
+  
     
   ////////////////////////Guardar libro     
   $("#btnGuardarLibro").click(function(){
-	var validaciones = true;
-	
-	//Validacion ISBN
-	if($("#tbxIsbn").val().trim() != ""){
-	  if(verficarDatoEnBd('LIBRO','ISBN',$("#tbxIsbn").val().trim())){
-        $("#msgValidacion").text("ISBN ya registrado");
-        $("#msgValidacion").show();
-        validaciones = false;
-      }
-	}
-	
-	//Validacion Cod.Topografico
-	if($("#tbxCodTopografico").val().trim() != ""){
-	  if(verficarDatoEnBd('LIBRO','COD_TOPOGRAFICO',$("#tbxCodTopografico").val().trim())){
-        $("#msgValidacion").text("Cod Topografico ya registrado");
-        $("#msgValidacion").show();
-        validaciones = false;
-      }
-	}
-	
-	if(validaciones){
-      $("#msgValidacion").text("");
-      $("#msgValidacion").hide();
-      $("#formAddLibro").submit();
-    }
-	
+  	validarGuardar();		
   });	
   //////////////////////////Fin guardar libro. 
   
@@ -40,6 +53,7 @@ $(document).ready(function() {
   cargarCombos('AREA','cbxArea');
   cargarCombos('SEDE','cbxSede');
   cargarCombos('PAIS','cbxPais');
+  cargarCombos('AUTOR','cbxAutor');
   
   //Cargar cbx Ciudades segun pais
   $("#cbxPais").change(function(){
@@ -55,6 +69,13 @@ $(document).ready(function() {
     
 });
 
+
+/**
+ *Funcion encargada de inicialiar variables 
+ */
+function inicializar(){
+	$("#arrayAutores").val('');
+}
 
 /**
  * Verifica si un elemento ya se encuentra registrado en la bd
@@ -130,6 +151,13 @@ function cargarCombos(tabla,combo){
           html += '<option value='+item.ID_PAIS+'>'+item.NOMBRE+'</option>';
         }
         
+        if(tabla == 'AUTOR'){
+          	var nombreAutor = item.PRIMER_NOMBRE+" "+item.SEGUNDO_NOMBRE+" "+
+          	item.PRIMER_APELLIDO+" "+item.SEGUNDO_APELLIDO;
+          	
+          html += '<option value='+item.ID_AUTOR+'>'+nombreAutor+" "+'</option>';
+        }
+        
       });
 
       $('#'+combo).append(html);   
@@ -169,5 +197,74 @@ function cargarCombos(tabla,combo){
       $("#cbxCiudad").append(html);   
   });
   
+}
+
+/**
+ *Funcion encargada de agregar el autor seleccionado al libro 
+ */
+function agregarAutor(){
+  
+  var idAutor = $("#cbxAutor").find("option:selected").val();
+  var nombreAutor = $("#cbxAutor").find("option:selected").text();
+  	
+  var fila=''; 
+  
+  fila += '<tr>';
+  fila += '<td style="display: none;"><input type="hidden" name="idAutor" value="'+idAutor+'"/></td>';
+  fila += '<td>&#8226;'+nombreAutor+'</td>';
+  fila += '<td style="cursor:pointer; width: 7%;" onclick="eliminarFila(this)" ><img style="cursor:pointer" src="../../../public/images/icn_trash.png" title="Eliminar"></td>';
+  fila += '</tr>';
+  
+  $("#tblAutores").append(fila);
+	
+}
+
+/**
+ *Funcion encargada de validar los datos y posterior guardado 
+ */
+function validarGuardar(){
+	
+	var validaciones = true;
+	
+	//Validacion ISBN
+	if($("#tbxIsbn").val().trim() != ""){
+	  if(verficarDatoEnBd('LIBRO','ISBN',$("#tbxIsbn").val().trim())){
+	    $("#msgValidacion").text("ISBN ya registrado");
+	    $("#msgValidacion").show();
+	    validaciones = false;
+	  }
+	}
+	
+	//Validacion Cod.Topografico
+	if($("#tbxCodTopografico").val().trim() != ""){
+	  if(verficarDatoEnBd('LIBRO','COD_TOPOGRAFICO',$("#tbxCodTopografico").val().trim())){
+	    $("#msgValidacion").text("Cod Topografico ya registrado");
+	    $("#msgValidacion").show();
+	    validaciones = false;
+	  }
+	}
+	
+	if(validaciones){
+		cargarAutores();
+	  $("#msgValidacion").text("");
+	  $("#msgValidacion").hide();
+	  $("#formAddLibro").submit();
+	}
+}
+
+
+/**
+ *Funcion encargada de cargar los idAutores asociados 
+ */
+function cargarAutores(){
+	
+	var arrayAutoresCargados = new Array();
+	$('#tblAutores tr').each(function(i) {
+
+		var idAutor = $(this).find("input").eq(0).val();;
+		arrayAutoresCargados.push(idAutor);
+	});
+
+	$("#arrayAutores").val(arrayAutoresCargados);	
 }
 

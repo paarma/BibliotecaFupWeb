@@ -947,3 +947,14 @@ select, input[type=text]{
 	border: 1px solid #A09F9F;
 	color: #434343; 
 }
+
+/*Boton search*/
+.btnSearch {
+	background-image:url(../images/icn_search.png) !important;
+	border: 1px thick #CCCCCC !important;
+	background-color: #FFFFFF !important;
+	
+	background-repeat: no-repeat !important;
+	background-size: 20px 20px,100% !important;
+	background-position: center !important;
+}

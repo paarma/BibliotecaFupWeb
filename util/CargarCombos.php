@@ -46,6 +46,18 @@
 				$param = array('idPais' => $idPais);			
 				$response = $client->call('listadoCiudades',$param);
 			}
+
+			if($tabla == "AUTOR"){
+				$autorBuscar = new Autor(); //Autor por defecto (Listará todos los autores)
+				
+				$param = array('primerNombre' => $autorBuscar->getPrimerNombre(),
+				'segundoNombre' => $autorBuscar->getSegundoNombre(),
+				'primerApellido' => $autorBuscar->getPrimerApellido(),
+				'segundoApellido' => $autorBuscar->getSegundoApellido(),
+				'tipo' => $autorBuscar->getTipoAutor());
+							
+				$response = $client->call('listadoAutores',$param);	
+			}
 			
 			echo json_encode($response);
 			
