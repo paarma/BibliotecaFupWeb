@@ -16,7 +16,7 @@ if(!isset($_SESSION['usuarioLogueado']))
       <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
     </div>
     <div class="breadcrumbs_container">
-      <article class="breadcrumbs"><a href="inicio.php">Inicio</a> <div class="breadcrumb_divider"></div> <a class="current">Crear Libro</a></article>
+      <article class="breadcrumbs"><a href="../../inicio.php">Inicio</a> <div class="breadcrumb_divider"></div> <a class="current">Crear Libro</a></article>
     </div>
   </section><!-- end of secondary bar -->
   
