@@ -6,7 +6,7 @@
  * paarma80@gmail.com
  */
  
- class Autor {
+ class Autor implements JsonSerializable {
  	
 	private $idAutor;
     private $primerNombre;
@@ -26,6 +26,14 @@
 		$this->tipoAutor = "";
 	}
 	
+	// function called when encoded with json_encode
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
+	
+	
+    //Getters ans setters
 	public function getIdAutor(){
 		return $this->idAutor;	
 	}

@@ -6,7 +6,7 @@
  * paarma80@gmail.com
  */
  
- class Libro {
+ class Libro implements JsonSerializable {
  	
     private $idLibro;
     private $titulo;
@@ -62,6 +62,14 @@
 	}
 	
 	
+	// function called when encoded with json_encode
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
+	
+	
+    //Getters ans setters		
 	public function getIdLibro() {
         return $this->idLibro;
     }

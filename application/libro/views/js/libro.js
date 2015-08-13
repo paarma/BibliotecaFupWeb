@@ -283,7 +283,8 @@ function buscarLibros(){
 
   $.ajax({
     type : "POST",
-    async: true,
+    async: false,
+    dataType: 'json',
     url : "../../../util/ControllerGeneral.php",
     data : {
       llamadoAjax : "true",
@@ -291,6 +292,32 @@ function buscarLibros(){
     }
   }).done(function(data) {
   	
+  	  var html = "";
+      $.each(data, function (index, item) 
+      {
+      	
+      	html += '<tr>';
+      	html += '<td>'+item.titulo+'</td>';
+      	html += '<td>'+item.isbn+'</td>';
+      	html += '<td>'+item.codigoTopografico+'</td>';
+      	
+      	if(item.editorial != null){
+      		html += '<td>'+item.editorial.descripcion+'</td>';
+      	}else{
+      		html += '<td></td>';
+      	}
+      	
+      	html += '<td>'+item.estado+'</td>';
+      	html += '</tr>';
+      	      	
+      });
+      
+      $("#tblListaLibros").append(html);
+      
+      $("#tblListaLibros").dataTable({
+         "bJQueryUI": true,
+         "sPaginationType": "full_numbers"
+      });
 	
     
   });

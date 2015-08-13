@@ -6,7 +6,7 @@
  * paarma80@gmail.com
  */
  
- class Editorial {
+ class Editorial implements JsonSerializable {
  	
 	private $idEditorial;
     private $descripcion;
@@ -18,6 +18,14 @@
         $this->descripcion = "";
 	}
 	
+	// function called when encoded with json_encode
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
+	
+	
+    //Getters ans setters
 	public function getIdEditorial(){
 		return $this->idEditorial;	
 	}

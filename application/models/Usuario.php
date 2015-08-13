@@ -6,7 +6,7 @@
  * paarma80@gmail.com
  */
  
- class Usuario {
+ class Usuario implements JsonSerializable {
  	
 	private $idUsuario;
     private $cedula;
@@ -38,6 +38,14 @@
         $this->rol = "";
 	}
 	
+	// function called when encoded with json_encode
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
+	
+	
+    //Getters ans setters
 	public function getIdUsuario(){
 		return $this->idUsuario;	
 	}

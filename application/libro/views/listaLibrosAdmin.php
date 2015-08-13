@@ -37,14 +37,11 @@ if(!isset($_SESSION['usuarioLogueado']))
               <table id="tblListaLibros" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
               <thead>
                 <tr>
-                  <th>Primer Nombre</th>
-                  <th>Segundo Nombre</th>
-                  <th>Primer Apellido</th>
-                  <th>Segundo Apellido</th>
-                  <th>No. Identificaci&oacute;n</th>
-                  <th>Editar</th>
-                  <th>Eliminar</th>
-                  <th>Informaci&oacute;n</th>
+                  <th>T&iacute;tulo</th>
+                  <th>ISBN</th>
+                  <th style="width: 20%;">Cod. topografico</th>
+                  <th style="width: 20%;">Editorial</th>
+                  <th style="width: 15%;">Estado</th>
                 </tr>
               </thead>
             </table>

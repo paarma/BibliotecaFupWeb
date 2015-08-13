@@ -44,16 +44,14 @@
 		 		
 		 if(count($response) > 0 ){
 		 	foreach($response as $item){
-		 		//echo $item['PRIMER_NOMBRE'];
+		 		//echo $item['TITULO'];
 		 		$libro = obtenerLibroSoap($item);
 				//$listaLibros->append($libro); //para el caso de ArrayObject
 				$listaLibros[] = $libro;
 		 	}
 		 }
 		 
-		 echo "<pre>";
-		 print_r($listaLibros);
-		 echo "</pre>";
+		 echo json_encode($listaLibros);
 				
 	    break;
 		

@@ -166,10 +166,10 @@
 		
 		$editorial = new Editorial();
 		
-		$editorial->setIdEditorial($response["ID_EDITORIAL"]);
-		$editorial->setDescripcion($response["DESCRIPCION"]);
+		$editorial->setIdEditorial($response[0]["ID_EDITORIAL"]);
+		$editorial->setDescripcion($response[0]["DESCRIPCION"]);
 	}
-	
+
 	return $editorial;
 
   }
