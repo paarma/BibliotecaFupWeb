@@ -75,6 +75,13 @@ $(document).ready(function() {
  */
 function inicializar(){
 	$("#arrayAutores").val('');
+	
+	//Si esta en la pantalla de ListarLibros
+	if ($('#tblListaLibros').length){
+		//Listar Libros
+		buscarLibros();
+	}
+
 }
 
 /**
@@ -106,6 +113,7 @@ function inicializar(){
     
   });
   return respuesta;
+  
  }
  
  
@@ -266,5 +274,26 @@ function cargarAutores(){
 	});
 
 	$("#arrayAutores").val(arrayAutoresCargados);	
+}
+
+/**
+ *Funcion encargada de listar los libros 
+ */
+function buscarLibros(){
+
+  $.ajax({
+    type : "POST",
+    async: true,
+    url : "../../../util/ControllerGeneral.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "listadoLibros"
+    }
+  }).done(function(data) {
+  	
+	
+    
+  });
+
 }
 

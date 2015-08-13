@@ -27,6 +27,36 @@
 			echo $response;
 			
 	    break;
+		
+		case 'listadoLibros':
+			
+			$param = array('titulo' => $_SESSION['libroBuscar']->getTitulo(), 
+			'isbn' => $_SESSION['libroBuscar']->getIsbn(),
+			'codTopografico' => $_SESSION['libroBuscar']->getCodigoTopografico(),
+			'temas' => $_SESSION['libroBuscar']->getTemas(),
+			'editorial' => "",
+			'autor' => 0);
+			
+			$response = $client->call('listadoLibros',$param);
+		
+		 $listaLibros = array();
+		 //$listaLibros = new ArrayObject();
+		 		
+		 if(count($response) > 0 ){
+		 	foreach($response as $item){
+		 		//echo $item['PRIMER_NOMBRE'];
+		 		$libro = obtenerLibroSoap($item);
+				//$listaLibros->append($libro); //para el caso de ArrayObject
+				$listaLibros[] = $libro;
+		 	}
+		 }
+		 
+		 echo "<pre>";
+		 print_r($listaLibros);
+		 echo "</pre>";
+				
+	    break;
+		
  	}	
 	
  }

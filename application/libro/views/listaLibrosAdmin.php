@@ -34,7 +34,7 @@ if(!isset($_SESSION['usuarioLogueado']))
 		  <form id="formListarlibros" method="post" action="../controllers/LibroController.php">
           <input type="hidden" id="accionListaDocente" name="accionListaDocente">
           <input type="hidden" id="idDocente" name="idDocente">
-              <table id="tblLibros" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+              <table id="tblListaLibros" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
               <thead>
                 <tr>
                   <th>Primer Nombre</th>

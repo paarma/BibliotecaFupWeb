@@ -8,6 +8,9 @@ if(!isset($_SESSION['usuarioLogueado']))
 	exit();
 }
 
+//Inicializacion de objetos generales
+$_SESSION['libroBuscar'] = new Libro();
+
 ?>
 
 <section id="secondary_bar">
