@@ -307,7 +307,7 @@ function buscarLibros(){
       		html += '<td></td>';
       	}
       	
-      	html += '<td>'+item.estado+'</td>';
+      	html += '<td><input type="radio" name="rbtSeleccion" value='+item.idLibro+' onClick="verDetalleLibro('+item.idLibro+')" ></td>';
       	html += '</tr>';
       	      	
       });
@@ -320,6 +320,29 @@ function buscarLibros(){
       });
 	
     
+  });
+
+}
+
+
+/**
+ *Funcion encargada de desplegar los atributos de un libro seleccionado
+ * @param {Object} idLibro
+ */
+function verDetalleLibro(idLibro){
+
+	$.ajax({
+	type : "POST",
+	async: false,
+	dataType: 'json',
+	url : "../../../util/ControllerGeneral.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "verDetalleLibroAdmin",
+      idLibro: idLibro
+    }
+  }).done(function(data) {	
+  	
   });
 
 }

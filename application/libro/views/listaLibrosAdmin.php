@@ -41,7 +41,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   <th>ISBN</th>
                   <th style="width: 20%;">Cod. topografico</th>
                   <th style="width: 20%;">Editorial</th>
-                  <th style="width: 15%;">Estado</th>
+                  <th style="width: 10%;">Detalles</th>
                 </tr>
               </thead>
             </table>

@@ -14,6 +14,7 @@
  require_once BASEPATH . 'util/UtilidadesBuscarPorId.php';
  session_start();
  
+
   //Funcionalidades ajax
  if(isset($_POST['llamadoAjax']) && $_POST['llamadoAjax'] == "true")
  {
@@ -50,10 +51,34 @@
 				$listaLibros[] = $libro;
 		 	}
 		 }
+
+		//Se almacena el listado de objetos en session, de esta manera se tienen todos
+		//los objetos disponibles.
+		$_SESSION['arrayListadoLibros'] = $listaLibros;
 		 
 		 echo json_encode($listaLibros);
 				
 	    break;
+		
+		case 'verDetalleLibroAdmin':
+			
+			$idLibro = $_POST['idLibro'];
+			$arrayLibros = $_SESSION['arrayListadoLibros'];
+			
+			foreach ($arrayLibros as $key => $libroObject) {
+					
+				if($idLibro == $libroObject->getIdLibro()){
+						$_SESSION['libroSeleccionadoAdmin'] = $libroObject;
+					break;
+				}
+			}
+			
+			//Se cargan los datos en la UI. interfaz de usuario
+			if($_SESSION['libroSeleccionadoAdmin'] != null){
+				echo "mostrar datos";
+			}
+				
+		break;
 		
  	}	
 	

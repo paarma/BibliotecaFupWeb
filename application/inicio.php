@@ -8,8 +8,7 @@ if(!isset($_SESSION['usuarioLogueado']))
 	exit();
 }
 
-//Inicializacion de objetos generales
-$_SESSION['libroBuscar'] = new Libro();
+include_once BASEPATH.'util/VariablesGlobales.php';
 
 ?>
 
