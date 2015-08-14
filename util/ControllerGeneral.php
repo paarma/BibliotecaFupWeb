@@ -54,7 +54,7 @@
 
 		//Se almacena el listado de objetos en session, de esta manera se tienen todos
 		//los objetos disponibles.
-		$_SESSION['arrayListadoLibros'] = $listaLibros;
+		//$_SESSION['arrayListadoLibros'] = $listaLibros;
 		 
 		 echo json_encode($listaLibros);
 				
@@ -63,8 +63,9 @@
 		case 'verDetalleLibroAdmin':
 			
 			$idLibro = $_POST['idLibro'];
-			$arrayLibros = $_SESSION['arrayListadoLibros'];
+			$libro = null;
 			
+			/*$arrayLibros = $_SESSION['arrayListadoLibros'];
 			foreach ($arrayLibros as $key => $libroObject) {
 					
 				if($idLibro == $libroObject->getIdLibro()){
@@ -76,7 +77,19 @@
 			//Se cargan los datos en la UI. interfaz de usuario
 			if($_SESSION['libroSeleccionadoAdmin'] != null){
 				echo "mostrar datos";
-			}
+			}*/
+			
+			$param = array('idLibro' => $idLibro);
+			$response = $client->call('buscarLibroPorId',$param);
+			
+			if(count($response) > 0 ){
+			 	foreach($response as $item){
+			 		$libro = obtenerLibroSoap($item);
+					break;
+			 	}
+			 }
+			
+			echo json_encode($libro);
 				
 		break;
 		

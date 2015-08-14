@@ -97,15 +97,9 @@
         $lib->setRadicado($libroSoap["RADICADO"]);
     }
 
-    /*if($libroSoap["FECHA_INGRESO"] != null) {
-        try{
-            Date fechaIngreso;
-            fechaIngreso = Utilidades->formatoFechaYYYYMMDD->parse($libroSoap["FECHA_INGRESO"]);
-            $lib->setFechaIngreso(fechaIngreso);
-        }catch (Exception e){
-            Log->e("Generales","XXX Error seteando fechaIngresoLibro: "+e->getMessage());
-        }
-    }*/
+    if($libroSoap["FECHA_INGRESO"] != null) {
+        $lib->setFechaIngreso($libroSoap["FECHA_INGRESO"]);
+    }
 
     if($libroSoap["SERIE"] != null) {
         $lib->setSerie($libroSoap["SERIE"]);
@@ -122,17 +116,17 @@
 
     //Area
     if($libroSoap["ID_AREA"] != null) {
-        //$lib->setArea(buscarAreaPorId($libroSoap["ID_AREA"]));
+        $lib->setArea(buscarAreaPorId($libroSoap["ID_AREA"]));
     }
 
     //Sede
     if($libroSoap["ID_SEDE"] != null) {
-        //$lib->setSede(buscarSedePorId($libroSoap["ID_SEDE"]));
+        $lib->setSede(buscarSedePorId($libroSoap["ID_SEDE"]));
     }
 
     //Ciudad
     if($libroSoap["ID_CIUDAD"] != null) {
-        //$lib->setCiudad(buscarCiudadPorId($libroSoap["ID_CIUDAD"]));
+        $lib->setCiudad(buscarCiudadPorId($libroSoap["ID_CIUDAD"]));
     }
 
     if($libroSoap["ADQUISICION"] != null) {
@@ -171,7 +165,85 @@
 	}
 
 	return $editorial;
+  }
+  
+  
+ /**
+ * Funcion encargada de obtener un Area segun si ID
+ */
+  function buscarAreaPorId($idArea){
+  	
+	global $client; //referencia global a la variable client (la cual accede al WS)
+	
+	$area = null;
+		
+ 	$param = array('idArea' =>$idArea);
+	$response = $client->call('buscarAreaPorId',$param);
+	
+	if($response != null){
+		
+		$area = new Area();
+		
+		$area->setIdArea($response[0]["ID_AREA"]);
+		$area->setDescripcion($response[0]["DESCRIPCION"]);
+	}
 
+	return $area;
+  }
+ 
+  
+ /**
+ * Funcion encargada de obtener una Sede segun si ID
+ */
+  function buscarSedePorId($idSede){
+  	
+	global $client; //referencia global a la variable client (la cual accede al WS)
+	
+	$sede = null;
+		
+ 	$param = array('idSede' =>$idSede);
+	$response = $client->call('buscarSedePorId',$param);
+	
+	if($response != null){
+		
+		$sede = new Sede();
+		
+		$sede->setIdSede($response[0]["ID_SEDE"]);
+		$sede->setDescripcion($response[0]["DESCRIPCION"]);
+	}
+
+	return $sede;
+  }
+  
+  
+ /**
+ * Funcion encargada de obtener una Ciudad segun si ID
+ */
+  function buscarCiudadPorId($idCiudad){
+  	
+	global $client; //referencia global a la variable client (la cual accede al WS)
+	
+	$ciudad = null;
+		
+ 	$param = array('idCiudad' =>$idCiudad);
+	$response = $client->call('buscarCiudadPorId',$param);
+	
+	if($response != null){
+		
+		$ciudad = new Ciudad();
+		
+		$ciudad->setIdCiudad($response[0]["ID_CIUDAD"]);
+		$ciudad->setNombre($response[0]["NOM_CIUDAD"]);
+		
+		$pais = new Pais();
+		
+		$pais->setIdPais($response[0]["ID_PAIS"]);
+        $pais->setNombre($response[0]["NOM_PAIS"]);
+		
+		$ciudad->setPais($pais);
+	}
+
+	return $ciudad;
   }
 
 ?>

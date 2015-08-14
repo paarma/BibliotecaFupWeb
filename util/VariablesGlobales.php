@@ -17,10 +17,5 @@ $_SESSION['libroBuscar'] = new Libro();
  * Arreglo contenedor del listado de libros;
  */
 $_SESSION['arrayListadoLibros'] = null;
-
-/**
- * Variable que contiene un libro seleccionado por el admin.
- */
-$_SESSION['libroSeleccionadoAdmin'] = null;
  
  ?>
