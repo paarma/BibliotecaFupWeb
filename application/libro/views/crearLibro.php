@@ -16,7 +16,7 @@ if(!isset($_SESSION['usuarioLogueado']))
       <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
     </div>
     <div class="breadcrumbs_container">
-      <article class="breadcrumbs"><a href="../../inicio.php">Inicio</a> <div class="breadcrumb_divider"></div> <a class="current">Crear Libro</a></article>
+      <article class="breadcrumbs"><a href="../../inicio.php">Inicio</a> <div class="breadcrumb_divider"></div> <a class="current">Guardar Libro</a></article>
     </div>
   </section><!-- end of secondary bar -->
   
@@ -34,6 +34,11 @@ if(!isset($_SESSION['usuarioLogueado']))
           <form id="formAddLibro" method="post" action="../controllers/LibroController.php">
             <input type="hidden" id="accionFormLibro" name="accionFormLibro" value="guardar">
             <input type="hidden" id="arrayAutores" name="arrayAutores">
+            
+            <!-- Validacion datos editar-->
+            <input type="hidden" id="idLibro" name="idLibro" value="0">
+            <input type="hidden" id="isbnOriginal" name="isbnOriginal" value="">
+            <input type="hidden" id="codTopograficoOriginal" name="codTopograficoOriginal" value="">
             
             <table>
               <tr>

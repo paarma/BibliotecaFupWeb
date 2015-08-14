@@ -5,7 +5,7 @@
     <hr/>
     <h3>Libros</h3>
     <ul class="toggle">
-      <li class="icn_new_article"><a href='<?php echo BASEURL.'application/libro/views/crearLibro.php'; ?>'>Crear Libro</a></li>
+      <li class="icn_new_article"><a id="menuCrearLibroAdmin" href='<?php echo BASEURL.'application/libro/views/crearLibro.php'; ?>'>Crear Libro</a></li>
       <li class="icn_categories"><a href='<?php echo BASEURL.'application/libro/views/listaLibrosAdmin.php'; ?>'>Listado Libros</a></li>
       <li class="icn_search"><a href='<?php echo BASEURL.'application/docentes/views/contratoDocentes.php'; ?>'>Buscar</a></li>
 

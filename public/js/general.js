@@ -28,10 +28,34 @@ $(document).ready(function(){
 
   });
   
+  /**
+   *Funcionalidades para limpiar variables se session segun opcion de menu seleccionada 
+   */
+  $("#menuCrearLibroAdmin").click(function(){
+  	inicializarVariablesSession();
+  });
+  
 
 });
 
 //Funcion encargada de eliminar una fina de una tabla
 function eliminarFila(fila) {
 	$(fila).parent().remove();
+}
+
+//Funcion encargada de inicializar variables de sesion
+function inicializarVariablesSession(){
+	
+	$.ajax({
+    type : "POST",
+    async: false,
+    url : $("#baseUrl").val()+"util/ControllerGeneral.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "inicializarVariablesSession"
+    }
+  }).done(function(data) {
+
+  });
+  	  
 }

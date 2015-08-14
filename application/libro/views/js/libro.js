@@ -40,6 +40,7 @@ $(document).ready(function() {
     });
   
   inicializar();
+  cargarDatosLibroSeleccionado();
   
     
   ////////////////////////Guardar libro     
@@ -48,12 +49,6 @@ $(document).ready(function() {
   });	
   //////////////////////////Fin guardar libro. 
   
-  //Cargar combos
-  cargarCombos('EDITORIAL','cbxEditorial');
-  cargarCombos('AREA','cbxArea');
-  cargarCombos('SEDE','cbxSede');
-  cargarCombos('PAIS','cbxPais');
-  cargarCombos('AUTOR','cbxAutor');
   
   //Cargar cbx Ciudades segun pais
   $("#cbxPais").change(function(){
@@ -74,15 +69,94 @@ $(document).ready(function() {
  *Funcion encargada de inicialiar variables 
  */
 function inicializar(){
-	$("#arrayAutores").val('');
 	
-	//Si esta en la pantalla de ListarLibros
+	//inicializar variables
+	$("#arrayAutores").val('');
+	$("#idLibro").val(0);
+	$("#isbnOriginal").val('');
+	$("#codTopograficoOriginal").val('');
+	
+	  //Cargar combos
+	  cargarCombos('EDITORIAL','cbxEditorial');
+	  cargarCombos('AREA','cbxArea');
+	  cargarCombos('SEDE','cbxSede');
+	  cargarCombos('PAIS','cbxPais');
+	  cargarCombos('AUTOR','cbxAutor');
+	
+	////////////Si esta en la pantalla de ListarLibros
 	if ($('#tblListaLibros').length){
 		//Listar Libros
 		buscarLibros();
+		$("#panelDetalleLibro").hide();
 	}
 
 }
+
+/**
+ *Funcion encargada de verificar si existe un libro seleccionado por el admin
+ * y posterior carga de datos del mismo.
+ */
+function cargarDatosLibroSeleccionado(){
+	
+  $.ajax({
+    type : "POST",
+    async: false,
+    dataType: 'json',
+    url : "../controllers/LibroController.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "cargarDatosLibroSeleccionado"
+    }
+  }).done(function(data) {
+  	
+	if(data != null){
+		
+		//idLibro
+		$("#idLibro").val(data.idLibro);
+		$("#isbnOriginal").val(data.isbn);
+		$("#codTopograficoOriginal").val(data.codigoTopografico);
+		
+		$("#tbxTitulo").val(data.titulo);
+		$("#tbxIsbn").val(data.isbn);
+		$("#tbxCodTopografico").val(data.codigoTopografico);
+		$("#tbxTemas").val(data.temas);
+		$("#tbxPaginas").val(data.paginas);
+		$("#tbxValor").val(data.valor);
+		$("#tbxRadicado").val(data.radicado);
+		$("#tbxSerie").val(data.serie);
+		$("#tbxCantidad").val(data.cantidad);
+		$("#tbxAnio").val(data.anio);
+		
+		//Combobox
+		if(data.editorial != null){
+			$("#cbxEditorial").val(data.editorial.idEditorial);
+		}
+		
+		if(data.area != null){
+			$("#cbxArea").val(data.area.idArea);
+		}
+		
+		if(data.sede != null){
+			$("#cbxSede").val(data.sede.idSede);
+		}
+		
+		//Pais/Ciudad. //Si existe Ciudad, se carga el combo Ciudades con la respectiva ciudad del libro.
+		if(data.ciudad != null){
+			cargarComboCiudades(data.ciudad.pais.idPais);
+			
+			$("#cbxPais").val(data.ciudad.pais.idPais);
+			$("#cbxCiudad").val(data.ciudad.idCiudad);
+		}
+		
+		$("#cbxAdquisicion").val(data.adquisicion);	
+		$("#cbxEstado").val(data.estado);			
+		
+	}
+	
+  });
+	
+}
+
 
 /**
  * Verifica si un elemento ya se encuentra registrado en la bd
@@ -126,7 +200,7 @@ function cargarCombos(tabla,combo){
 	
   $.ajax({
     type : "POST",
-    async: true,
+    async: false,
     dataType: 'json',
     url : $("#baseUrl").val()+"util/CargarCombos.php",
     data : {
@@ -182,7 +256,7 @@ function cargarCombos(tabla,combo){
   	
   	$.ajax({
     type : "POST",
-    async: true,
+    async: false,
     dataType: 'json',
     url : $("#baseUrl").val()+"util/CargarCombos.php",
     data : {
@@ -234,22 +308,52 @@ function validarGuardar(){
 	
 	var validaciones = true;
 	
-	//Validacion ISBN
-	if($("#tbxIsbn").val().trim() != ""){
-	  if(verficarDatoEnBd('LIBRO','ISBN',$("#tbxIsbn").val().trim())){
-	    $("#msgValidacion").text("ISBN ya registrado");
-	    $("#msgValidacion").show();
-	    validaciones = false;
-	  }
+	 /**
+	 * Si esta creando un nuevo libro
+	 */
+	if($("#idLibro").val() == 0){
+		//Validacion ISBN
+		if($("#tbxIsbn").val().trim() != ""){
+		  if(verficarDatoEnBd('LIBRO','ISBN',$("#tbxIsbn").val().trim())){
+		    $("#msgValidacion").text("ISBN ya registrado");
+		    $("#msgValidacion").show();
+		    validaciones = false;
+		  }
+		}
+		
+		//Validacion Cod.Topografico
+		if($("#tbxCodTopografico").val().trim() != ""){
+		  if(verficarDatoEnBd('LIBRO','COD_TOPOGRAFICO',$("#tbxCodTopografico").val().trim())){
+		    $("#msgValidacion").text("Cod Topografico ya registrado");
+		    $("#msgValidacion").show();
+		    validaciones = false;
+		  }
+		}
 	}
 	
-	//Validacion Cod.Topografico
-	if($("#tbxCodTopografico").val().trim() != ""){
-	  if(verficarDatoEnBd('LIBRO','COD_TOPOGRAFICO',$("#tbxCodTopografico").val().trim())){
-	    $("#msgValidacion").text("Cod Topografico ya registrado");
-	    $("#msgValidacion").show();
-	    validaciones = false;
-	  }
+	/**
+	 *Si esta editando un libro 
+	 */
+	if($("#idLibro").val() != 0){
+		//Validacion ISBN
+		if($("#tbxIsbn").val().trim() != "" && $("#isbnOriginal").val() != $("#tbxIsbn").val().trim()){
+		  if(verficarDatoEnBd('LIBRO','ISBN',$("#tbxIsbn").val().trim())){
+		    $("#msgValidacion").text("ISBN ya registrado");
+		    $("#msgValidacion").show();
+		    validaciones = false;
+		  }
+		}
+		
+		//Validacion Cod.Topografico
+		if($("#tbxCodTopografico").val().trim() != "" && 
+			$("#codTopograficoOriginal").val() != $("#tbxCodTopografico").val().trim()){
+					
+		  if(verficarDatoEnBd('LIBRO','COD_TOPOGRAFICO',$("#tbxCodTopografico").val().trim())){
+		    $("#msgValidacion").text("Cod Topografico ya registrado");
+		    $("#msgValidacion").show();
+		    validaciones = false;
+		  }
+		}
 	}
 	
 	if(validaciones){
@@ -330,6 +434,8 @@ function buscarLibros(){
  * @param {Object} idLibro
  */
 function verDetalleLibro(idLibro){
+	
+	$("#panelDetalleLibro").show();
 
 	$.ajax({
 	type : "POST",
@@ -342,6 +448,44 @@ function verDetalleLibro(idLibro){
       idLibro: idLibro
     }
   }).done(function(data) {	
+  	
+  	if(data != null){
+		
+		$("#tbxTitulo").val(data.titulo);
+		$("#tbxIsbn").val(data.isbn);
+		$("#tbxCodTopografico").val(data.codigoTopografico);
+		$("#tbxTemas").val(data.temas);
+		$("#tbxPaginas").val(data.paginas);
+		$("#tbxValor").val(data.valor);
+		$("#tbxRadicado").val(data.radicado);
+		$("#tbxSerie").val(data.serie);
+		$("#tbxCantidad").val(data.cantidad);
+		$("#tbxAnio").val(data.anio);
+		
+		if(data.editorial != null){
+			$("#tbxEditorial").val(data.editorial.descripcion);
+		}
+		
+		if(data.area != null){
+			$("#tbxArea").val(data.area.descripcion);
+		}
+		
+		if(data.sede != null){
+			$("#tbxSede").val(data.sede.descripcion);
+		}
+		
+		
+		//Pais/Ciudad.
+		if(data.ciudad != null){
+			
+			$("#tbxPais").val(data.ciudad.pais.nombre);
+			$("#tbxCiudad").val(data.ciudad.nombre);
+		}
+		
+		$("#tbxAdquisicion").val(data.adquisicion);	
+		$("#tbxEstado").val(data.estado);			
+		
+	}
   	
   });
 

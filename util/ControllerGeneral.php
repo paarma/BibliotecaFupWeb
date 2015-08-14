@@ -85,6 +85,7 @@
 			if(count($response) > 0 ){
 			 	foreach($response as $item){
 			 		$libro = obtenerLibroSoap($item);
+					$_SESSION['libroSeleccionadoAdmin'] = $libro;
 					break;
 			 	}
 			 }
@@ -92,6 +93,11 @@
 			echo json_encode($libro);
 				
 		break;
+		
+		case 'inicializarVariablesSession':
+			$_SESSION['libroSeleccionadoAdmin'] = null;
+			echo true;
+		break;	
 		
  	}	
 	
