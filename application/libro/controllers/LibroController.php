@@ -22,7 +22,17 @@
  		
 	 	case 'cargarDatosLibroSeleccionado':
 			echo json_encode($_SESSION['libroSeleccionadoAdmin']);
-		break;	
+		break;
+		
+		case 'cargarAutoresAsociados':
+			
+			$idLibro = $_POST['idLibro'];
+			
+			$param = array('idLibro' => $idLibro);
+			$response = $client->call('listadoLibroAutor',$param);
+			
+			echo json_encode($response);
+		break;		
 	}
  }			
  

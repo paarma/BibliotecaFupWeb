@@ -149,13 +149,49 @@ function cargarDatosLibroSeleccionado(){
 		}
 		
 		$("#cbxAdquisicion").val(data.adquisicion);	
-		$("#cbxEstado").val(data.estado);			
+		$("#cbxEstado").val(data.estado);
+		
+		cargarAutoresAsociados(data.idLibro);			
 		
 	}
 	
   });
 	
 }
+
+/**
+ *Funcion encargada de obtener los autores asociados de un determinado libro 
+ */
+ function cargarAutoresAsociados(idLibro){
+ 	
+ $.ajax({
+    type : "POST",
+    async: false,
+    dataType: 'json',
+    url : "../controllers/LibroController.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "cargarAutoresAsociados",
+      idLibro : idLibro
+    }
+  }).done(function(data) {
+
+	  var fila = "";
+      $.each(data, function (index, item) 
+      {
+		var nombreAutor = item.PRIMER_NOMBRE+" "+item.SEGUNDO_NOMBRE+" "+item.PRIMER_APELLIDO+" "+item.SEGUNDO_APELLIDO;
+		  
+		fila += '<tr>';
+		fila += '<td style="display: none;"><input type="hidden" name="idAutor" value="'+item.ID_AUTOR+'"/></td>';
+		fila += '<td>&#8226;'+nombreAutor+'</td>';
+		fila += '<td style="cursor:pointer; width: 7%;" onclick="eliminarFila(this)" ><img style="cursor:pointer" src="../../../public/images/icn_trash.png" title="Eliminar"></td>';
+		fila += '</tr>';
+      });
+			  
+	  $("#tblAutores").append(fila);	
+  });  	
+  	
+ }
 
 
 /**
@@ -435,6 +471,7 @@ function buscarLibros(){
  */
 function verDetalleLibro(idLibro){
 	
+	//$("#formListarlibros")[0].reset();
 	$("#panelDetalleLibro").show();
 
 	$.ajax({
@@ -464,14 +501,20 @@ function verDetalleLibro(idLibro){
 		
 		if(data.editorial != null){
 			$("#tbxEditorial").val(data.editorial.descripcion);
+		}else{
+			$("#tbxEditorial").val('');
 		}
 		
 		if(data.area != null){
 			$("#tbxArea").val(data.area.descripcion);
+		}else{
+			$("#tbxArea").val('');
 		}
 		
 		if(data.sede != null){
 			$("#tbxSede").val(data.sede.descripcion);
+		}else{
+			$("#tbxSede").val('');
 		}
 		
 		
@@ -480,6 +523,10 @@ function verDetalleLibro(idLibro){
 			
 			$("#tbxPais").val(data.ciudad.pais.nombre);
 			$("#tbxCiudad").val(data.ciudad.nombre);
+		}else{
+			
+			$("#tbxPais").val('');
+			$("#tbxCiudad").val('');
 		}
 		
 		$("#tbxAdquisicion").val(data.adquisicion);	
