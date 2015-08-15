@@ -34,6 +34,11 @@ $(document).ready(function() {
       }
     });
     
+    ////////////Si esta en la interfaz de ListarLibros
+	if ($('#tblListaLibros').length){
+		$("#panelDetalleLibro").hide();
+	}
+    
     //Agregar Autor
     $("#addAutor" ).click(function() {
       $("#dialogAddAutor" ).dialog( "open" );
@@ -61,6 +66,12 @@ $(document).ready(function() {
   
   });
   
+  
+  //Boton buscar libro
+  $("#btnBuscarLibro").click(function(){
+  	buscarLibro();
+  });
+  
     
 });
 
@@ -83,11 +94,17 @@ function inicializar(){
 	  cargarCombos('PAIS','cbxPais');
 	  cargarCombos('AUTOR','cbxAutor');
 	
-	////////////Si esta en la pantalla de ListarLibros
+	////////////Si esta en la interfaz de ListarLibros
 	if ($('#tblListaLibros').length){
 		//Listar Libros
 		buscarLibros();
 		$("#panelDetalleLibro").hide();
+	}
+	
+	///////////Si esta en la interfaz de buscarLibro
+	//Se inicializa el formulario
+	if($("#formSearchLibro").length){
+		$("#formSearchLibro")[0].reset();
 	}
 
 }
@@ -537,4 +554,30 @@ function verDetalleLibro(idLibro){
   });
 
 }
+
+/**
+ *Funcion encargada de setear los datos de busqueda de un libro 
+ */
+ function buscarLibro(){
+	
+  $.ajax({
+	type : "POST",
+	async: false,
+	url : "../../../util/ControllerGeneral.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "buscarLibro",
+      titulo: $("#tbxTitulo").val(),
+      isbn: $("#tbxIsbn").val(),
+      codTopografico: $("#tbxCodTopografico").val(),
+      temas: $("#tbxTemas").val(),
+      idEditorial: $("#cbxEditorial").val(),
+      idAutor: $("#cbxAutor").val()
+    }
+  }).done(function(data) {
+  		$("#formSearchLibro").submit();
+  	});
+	
+}
+
 

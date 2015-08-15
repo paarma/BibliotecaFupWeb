@@ -35,6 +35,14 @@ $(document).ready(function(){
   	inicializarVariablesSession();
   });
   
+  $("#menuLibrosAdmin").click(function(){
+  	inicializarVariablesSession();
+  });
+  
+  $("#menuBuscarLibroAdmin").click(function(){
+  	inicializarVariablesSession();
+  });
+  
 
 });
 

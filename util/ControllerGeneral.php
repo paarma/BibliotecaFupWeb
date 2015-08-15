@@ -31,12 +31,17 @@
 		
 		case 'listadoLibros':
 			
+			$idEditorial = "";
+			if($_SESSION['libroBuscar']->getEditorial() != null){
+				$idEditorial = $_SESSION['libroBuscar']->getEditorial()->getIdEditorial();
+			}
+			
 			$param = array('titulo' => $_SESSION['libroBuscar']->getTitulo(), 
 			'isbn' => $_SESSION['libroBuscar']->getIsbn(),
 			'codTopografico' => $_SESSION['libroBuscar']->getCodigoTopografico(),
 			'temas' => $_SESSION['libroBuscar']->getTemas(),
-			'editorial' => "",
-			'autor' => 0);
+			'editorial' => $idEditorial,
+			'autor' => $_SESSION['libroBuscar']->getIdAutor());
 			
 			$response = $client->call('listadoLibros',$param);
 		
@@ -52,9 +57,7 @@
 		 	}
 		 }
 
-		//Se almacena el listado de objetos en session, de esta manera se tienen todos
-		//los objetos disponibles.
-		//$_SESSION['arrayListadoLibros'] = $listaLibros;
+		 $_SESSION['libroBuscar'] = new Libro();
 		 
 		 echo json_encode($listaLibros);
 				
@@ -95,9 +98,45 @@
 		break;
 		
 		case 'inicializarVariablesSession':
+			
 			$_SESSION['libroSeleccionadoAdmin'] = null;
+			$_SESSION['libroBuscar'] = new Libro();
+			
 			echo true;
-		break;	
+		break;
+		
+		case 'buscarLibro':
+			
+			$libro = new Libro();
+			
+			if(trim($_POST['titulo']) != ""){
+				$libro->setTitulo(trim($_POST['titulo']));
+			}
+			
+			if(trim($_POST['isbn']) != ""){
+				$libro->setIsbn(trim($_POST['isbn']));
+			}
+						
+			if(trim($_POST['codTopografico']) != ""){
+				$libro->setCodigoTopografico(trim($_POST['codTopografico']));
+			}
+									
+			if(trim($_POST['temas']) != ""){
+				$libro->setTemas(trim($_POST['temas']));
+			}
+			
+			if($_POST['idEditorial'] != ""){
+				$libro->setEditorial(buscarEditorialPorId($_POST['idEditorial']));
+			}
+									
+			if(trim($_POST['idAutor']) != ""){
+				$libro->setIdAutor($_POST['idAutor']);
+			}
+			
+			$_SESSION['libroBuscar'] = $libro;
+			
+			echo true;
+		break;		
 		
  	}	
 	
