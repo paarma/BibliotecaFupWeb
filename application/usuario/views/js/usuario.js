@@ -3,6 +3,11 @@ $(document).ready(function() {
   $("#msgValidacion").text("");
   $("#msgValidacion").hide();
   
+	  ////////////Si esta en la interfaz de ListarUsuarios
+	if ($('#tblListaUsuarios').length){
+		$("#panelDetalleUsuario").hide();
+	}
+  
   inicializar();  
     
   ////////////////////////Guardar libro     
@@ -24,6 +29,13 @@ function inicializar(){
 	$("#cedulaOriginal").val('');
 	$("#emailOriginal").val('');
 	$("#codigoOriginal").val('');
+	
+	////////////Si esta en la interfaz de ListarUsuarios
+	if ($('#tblListaUsuarios').length){
+		//Listar Usuarios
+		buscarUsuarios();
+		$("#panelDetalleLibro").hide();
+	}
 	
 }
 
@@ -141,6 +153,88 @@ function validarGuardar(){
 	  $("#msgValidacion").hide();
 	  $("#formAddUsuario").submit();
 	}
+}
+
+
+/**
+ *Funcion encargada de listar los usuarios 
+ */
+function buscarUsuarios(){
+
+  $.ajax({
+    type : "POST",
+    async: false,
+    dataType: 'json',
+    url : "../../../util/ControllerGeneral.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "listadoUsuarios"
+    }
+  }).done(function(data) {
+  	
+  	  var html = "";
+      $.each(data, function (index, item) 
+      {
+      	
+      	html += '<tr>';
+      	html += '<td>'+item.primerNombre+" "+item.segundoNombre+ '</td>';
+      	html += '<td>'+item.primerApellido+" "+item.segundoApellido+ '</td>';
+        html += '<td>'+item.codigo+'</td>';
+        html += '<td>'+item.email+'</td>';     	
+      	html += '<td><input type="radio" name="rbtSeleccion" value='+item.idUsuario+' onClick="verDetalleUsuario('+item.idUsuario+')" ></td>';
+      	html += '</tr>';
+      	      	
+      });
+      
+      $("#tblListaUsuarios").append(html);
+      
+      $("#tblListaUsuarios").dataTable({
+         "bJQueryUI": true,
+         "sPaginationType": "full_numbers"
+      });
+	
+    
+  });
+
+}
+
+/**
+ *Funcion encargada de desplegar los atributos de un libro seleccionado
+ * @param {Object} idLibro
+ */
+function verDetalleUsuario(idUsuario){
+	
+	$("#panelDetalleUsuario").show();
+
+	$.ajax({
+	type : "POST",
+	async: false,
+	dataType: 'json',
+	url : "../../../util/ControllerGeneral.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "verDetalleUsuario",
+      idUsuario: idUsuario
+    }
+  }).done(function(data) {	
+  	
+  	if(data != null){
+		
+		$("#tbxCedula").val(data.cedula);
+		$("#tbxTelefono").val(data.telefono);
+		$("#tbxPrimerNombre").val(data.primerNombre);
+		$("#tbxSegundoNombre").val(data.segundoNombre);
+		$("#tbxPrimerApellido").val(data.primerApellido);
+		$("#tbxSegundoApellido").val(data.segundoApellido);
+		$("#tbxDireccion").val(data.direccion);
+		$("#tbxEmail").val(data.email);
+		$("#tbxCodigo").val(data.codigo);
+		$("#tbxClave").val(data.clave);
+		$("#tbxRol").val(data.rol);
+	}
+  	
+  });
+
 }
 
 

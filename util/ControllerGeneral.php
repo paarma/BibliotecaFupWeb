@@ -136,6 +136,52 @@
 			$_SESSION['libroBuscar'] = $libro;
 			
 			echo true;
+		break;
+		
+		case 'listadoUsuarios':
+			
+			$param = array('cedula' => $_SESSION['usuarioBuscar']->getCedula(), 
+			'primerNombre' => $_SESSION['usuarioBuscar']->getPrimerNombre(),
+			'segundoNombre' => $_SESSION['usuarioBuscar']->getSegundoNombre(),
+			'primerApellido' => $_SESSION['usuarioBuscar']->getPrimerApellido(),
+			'segundoApellido' => $_SESSION['usuarioBuscar']->getSegundoApellido(),
+			'codigo' => $_SESSION['usuarioBuscar']->getCodigo(),
+			'rol' => $_SESSION['usuarioBuscar']->getRol());
+			
+			$response = $client->call('listadoUsuarios',$param);
+		
+			 $listaUsuarios = array();
+			 		
+			 if(count($response) > 0 ){
+			 	foreach($response as $item){
+			 		$usuario = obtenerUsuarioSoap($item);
+					$listaUsuarios[] = $usuario;
+			 	}
+			 }
+	
+			 $_SESSION['usuarioBuscar'] = new Usuario();
+			 
+			 echo json_encode($listaUsuarios);
+		break;
+		
+		case 'verDetalleUsuario':
+			
+			$idUsuario = $_POST['idUsuario'];
+			$usuario = null;
+			
+			$param = array('idUsuario' => $idUsuario);
+			$response = $client->call('buscarUsuarioPorId',$param);
+			
+			if(count($response) > 0 ){
+			 	foreach($response as $item){
+			 		$usuario = obtenerUsuarioSoap($item);
+					$_SESSION['usuarioSeleccionadoAdmin'] = $usuario;
+					break;
+			 	}
+			 }
+			
+			echo json_encode($usuario);
+				
 		break;		
 		
  	}	

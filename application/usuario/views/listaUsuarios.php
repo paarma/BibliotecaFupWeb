@@ -16,7 +16,7 @@ if(!isset($_SESSION['usuarioLogueado']))
       <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
     </div>
     <div class="breadcrumbs_container">
-      <article class="breadcrumbs"><a href="../../inicio.php">Inicio</a> <div class="breadcrumb_divider"></div> <a class="current">Guardar Usuario</a></article>
+      <article class="breadcrumbs"><a href="../../inicio.php">Inicio</a> <div class="breadcrumb_divider"></div> <a class="current">Usuarios</a></article>
     </div>
   </section><!-- end of secondary bar -->
   
@@ -28,70 +28,74 @@ if(!isset($_SESSION['usuarioLogueado']))
   <section id="main" class="column">
     
     <article class="module width_full">
-      <header><h3>Informaci&oacute;n del Usuario</h3></header>
+      <header><h3>Listado de Usuarios</h3></header>
         <div class="module_content">
           
-          <form id="formAddUsuario" method="post" action="../controllers/UsuarioController.php">
-            <input type="hidden" id="accionFormUsuario" name="accionFormUsuario" value="guardar">
+		  <form id="formListarlibros" method="post" action="../views/crearUsuario.php">
+              <table id="tblListaUsuarios" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+              <thead>
+                <tr>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th style="width: 20%;">C&oacute;digo</th>
+                  <th style="width: 20%;">Email</th>
+                  <th style="width: 10%;">Detalles</th>
+                </tr>
+              </thead>
+            </table>
+            <br>
             
-            <!-- Validacion datos editar-->
-            <input type="hidden" id="idUsuario" name="idUsuario" value="0">
-            <input type="hidden" id="cedulaOriginal" name="cedulaOriginal" value="">
-            <input type="hidden" id="emailOriginal" name="emailOriginal" value="">
-            <input type="hidden" id="codigoOriginal" name="codigoOriginal" value="">
-            
-            <table>
+          <!-- Panel detalle usuario -->
+          <div id="panelDetalleUsuario" align="center">
+          	<h3>Detalle Usuario</h3>
+          
+          <hr />   			
+			<table id="tblDetalleUsuario" width="80%" border="0">
               <tr>
                 <td>
-                  Cedula: *
+                  Cedula:
                 </td>
                 <td>
-                  <input type="text" id="tbxCedula" name="tbxCedula" />
+                  <input type="text" id="tbxCedula" name="tbxCedula" disabled="true" />
                 </td>
-              </tr>
-              
-               <tr>
-                <td>
-                  Primer Nombre: *
-                </td>
-                <td>
-                  <input type="text" id="tbxPrimerNombre" name="tbxPrimerNombre" class="textoMayusculas" />
-                </td>
-              </tr>
-              
-              <tr>
-                <td>
-                  Segundo Nombre:
-                </td>
-                <td>
-                  <input type="text" id="tbxSegundoNombre" name="tbxSegundoNombre" class="textoMayusculas" />
-                </td>
-              </tr>
-              
-               <tr>
-                <td>
-                  Primer Apellido: *
-                </td>
-                <td>
-                  <input type="text" id="tbxPrimerApellido" name="tbxPrimerApellido" class="textoMayusculas" />
-                </td>
-              </tr>
-              
-              <tr>
-                <td>
-                  Segundo Apellido:
-                </td>
-                <td>
-                  <input type="text" id="tbxSegundoApellido" name="tbxSegundoApellido" class="textoMayusculas" />
-                </td>
-              </tr>
-              
-             <tr>
+                
                 <td>
                   Tel&eacute;fono:
                 </td>
                 <td>
-                  <input type="text" id="tbxTelefono" name="tbxTelefono" />
+                  <input type="text" id="tbxTelefono" name="tbxTelefono" disabled="true" />
+                </td>
+              </tr>
+              
+              <tr>
+                <td>
+                  Primer Nombre:
+                </td>
+                <td>
+                  <input type="text" id="tbxPrimerNombre" name="tbxPrimerNombre" class="textoMayusculas" disabled="true" />
+                </td>
+                
+                <td>
+                  Segundo Nombre:
+                </td>
+                <td>
+                  <input type="text" id="tbxSegundoNombre" name="tbxSegundoNombre" class="textoMayusculas" disabled="true" />
+                </td>
+              </tr>
+              
+              <tr>
+                <td>
+                  Primer Apellido:
+                </td>
+                <td>
+                  <input type="text" id="tbxPrimerApellido" name="tbxPrimerApellido" class="textoMayusculas" disabled="true" />
+                </td>
+                
+                <td>
+                  Segundo Apellido:
+                </td>
+                <td>
+                  <input type="text" id="tbxSegundoApellido" name="tbxSegundoApellido" class="textoMayusculas" disabled="true" />
                 </td>
               </tr>
               
@@ -100,55 +104,55 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Direcci&oacute;n:
                 </td>
                 <td>
-                  <input type="text" id="tbxDireccion" name="tbxDireccion" class="textoMayusculas" />
+                  <input type="text" id="tbxDireccion" name="tbxDireccion" class="textoMayusculas" disabled="true" />
                 </td>
-              </tr>
-              
-              <tr>
+                
                 <td>
                   Email:
                 </td>
                 <td>
-                  <input type="text" id="tbxEmail" name="tbxEmail" />
+                  <input type="text" id="tbxEmail" name="tbxEmail" disabled="true" />
                 </td>
               </tr>
               
               <tr>
                 <td>
-                  C&oacute;digo: *
+                  C&oacute;digo:
                 </td>
                 <td>
-                  <input type="text" id="tbxCodigo" name="tbxCodigo" />
+                  <input type="text" id="tbxCodigo" name="tbxCodigo" disabled="true" />
                 </td>
-              </tr>
-              
-             <tr>
+                
                 <td>
                   Clave:
                 </td>
                 <td>
-                  <input type="text" id="tbxClave" name="tbxClave" />
+                  <input type="text" id="tbxClave" name="tbxClave" disabled="true" />
                 </td>
               </tr>
               
-             <tr>
+              <tr>
                 <td>
                   Rol:
                 </td>
-                <td>
-                  <select id="cbxRol" name="cbxRol">
-                  	<option value="">Seleccione...</option>
-                  	<option value="ADMINISTRADOR">ADMINISTRADOR</option>
-                  	<option value="USUARIO">USUARIO</option>
-                  </select>
+                <td colspan="3">
+				  <input type="text" id="tbxRol" name="tbxRol" disabled="true" />
                 </td>
               </tr>
-              
-            </table>
-            <br />
-            <input type="button" id="btnGuardarUsuario" name="btnGuardarUsuario" value="Aceptar" />
-          </form>          
-          
+
+			</table>
+			
+			<br>
+			
+			<div>
+				<input type="submit" id="btnEditarUsuario" name="btnEditarUsuario" value="Editar" />	
+			</div>
+			
+		  </div>
+		  <!-- Fin panel detalle libro -->	
+            
+          </form>
+
           <br />
           <div id="msgValidacion" class="bad"></div>
           
