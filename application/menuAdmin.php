@@ -15,8 +15,9 @@
 
     <h3>Usuarios</h3>
     <ul class="toggle">
-      <li class="icn_add_user"><a href='<?php echo BASEURL.'application/general/views/agregarUsuario.php'; ?>'>Agregar Usuario</a></li>
-      <li class="icn_folder"><a href='<?php echo BASEURL.'application/general/views/listarUsuarios.php'; ?>'>Ver Usuarios</a></li>
+      <li class="icn_add_user"><a href='<?php echo BASEURL.'application/usuario/views/crearUsuario.php'; ?>'>Agregar Usuario</a></li>
+      <li class="icn_categories"><a href='<?php echo BASEURL.'application/general/views/listarUsuarios.php'; ?>'>Listado Usuarios</a></li>
+      <li class="icn_search"><a id="menuBuscarLibroAdmin" href='<?php echo BASEURL.'application/libro/views/buscarLibroAdmin.php'; ?>'>Buscar</a></li>
     <hr/>
     </ul>
     

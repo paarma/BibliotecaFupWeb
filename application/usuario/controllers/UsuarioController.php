@@ -44,5 +44,42 @@
 	 }
 	 
    }
+   
+   
+ //Guardando usuario
+ if (isset($_POST['accionFormUsuario']) && $_POST['accionFormUsuario'] == 'guardar') {
+	
+	//En caso de existir idUsuario, se edita, de lo contrario almacena.
+	if(isset($_SESSION['usuarioSeleccionadoAdmin']) && $_SESSION['libroSeleccionadoAdmin'] != null){
+		$idUsuario = $_SESSION['usuarioSeleccionadoAdmin']->getIdUsuario();
+	}else{
+		$idUsuario = 0;
+	}
+	
+	$param = array('idUsuario' => (int) $idUsuario, 'cedula' => trim($_POST['tbxCedula']), 
+	'primerNombre' => strtoupper(trim($_POST['tbxPrimerNombre'])), 
+	'segundoNombre' => strtoupper(trim($_POST['tbxSegundoNombre'])), 
+	'primerApellido' => strtoupper(trim($_POST['tbxPrimerApellido'])), 
+	'segundoApellido' => strtoupper(trim($_POST['tbxSegundoApellido'])), 
+	'telefono' => trim($_POST['tbxTelefono']), 
+	'direccion' => strtoupper(trim($_POST['tbxDireccion'])), 
+	'email' => trim($_POST['tbxEmail']), 
+	'codigo' => trim($_POST['tbxCodigo']), 
+	'clave' => trim($_POST['tbxClave']), 
+	'rol' => $_POST['cbxRol']);
+	
+	$response = (int) $client->call('guardarUsuario',$param);
+	
+	//Se inicializa la variable libroSeleccionado
+	$_SESSION['usuarioSeleccionadoAdmin'] = null;
+	
+	if($response == 0){
+       //Error almacenando en la BD
+       header('location:' . BASEURL . 'application/usuario/views/crearUsuario.php?m=2');
+    }else{
+       header('location:' . BASEURL . 'application/usuario/views/crearUsuario.php?m=3');
+    }
+	
+ }
  
  ?>

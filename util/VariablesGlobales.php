@@ -17,5 +17,10 @@ $_SESSION['libroBuscar'] = new Libro();
  * Variable que contiene un libro seleccionado por el admin.
  */
 $_SESSION['libroSeleccionadoAdmin'] = null;
+
+/**
+ * Variable que contiene un usuario seleccionado por el admin.
+ */
+$_SESSION['usuarioSeleccionadoAdmin'] = null;
  
  ?>
