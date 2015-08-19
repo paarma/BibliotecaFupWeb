@@ -37,5 +37,15 @@ $_SESSION['autorBuscar'] = new Autor();
  * Variable que contiene un autor seleccionado por el admin.
  */
 $_SESSION['autorSeleccionadoAdmin'] = null;
+
+/**
+ * Variable que contiene una Editorial con los parametros cargados para busqueda
+ */
+$_SESSION['editorialBuscar'] = new Editorial();
+
+/**
+ * Variable qeu contiene una editorial seleccionada por el admin.
+ */
+$_SESSION['editorialSeleccionadaAdmin'] = null;
  
  ?>

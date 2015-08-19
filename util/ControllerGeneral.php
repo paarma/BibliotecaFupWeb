@@ -108,6 +108,9 @@
 			$_SESSION['autorSeleccionadoAdmin'] = null;
 			$_SESSION['autorBuscar'] = new Autor();
 			
+			$_SESSION['editorialSeleccionadaAdmin'] = null;
+			$_SESSION['editorialBuscar'] = new Editorial();
+			
 			echo true;
 		break;
 		
@@ -281,6 +284,30 @@
 			$_SESSION['autorSeleccionadoAdmin'] = $autor;
 			
 			echo true;		
+		break;
+		
+		case 'listadoEditorial':
+			
+			$param = array('descripcion' => $_SESSION['editorialBuscar']->getDescripcion());
+			$response = $client->call('listadoEditoriales',$param);
+		
+			 $listaEditoriales = array();
+			 		
+			 if(count($response) > 0 ){
+			 	foreach($response as $item){
+			 		
+					$editorial = new Editorial();
+					
+					$editorial->setIdEditorial($item["ID_EDITORIAL"]);
+					$editorial->setDescripcion($item["DESCRIPCION"]);
+
+					$listaEditoriales[] = $editorial;
+			 	}
+			 }
+	
+			 $_SESSION['editorialBuscar'] = new Editorial();
+			 
+			 echo json_encode($listaEditoriales);
 		break;
 		
  	}	

@@ -22,26 +22,26 @@ if(!isset($_SESSION['usuarioLogueado']))
   
 <?php include_once BASEPATH.'application/menuAdmin.php'; ?>
   
-  <script type="text/javascript" src="<?php echo BASEURL;?>application/autor/views/js/reglasAutor.js"></script>
-  <script type="text/javascript" src="<?php echo BASEURL;?>application/autor/views/js/autor.js"></script>
+  <script type="text/javascript" src="<?php echo BASEURL;?>application/editorial/views/js/editorial.js"></script>
     
   <section id="main" class="column">
     
     <article class="module width_full">
-      <header><h3>Listado de Autores</h3></header>
+      <header><h3>Listado de Editoriales</h3></header>
         <div class="module_content">
           
-		  <form id="formListarAutores" method="post" action="../views/crearAutor.php">
-              <table id="tblListaAutores" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
+		  <form id="formListarEditoriales" method="post" action="../views/crearEditorial.php">
+              
+              <div style="width: 55% !important;">
+              <table id="tblListaEditoriales" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
               <thead>
                 <tr>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th>Tipo</th>
+                  <th>Editorial</th>
                   <th style="width: 10%;">Editar</th>
                 </tr>
               </thead>
             </table>
+            </div>
             <br>
                         
           </form>

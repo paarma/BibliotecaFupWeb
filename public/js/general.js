@@ -50,6 +50,10 @@ $(document).ready(function(){
   $("#menuAutores").click(function(){
   	inicializarVariablesSession();
   });
+  
+  $("#menuEditoriales").click(function(){
+  	inicializarVariablesSession();
+  });
 
 });
 
