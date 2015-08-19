@@ -43,7 +43,11 @@ $(document).ready(function(){
   	inicializarVariablesSession();
   });
   
-  $("#manuUsuariosAdmin").click(function(){
+  $("#menuUsuariosAdmin").click(function(){
+  	inicializarVariablesSession();
+  });
+  
+  $("#menuAutores").click(function(){
   	inicializarVariablesSession();
   });
 

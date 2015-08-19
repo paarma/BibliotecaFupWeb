@@ -19,13 +19,23 @@ $_SESSION['libroBuscar'] = new Libro();
 $_SESSION['libroSeleccionadoAdmin'] = null;
 
 /**
+ * Variable que contiene un usuario con los parametros cargados para busqueda
+ */
+$_SESSION['usuarioBuscar'] = new Usuario();
+
+/**
  * Variable que contiene un usuario seleccionado por el admin.
  */
 $_SESSION['usuarioSeleccionadoAdmin'] = null;
 
 /**
- * Variable que contiene un usuario con los parametros cargados para busqueda
+ * Variable que contiene un autor con los parametros cargados para busqueda
  */
-$_SESSION['usuarioBuscar'] = new Usuario();
+$_SESSION['autorBuscar'] = new Autor();
+
+/**
+ * Variable que contiene un autor seleccionado por el admin.
+ */
+$_SESSION['autorSeleccionadoAdmin'] = null;
  
  ?>

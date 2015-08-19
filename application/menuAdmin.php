@@ -14,7 +14,7 @@
     
 
     <h3>Usuarios</h3>
-    <ul id="manuUsuariosAdmin" class="toggle">
+    <ul id="menuUsuariosAdmin" class="toggle">
       <li class="icn_add_user"><a href='<?php echo BASEURL.'application/usuario/views/crearUsuario.php'; ?>'>Agregar Usuario</a></li>
       <li class="icn_categories"><a href='<?php echo BASEURL.'application/usuario/views/listaUsuarios.php'; ?>'>Listado Usuarios</a></li>
       <li class="icn_search"><a href='<?php echo BASEURL.'application/usuario/views/buscarUsuarioAdmin.php'; ?>'>Buscar</a></li>
@@ -22,10 +22,11 @@
     </ul>
     
 
-    <h3>Grupos Investigaci&oacute;n</h3>
-    <ul class="toggle">
-      <li class="icn_view_users"><a href='<?php echo BASEURL.'application/general/views/agregarGrupoInvestigacion.php'; ?>'>Agregar Grupo Investigaci&oacute;n</a></li>
-      <li class="icn_folder"><a href='<?php echo BASEURL.'application/general/views/listarGruposInvestigacion.php'; ?>'>Ver Grupos Investigaci&oacute;n</a></li>
+    <h3>Autores</h3>
+    <ul id="menuAutores" class="toggle">
+      <li class="icn_add_user"><a href='<?php echo BASEURL.'application/autor/views/crearAutor.php'; ?>'>Agregar Autor</a></li>
+      <li class="icn_categories"><a href='<?php echo BASEURL.'application/autor/views/listaAutores.php'; ?>'>Listado Autores</a></li>
+      <li class="icn_search"><a href='<?php echo BASEURL.'application/autor/views/buscarAutorAdmin.php'; ?>'>Buscar</a></li>
     <hr/>
     </ul>
     

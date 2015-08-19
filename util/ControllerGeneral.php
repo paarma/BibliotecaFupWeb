@@ -105,6 +105,9 @@
 			$_SESSION['usuarioSeleccionadoAdmin'] = null;
 			$_SESSION['usuarioBuscar'] = new Usuario();
 			
+			$_SESSION['autorSeleccionadoAdmin'] = null;
+			$_SESSION['autorBuscar'] = new Autor();
+			
 			echo true;
 		break;
 		
@@ -222,6 +225,53 @@
 			$_SESSION['usuarioBuscar'] = $usuario;
 			
 			echo true;
+		break;
+		
+		case 'listadoAutores':
+			
+			$param = array('primerNombre' => $_SESSION['autorBuscar']->getPrimerNombre(),
+			'segundoNombre' => $_SESSION['autorBuscar']->getSegundoNombre(),
+			'primerApellido' => $_SESSION['autorBuscar']->getPrimerApellido(),
+			'segundoApellido' => $_SESSION['autorBuscar']->getSegundoApellido(),
+			'tipo' => $_SESSION['autorBuscar']->getTipoAutor());
+			
+			$response = $client->call('listadoAutores',$param);
+		
+			 $listaAutores = array();
+			 		
+			 if(count($response) > 0 ){
+			 	foreach($response as $item){
+			 		$autor = new Autor();
+					
+					$autor->setIdAutor($item['ID_AUTOR']);
+					
+					if($item['PRIMER_NOMBRE'] != null){
+						$autor->setPrimerNombre($item['PRIMER_NOMBRE']);
+					}
+					
+					if($item['SEGUNDO_NOMBRE'] != null){
+						$autor->setSegundoNombre($item['SEGUNDO_NOMBRE']);
+					}
+										
+					if($item['PRIMER_APELLIDO'] != null){
+						$autor->setPrimerApellido($item['PRIMER_APELLIDO']);
+					}
+															
+					if($item['SEGUNDO_APELLIDO'] != null){
+						$autor->setSegundoApellido($item['SEGUNDO_APELLIDO']);
+					}
+																				
+					if($item['TIPO_AUTOR'] != null){
+						$autor->setTipoAutor($item['TIPO_AUTOR']);
+					}
+
+					$listaAutores[] = $autor;
+			 	}
+			 }
+	
+			 $_SESSION['autorBuscar'] = new Autor();
+			 
+			 echo json_encode($listaAutores);
 		break;		
 		
  	}	
