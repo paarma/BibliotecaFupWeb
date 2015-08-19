@@ -245,5 +245,49 @@
 
 	return $ciudad;
   }
+  
+  
+ /**
+ * Funcion encargada de obtener un Autor segun si ID
+ */
+  function buscarAutorPorId($idAutor){
+  	
+	global $client; //referencia global a la variable client (la cual accede al WS)
+	
+	$autor = null;
+		
+ 	$param = array('idAutor' =>$idAutor);
+	$response = $client->call('buscarAutorPorId',$param);
+	
+	if($response != null){
+		
+		$autor = new Autor();
+		
+		$autor->setIdAutor($response[0]['ID_AUTOR']);
+		
+		if($response[0]['PRIMER_NOMBRE'] != null){
+			$autor->setPrimerNombre($response[0]['PRIMER_NOMBRE']);
+		}
+		
+		if($response[0]['SEGUNDO_NOMBRE'] != null){
+			$autor->setSegundoNombre($response[0]['SEGUNDO_NOMBRE']);
+		}
+							
+		if($response[0]['PRIMER_APELLIDO'] != null){
+			$autor->setPrimerApellido($response[0]['PRIMER_APELLIDO']);
+		}
+												
+		if($response[0]['SEGUNDO_APELLIDO'] != null){
+			$autor->setSegundoApellido($response[0]['SEGUNDO_APELLIDO']);
+		}
+																	
+		if($response[0]['TIPO_AUTOR'] != null){
+			$autor->setTipoAutor($response[0]['TIPO_AUTOR']);
+		}
+					
+	}
+
+	return $autor;
+  }
 
 ?>

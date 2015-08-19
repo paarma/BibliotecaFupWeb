@@ -272,7 +272,16 @@
 			 $_SESSION['autorBuscar'] = new Autor();
 			 
 			 echo json_encode($listaAutores);
-		break;		
+		break;
+		
+		case 'capurarAutorSeleccionado':
+			
+			$idAutor = $_POST['idAutor'];
+			$autor = buscarAutorPorId($idAutor);
+			$_SESSION['autorSeleccionadoAdmin'] = $autor;
+			
+			echo true;		
+		break;
 		
  	}	
 	

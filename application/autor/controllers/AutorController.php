@@ -15,6 +15,18 @@
  session_start();
     
    
+     //Funcionalidades ajax
+ if(isset($_POST['llamadoAjax']) && $_POST['llamadoAjax'] == "true")
+ {
+ 	switch($_POST['opcion']){
+ 		
+	 	case 'cargarDatosAutorSeleccionado':
+			echo json_encode($_SESSION['autorSeleccionadoAdmin']);
+		break;		
+	}
+ }	
+   
+   
  //Guardando autor
  if (isset($_POST['accionFormAutor']) && $_POST['accionFormAutor'] == 'guardar') {
 	

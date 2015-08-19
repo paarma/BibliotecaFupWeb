@@ -11,6 +11,7 @@ $(document).ready(function() {
   
   
   inicializar();
+  cargarDatosAutorSeleccionado();
     
 });
 
@@ -32,6 +33,36 @@ function inicializar(){
 		$("#formSearchAutor")[0].reset();
 	}
 	
+}
+
+
+/**
+ *Funcion encargada de verificar si existe un autor seleccionado por el admin
+ * y posterior carga de datos del mismo.
+ */
+function cargarDatosAutorSeleccionado(){
+	
+  $.ajax({
+    type : "POST",
+    async: false,
+    dataType: 'json',
+    url : "../controllers/AutorController.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "cargarDatosAutorSeleccionado"
+    }
+  }).done(function(data) {
+  	
+	if(data != null){
+		
+		$("#tbxPrimerNombre").val(data.primerNombre);
+		$("#tbxSegundoNombre").val(data.segundoNombre);
+		$("#tbxPrimerApellido").val(data.primerApellido);
+		$("#tbxSegundoApellido").val(data.segundoApellido);
+		$("#cbxTipoAutor").val(data.tipoAutor);
+	}
+	
+  });
 }
 
 /**
@@ -58,7 +89,7 @@ function buscarAutores(){
       	html += '<td>'+item.primerNombre+" "+item.segundoNombre+ '</td>';
       	html += '<td>'+item.primerApellido+" "+item.segundoApellido+ '</td>';
         html += '<td>'+item.tipoAutor+'</td>';    	
-      	html += '<td><input type="radio" name="rbtEditar" value='+item.idAutor+'  ></td>';
+      	html += '<td><input type="radio" name="rbtEditar" value='+item.idAutor+' onClick="cargarEditar('+item.idAutor+')" ></td>';
       	html += '</tr>';
       	      	
       });
@@ -71,6 +102,29 @@ function buscarAutores(){
       });
 	
     
+  });
+
+}
+
+
+/**
+ *Funcion encargada de capturar el autorSeleccionado
+ * @param {Object} idLibro
+ */
+function cargarEditar(idAutor){
+
+	$.ajax({
+	type : "POST",
+	async: false,
+	dataType: 'json',
+	url : "../../../util/ControllerGeneral.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "capurarAutorSeleccionado",
+      idAutor: idAutor
+    }
+  }).done(function(data) {	
+  	$("#formListarAutores").submit();
   });
 
 }
