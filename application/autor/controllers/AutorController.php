@@ -22,6 +22,35 @@
  		
 	 	case 'cargarDatosAutorSeleccionado':
 			echo json_encode($_SESSION['autorSeleccionadoAdmin']);
+		break;
+		
+		case 'buscarAutor':
+			
+			$autor = new Autor();
+			
+			if(trim($_POST['primerNombre']) != ""){
+				$autor->setPrimerNombre(trim($_POST['primerNombre']));
+			}
+						
+			if(trim($_POST['segundoNombre']) != ""){
+				$autor->setSegundoNombre(trim($_POST['segundoNombre']));
+			}
+									
+			if(trim($_POST['primerApellido']) != ""){
+				$autor->setPrimerApellido(trim($_POST['primerApellido']));
+			}
+			
+			if($_POST['segundoApellido'] != ""){
+				$autor->setSegundoApellido(trim($_POST['segundoApellido']));
+			}
+									
+			if($_POST['tipoAutor'] != ""){
+				$autor->setTipoAutor($_POST['tipoAutor']);
+			}
+			
+			$_SESSION['autorBuscar'] = $autor;
+			
+			echo true;
 		break;		
 	}
  }	

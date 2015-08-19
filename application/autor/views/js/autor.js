@@ -130,5 +130,30 @@ function cargarEditar(idAutor){
 }
 
 
+/**
+ *Funcion encargada de setear los datos de busqueda de un autor 
+ */
+ function buscarAutor(){
+	
+  $.ajax({
+	type : "POST",
+	async: false,
+	url : "../controllers/AutorController.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "buscarAutor",
+      primerNombre: $("#tbxPrimerNombre").val(),
+      segundoNombre: $("#tbxSegundoNombre").val(),
+      primerApellido: $("#tbxPrimerApellido").val(),
+      segundoApellido: $("#tbxSegundoApellido").val(),
+      tipoAutor: $("#cbxTipoAutor").val()
+    }
+  }).done(function(data) {
+  		$("#formSearchAutor").submit();
+  	});
+	
+}
+
+
 
 
