@@ -8,7 +8,8 @@ $(document).ready(function() {
 		$("#panelDetalleUsuario").hide();
 	}
   
-  inicializar();  
+  inicializar();
+  cargarDatosUsuarioSeleccionado();  
     
   ////////////////////////Guardar libro     
   $("#btnGuardarUsuario").click(function(){
@@ -36,6 +37,48 @@ function inicializar(){
 		buscarUsuarios();
 		$("#panelDetalleLibro").hide();
 	}
+	
+}
+
+/**
+ *Funcion encargada de verificar si existe un usuario seleccionado por el admin
+ * y posterior carga de datos del mismo.
+ */
+function cargarDatosUsuarioSeleccionado(){
+	
+  $.ajax({
+    type : "POST",
+    async: false,
+    dataType: 'json',
+    url : "../controllers/UsuarioController.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "cargarDatosUsuarioSeleccionado"
+    }
+  }).done(function(data) {
+  	
+	if(data != null){
+		
+		//idUsuario
+		$("#idUsuario").val(data.idUsuario);
+		$("#cedulaOriginal").val(data.cedula);
+		$("#emailOriginal").val(data.email);
+		$("#codigoOriginal").val(data.codigo);
+		
+		$("#tbxCedula").val(data.cedula);
+		$("#tbxTelefono").val(data.telefono);
+		$("#tbxPrimerNombre").val(data.primerNombre);
+		$("#tbxSegundoNombre").val(data.segundoNombre);
+		$("#tbxPrimerApellido").val(data.primerApellido);
+		$("#tbxSegundoApellido").val(data.segundoApellido);
+		$("#tbxDireccion").val(data.direccion);
+		$("#tbxEmail").val(data.email);
+		$("#tbxCodigo").val(data.codigo);
+		$("#tbxClave").val(data.clave);
+		$("#cbxRol").val(data.rol);
+	}
+	
+  });
 	
 }
 

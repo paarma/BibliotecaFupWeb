@@ -102,6 +102,9 @@
 			$_SESSION['libroSeleccionadoAdmin'] = null;
 			$_SESSION['libroBuscar'] = new Libro();
 			
+			$_SESSION['usuarioSeleccionadoAdmin'] = null;
+			$_SESSION['usuarioBuscar'] = new Usuario();
+			
 			echo true;
 		break;
 		

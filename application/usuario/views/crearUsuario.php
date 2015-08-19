@@ -55,7 +55,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Primer Nombre: *
                 </td>
                 <td>
-                  <input type="text" id="tbxPrimerNombre" name="tbxPrimerNombre" class="textoMayusculas" />
+                  <input type="text" id="tbxPrimerNombre" name="tbxPrimerNombre" class="soloLetras textoMayusculas" />
                 </td>
               </tr>
               
@@ -64,7 +64,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Segundo Nombre:
                 </td>
                 <td>
-                  <input type="text" id="tbxSegundoNombre" name="tbxSegundoNombre" class="textoMayusculas" />
+                  <input type="text" id="tbxSegundoNombre" name="tbxSegundoNombre" class="soloLetras textoMayusculas" />
                 </td>
               </tr>
               
@@ -73,7 +73,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Primer Apellido: *
                 </td>
                 <td>
-                  <input type="text" id="tbxPrimerApellido" name="tbxPrimerApellido" class="textoMayusculas" />
+                  <input type="text" id="tbxPrimerApellido" name="tbxPrimerApellido" class="soloLetras textoMayusculas" />
                 </td>
               </tr>
               
@@ -82,7 +82,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Segundo Apellido:
                 </td>
                 <td>
-                  <input type="text" id="tbxSegundoApellido" name="tbxSegundoApellido" class="textoMayusculas" />
+                  <input type="text" id="tbxSegundoApellido" name="tbxSegundoApellido" class="soloLetras textoMayusculas" />
                 </td>
               </tr>
               

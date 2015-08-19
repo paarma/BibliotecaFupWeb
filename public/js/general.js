@@ -43,6 +43,9 @@ $(document).ready(function(){
   	inicializarVariablesSession();
   });
   
+  $("#manuUsuariosAdmin").click(function(){
+  	inicializarVariablesSession();
+  });
 
 });
 

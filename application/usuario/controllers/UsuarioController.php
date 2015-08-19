@@ -14,6 +14,19 @@
  require_once BASEPATH . 'util/UtilidadesBuscarPorId.php';
  session_start();
  
+ 
+    //Funcionalidades ajax
+ if(isset($_POST['llamadoAjax']) && $_POST['llamadoAjax'] == "true")
+ {
+ 	switch($_POST['opcion']){
+ 		
+	 	case 'cargarDatosUsuarioSeleccionado':
+			echo json_encode($_SESSION['usuarioSeleccionadoAdmin']);
+		break;		
+	}
+ }	
+ 
+ 
   //Ingreso al sistema
    if (isset($_POST['btnAcceder']) && $_POST['btnAcceder'] == 'Acceder') {
 		
@@ -50,7 +63,7 @@
  if (isset($_POST['accionFormUsuario']) && $_POST['accionFormUsuario'] == 'guardar') {
 	
 	//En caso de existir idUsuario, se edita, de lo contrario almacena.
-	if(isset($_SESSION['usuarioSeleccionadoAdmin']) && $_SESSION['libroSeleccionadoAdmin'] != null){
+	if(isset($_SESSION['usuarioSeleccionadoAdmin']) && $_SESSION['usuarioSeleccionadoAdmin'] != null){
 		$idUsuario = $_SESSION['usuarioSeleccionadoAdmin']->getIdUsuario();
 	}else{
 		$idUsuario = 0;
