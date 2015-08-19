@@ -17,7 +17,7 @@
     <ul id="manuUsuariosAdmin" class="toggle">
       <li class="icn_add_user"><a href='<?php echo BASEURL.'application/usuario/views/crearUsuario.php'; ?>'>Agregar Usuario</a></li>
       <li class="icn_categories"><a href='<?php echo BASEURL.'application/usuario/views/listaUsuarios.php'; ?>'>Listado Usuarios</a></li>
-      <li class="icn_search"><a id="menuBuscarLibroAdmin" href='<?php echo BASEURL.'application/libro/views/buscarLibroAdmin.php'; ?>'>Buscar</a></li>
+      <li class="icn_search"><a href='<?php echo BASEURL.'application/usuario/views/buscarUsuarioAdmin.php'; ?>'>Buscar</a></li>
     <hr/>
     </ul>
     

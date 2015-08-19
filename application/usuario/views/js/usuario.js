@@ -8,10 +8,17 @@ $(document).ready(function() {
 		$("#panelDetalleUsuario").hide();
 	}
   
+  
+  //Boton buscar usuario
+  $("#btnBuscarUsuario").click(function(){
+  	buscarUsuario();
+  });
+  
+  
   inicializar();
   cargarDatosUsuarioSeleccionado();  
     
-  ////////////////////////Guardar libro     
+  ////////////////////////Guardar usuario     
   $("#btnGuardarUsuario").click(function(){
   	validarGuardar();		
   });	
@@ -36,6 +43,12 @@ function inicializar(){
 		//Listar Usuarios
 		buscarUsuarios();
 		$("#panelDetalleLibro").hide();
+	}
+	
+	///////////Si esta en la interfaz de buscarUsuario
+	//Se inicializa el formulario
+	if($("#formSearchUsuario").length){
+		$("#formSearchUsuario")[0].reset();
 	}
 	
 }
@@ -278,6 +291,32 @@ function verDetalleUsuario(idUsuario){
   	
   });
 
+}
+
+/**
+ *Funcion encargada de setear los datos de busqueda de un usuario 
+ */
+ function buscarUsuario(){
+	
+  $.ajax({
+	type : "POST",
+	async: false,
+	url : "../../../util/ControllerGeneral.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "buscarUsuario",
+      cedula: $("#tbxCedula").val(),
+      primerNombre: $("#tbxPrimerNombre").val(),
+      segundoNombre: $("#tbxSegundoNombre").val(),
+      primerApellido: $("#tbxPrimerApellido").val(),
+      segundoApellido: $("#tbxSegundoApellido").val(),
+      codigo: $("#tbxCodigo").val(),
+      rol: $("#cbxRol").val()
+    }
+  }).done(function(data) {
+  		$("#formSearchUsuario").submit();
+  	});
+	
 }
 
 

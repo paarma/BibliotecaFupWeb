@@ -185,6 +185,43 @@
 			
 			echo json_encode($usuario);
 				
+		break;
+		
+		case 'buscarUsuario':
+			
+			$usuario = new Usuario();
+			
+			if(trim($_POST['cedula']) != ""){
+				$usuario->setCedula(trim($_POST['cedula']));
+			}
+			
+			if(trim($_POST['primerNombre']) != ""){
+				$usuario->setPrimerNombre(trim($_POST['primerNombre']));
+			}
+						
+			if(trim($_POST['segundoNombre']) != ""){
+				$usuario->setSegundoNombre(trim($_POST['segundoNombre']));
+			}
+									
+			if(trim($_POST['primerApellido']) != ""){
+				$usuario->setPrimerApellido(trim($_POST['primerApellido']));
+			}
+			
+			if($_POST['segundoApellido'] != ""){
+				$usuario->setSegundoApellido($_POST['segundoApellido']);
+			}
+									
+			if(trim($_POST['codigo']) != ""){
+				$usuario->setCodigo($_POST['codigo']);
+			}
+			
+			if(trim($_POST['rol']) != ""){
+				$usuario->setRol($_POST['rol']);
+			}
+			
+			$_SESSION['usuarioBuscar'] = $usuario;
+			
+			echo true;
 		break;		
 		
  	}	
