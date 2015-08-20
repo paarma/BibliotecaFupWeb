@@ -289,5 +289,53 @@
 
 	return $autor;
   }
+  
+ /**
+ * Metodo encargado de retornar un libro segun su ID
+ * @param idLibro
+ * @return Libro
+ */
+  function buscarLibroPorId($idLibro){
+	
+	global $client; //referencia global a la variable client (la cual accede al WS)
+	
+	$libro = null;
+		
+ 	$param = array('idLibro' =>$idLibro);
+	$response = $client->call('buscarLibroPorId',$param);
+	
+	if(count($response) > 0 ){
+	 	foreach($response as $item){
+	 		$libro = obtenerLibroSoap($item);
+			break;
+	 	}
+	 }
+	
+	return $libro;
+  }
+  
+ /**
+ * Metodo encargado de retornar un usuario segun su ID
+ * @param idUsuario
+ * @return Usuario
+ */
+  function buscarUsuarioPorId($idUsuario){
+	
+	global $client; //referencia global a la variable client (la cual accede al WS)
+	
+	$usuario = null;
+		
+ 	$param = array('idUsuario' =>$idUsuario);
+	$response = $client->call('buscarUsuarioPorId',$param);
+	
+	if(count($response) > 0 ){
+	 	foreach($response as $item){
+	 		$usuario = obtenerUsuarioSoap($item);
+			break;
+	 	}
+	 }
+	
+	return $usuario;
+  }
 
 ?>

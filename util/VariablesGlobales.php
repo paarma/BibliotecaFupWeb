@@ -47,5 +47,12 @@ $_SESSION['editorialBuscar'] = new Editorial();
  * Variable qeu contiene una editorial seleccionada por el admin.
  */
 $_SESSION['editorialSeleccionadaAdmin'] = null;
+
+/**
+ * Variable que contiene una solicitud con los parametros cargados para busqueda.
+ */
+$_SESSION['solicitudBuscar'] = new Solicitud();
+	$_SESSION['solicitudBuscar']->setUsuario(new Usuario());
+	$_SESSION['solicitudBuscar']->setLibro(new Libro());
  
  ?>

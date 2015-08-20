@@ -12,6 +12,13 @@
     <hr/>
     </ul>
     
+    <h3>Solicitudes</h3>
+    <ul id="menuSolicitudes" class="toggle">
+      <li class="icn_categories"><a href='<?php echo BASEURL.'application/solicitud/views/listaSolicitudes.php'; ?>'>Listado Solicitudes</a></li>
+            <li class="icn_search"><a id="menuBuscarLibroAdmin" href='<?php echo BASEURL.'application/libro/views/buscarLibroAdmin.php'; ?>'>Buscar</a></li>
+    <hr/>
+    </ul>
+    
 
     <h3>Usuarios</h3>
     <ul id="menuUsuariosAdmin" class="toggle">

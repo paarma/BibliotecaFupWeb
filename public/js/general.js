@@ -54,6 +54,10 @@ $(document).ready(function(){
   $("#menuEditoriales").click(function(){
   	inicializarVariablesSession();
   });
+  
+  $("#menuSolicitudes").click(function(){
+  	inicializarVariablesSession();
+  });
 
 });
 
