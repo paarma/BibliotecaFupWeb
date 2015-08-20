@@ -337,5 +337,45 @@
 	
 	return $usuario;
   }
+ 
+  
+ /**
+ * Metodo encargado de retornar una solicitud segun su ID
+ * @param idSolicitud
+ * @return Solicitud
+ */
+  function buscarSolicitudPorId($idSolicitud){
+	
+	global $client; //referencia global a la variable client (la cual accede al WS)
+	
+	$solicitud = null;
+		
+ 	$param = array('idSolicitud' =>$idSolicitud);
+	$response = $client->call('buscarSolicitudPorId',$param);
+	
+	if(count($response) > 0 ){
+	 	foreach($response as $item){
+	 		
+	 		$libroBd = buscarLibroPorId($item['ID_LIBRO']);
+			$usuarioBd = buscarUsuarioPorId($item['ID_USUARIO']);
+			
+			$solicitud = new Solicitud();
+			$solicitud->setIdSolicitud($item['ID_SOLICITUD']);
+			
+			$solicitud->setUsuario($usuarioBd);
+			$solicitud->setLibro($libroBd);
+			$solicitud->setEstado($item['ESTADO']);
+			
+			//Fechas
+			$solicitud->setFechaSolicitud($item['FECHA_SOLICITUD']);
+			$solicitud->setFechaReserva($item['FECHA_RESERVA']);
+			$solicitud->setFechaDevolucion($item['FECHA_DEVOLUCION']);
+			$solicitud->setFechaEntrega($item['FECHA_ENTREGA']);
+			break;
+	 	}
+	 }
+
+	return $solicitud;
+  }
 
 ?>

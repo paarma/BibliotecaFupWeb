@@ -83,3 +83,67 @@ function listarSolicitudes(){
 
 }
 
+
+/**
+ *Funcion encargada de desplegar los atributos de una solicitud seleccionada
+ * @param {Object} idSolicitud
+ */
+function verDetalleSolicitud(idSolicitud){
+	
+	$("#panelDetalleSolicitud").show();
+
+	$.ajax({
+	type : "POST",
+	async: false,
+	dataType: 'json',
+	url : "../../../util/ControllerGeneral.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "verDetalleSolicitud",
+      idSolicitud: idSolicitud
+    }
+  }).done(function(data) {	
+  	
+  	if(data != null){
+  		
+		$("#tbxTitulo").val(data.libro.titulo);
+		$("#tbxIsbn").val(data.libro.isbn);
+		$("#tbxCodTopografico").val(data.libro.codigoTopografico);
+		$("#tbxTemas").val(data.temas);
+		
+		if(data.libro.editorial != null){
+			$("#tbxEditorial").val(data.libro.editorial.descripcion);
+		}else{
+			$("#tbxEditorial").val('');
+		}
+		
+		$("#tbxValor").val(data.libro.valor);
+		$("#tbxCantidad").val(data.libro.cantidad);
+		$("#tbxAnio").val(data.libro.anio);
+		$("#tbxEstadoLibro").val(data.libro.estado);
+		
+		
+		if(data.libro.area != null){
+			$("#tbxArea").val(data.libro.area.descripcion);
+		}else{
+			$("#tbxArea").val('');
+		}
+		
+		//Datos usuario
+		$("#tbxCodUsuario").val(data.usuario.codigo);
+		$("#tbxEmailUsuario").val(data.usuario.email);
+		$("#tbxPrimerNombre").val(data.usuario.primerNombre);
+		$("#tbxSegundoNombre").val(data.usuario.segundoNombre);
+		$("#tbxPrimerApellido").val(data.usuario.primerApellido);
+		$("#tbxSegundoApellido").val(data.usuario.segundoApellido);	
+		
+		//Datos solicitud
+		$("#tbxFechaReserva").val(data.fechaReserva);
+		$("#tbxFechaDevolucion").val(data.fechaDevolucion);
+			
+	}
+  	
+  });
+
+}
+

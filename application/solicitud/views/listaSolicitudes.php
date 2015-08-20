@@ -47,13 +47,13 @@ if(!isset($_SESSION['usuarioLogueado']))
             
           <!-- Panel detalle Solicitud -->
           <div id="panelDetalleSolicitud" align="center">
-          	<h3>Detalle Libro</h3>
+          	<h3>Detalle Solicitud</h3>
           
           <hr />   			
 			<table id="tblDetalleSolicitud" width="80%" border="0">
               <tr>
                 <td>
-                  T&iacute;tulo:
+                  Libro:
                 </td>
                 <td>
                   <input type="text" id="tbxTitulo" name="tbxTitulo" class="textoMayusculas" disabled="true" />
@@ -84,11 +84,11 @@ if(!isset($_SESSION['usuarioLogueado']))
               </tr>
               
               <tr>
-                <td>
-                  Paginas:
+				<td>
+                  Editorial:
                 </td>
                 <td>
-                  <input type="text" id="tbxPaginas" name="tbxPaginas" disabled="true" />
+				  <input type="text" id="tbxEditorial" name="tbxEditorial" disabled="true" />
                 </td>
                 
                 <td>
@@ -96,22 +96,6 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 <td>
                   <input type="text" id="tbxValor" name="tbxValor" disabled="true" />
-                </td>
-              </tr>
-              
-              <tr>
-                <td>
-                  Radicado:
-                </td>
-                <td>
-                  <input type="text" id="tbxRadicado" name="tbxRadicado" disabled="true" />
-                </td>
-                
-                <td>
-                  Serie:
-                </td>
-                <td>
-                  <input type="text" id="tbxSerie" name="tbxSerie" disabled="true" />
                 </td>
               </tr>
               
@@ -133,12 +117,11 @@ if(!isset($_SESSION['usuarioLogueado']))
               
               <tr>
                 <td>
-                  Editorial:
+                  Estado Libro:
                 </td>
                 <td>
-				  <input type="text" id="tbxEditorial" name="tbxEditorial" disabled="true" />
+                  <input type="text" id="tbxEstadoLibro" name="tbxEstadoLibro" disabled="true" />
                 </td>
-                
                 <td>
                   &Aacute;rea:
                 </td>
@@ -146,52 +129,82 @@ if(!isset($_SESSION['usuarioLogueado']))
                   <input type="text" id="tbxArea" name="tbxArea" disabled="true" />
                 </td>
               </tr>
-              
-              <tr>
-                <td>
-                  Sede:
-                </td>
-                <td>
-                  <input type="text" id="tbxSede" name="tbxSede" disabled="true" />
-                </td>
-                
-                <td>
-                  Adquisici&oacute;n:
-                </td>
-                <td>
-                  <input type="text" id="tbxAdquisicion" name="tbxAdquisicion" disabled="true" />
-                </td>
-              </tr>
-              
-              <tr>
-              	
-              	<td>
-                  Pais:
-                </td>
-                <td>
-                  <input type="text" id="tbxPais" name="tbxPais" disabled="true" />
-                </td>
-              	
-                <td>
-                  Ciudad:
-                </td>
-                <td>
-                  <input type="text" id="tbxCiudad" name="tbxCiudad" disabled="true" />
-                </td>
-                
-              </tr>
-              
-              <tr>
-                <td>
-                  Estado:
-                </td>
-                <td>
-                  <input type="text" id="tbxEstado" name="tbxEstado" disabled="true" />
-                </td>
-              </tr>
-              
 			</table>
 			
+			<br>
+			<h3><u>DATOS USUARIO</u></h3>
+			
+			<table width="80%" border="0">
+			  <tr>
+                <td>
+                  C&oacute;digo:
+                </td>
+                <td>
+                  <input type="text" id="tbxCodUsuario" name="tbxCodUsuario" class="textoMayusculas" disabled="true" />
+                </td>
+                
+                <td>
+                  email:
+                </td>
+                <td>
+                  <input type="text" id="tbxEmailUsuario" name="tbxEmailUsuario" disabled="true" />
+                </td>
+              </tr>
+              
+              <tr>
+                <td>
+                  Primer Nombre:
+                </td>
+                <td>
+                  <input type="text" id="tbxPrimerNombre" name="tbxPrimerNombre" class="textoMayusculas" disabled="true" />
+                </td>
+                
+                <td>
+                  Segundo Nombre:
+                </td>
+                <td>
+                  <input type="text" id="tbxSegundoNombre" name="tbxSegundoNombre" class="textoMayusculas" disabled="true" />
+                </td>
+              </tr>
+              
+              <tr>
+                <td>
+                  Primer Apellido:
+                </td>
+                <td>
+                  <input type="text" id="tbxPrimerApellido" name="tbxPrimerApellido" class="textoMayusculas" disabled="true" />
+                </td>
+                
+                <td>
+                  Segundo Apellido:
+                </td>
+                <td>
+                  <input type="text" id="tbxSegundoApellido" name="tbxSegundoApellido" class="textoMayusculas" disabled="true" />
+                </td>
+              </tr>
+			</table>
+			
+		    <br>
+			<h3><u>DATOS SOLICITUD</u></h3>
+			
+			<table width="80%" border="0">
+			  <tr>
+                <td>
+                  Fecha Reserva:
+                </td>
+                <td>
+                  <input type="text" id="tbxFechaReserva" name="tbxFechaReserva" disabled="true" />
+                </td>
+                
+                <td>
+                  Fecha Devoluci&oacute;n:
+                </td>
+                <td>
+                  <input type="text" id="tbxFechaDevolucion" name="tbxFechaDevolucion" disabled="true" />
+                </td>
+              </tr>
+			</table>
+
 			<br>
 			
 			<div>

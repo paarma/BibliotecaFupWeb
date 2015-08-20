@@ -372,6 +372,14 @@
 			$_SESSION['solicitudBuscar']->setLibro(new Libro());
 
 		 echo json_encode($listaSolicitudes);
+		 break;
+		 
+		case 'verDetalleSolicitud':
+			
+			$idSolicitud = $_POST['idSolicitud'];
+			echo json_encode(buscarSolicitudPorId($idSolicitud));
+			
+		break;
  	}	
 	
  }
