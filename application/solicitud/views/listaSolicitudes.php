@@ -30,7 +30,12 @@ if(!isset($_SESSION['usuarioLogueado']))
       <header><h3>Listado de Solicitudes</h3></header>
         <div class="module_content">
           
-		  <form id="formListarSolicitudes" method="post" action="">
+		  <form id="formListarSolicitudes" method="post" action="../controllers/SolicitudController.php">
+		  	<input type="hidden" id="accionFormSolicitudes" name="accionFormSolicitudes" value="guardar">
+		  	
+		  	<input type="hidden" id="idSolicitud" name="idSolicitud" value="0">
+            <input type="hidden" id="estadoOriginal" name="estadoOriginal" value="">
+		  	
               <table id="tblListaSolicitudes" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
               <thead>
                 <tr>
@@ -132,7 +137,8 @@ if(!isset($_SESSION['usuarioLogueado']))
 			</table>
 			
 			<br>
-			<h3><u>DATOS USUARIO</u></h3>
+			<h3>DATOS USUARIO</h3>
+			<hr />
 			
 			<table width="80%" border="0">
 			  <tr>
@@ -144,7 +150,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
                 
                 <td>
-                  email:
+                  Email:
                 </td>
                 <td>
                   <input type="text" id="tbxEmailUsuario" name="tbxEmailUsuario" disabled="true" />
@@ -185,7 +191,8 @@ if(!isset($_SESSION['usuarioLogueado']))
 			</table>
 			
 		    <br>
-			<h3><u>DATOS SOLICITUD</u></h3>
+			<h3>DATOS SOLICITUD</h3>
+			<hr />
 			
 			<table width="80%" border="0">
 			  <tr>
@@ -208,7 +215,7 @@ if(!isset($_SESSION['usuarioLogueado']))
 			<br>
 			
 			<div>
-				<input type="submit" id="btnEditarLibro" name="btnEditarLibro" value="Editar" />	
+				<input type="button" id="btnAccionSolicitud" name="btnAccionSolicitud" value="Accion" />	
 			</div>
 			
 		  </div>
@@ -217,7 +224,7 @@ if(!isset($_SESSION['usuarioLogueado']))
           </form>
 
           <br />
-          <div id="msgValidacion" class="bad"></div>
+          <div id="msgValidacion"></div>
           
          <?php if (isset($_GET['m']) && $_GET['m'] == '1'): ?>
                   <div class="bad" >Error! Hay campos obligatorios que se encuentran vacios...</div>

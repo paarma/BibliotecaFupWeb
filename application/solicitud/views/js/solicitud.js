@@ -10,6 +10,11 @@ $(document).ready(function() {
     
   
   inicializar();  
+  
+  //Boton accionSolicitud
+  $("#btnAccionSolicitud").click(function(){
+  	gestionSolicitud();
+  });
     
 });
 
@@ -18,6 +23,9 @@ $(document).ready(function() {
  *Funcion encargada de inicialiar variables 
  */
 function inicializar(){
+	
+	$("#idSolicitud").val(0);
+	$("#estadoOriginal").val('');
 	
 	////////////Si esta en la interfaz de ListarSolicitudes
 	if ($('#tblListaSolicitudes').length){
@@ -90,7 +98,13 @@ function listarSolicitudes(){
  */
 function verDetalleSolicitud(idSolicitud){
 	
+  $("#msgValidacion").text("");
+  $("#msgValidacion").css("display", "none");
+  
 	$("#panelDetalleSolicitud").show();
+	
+	$("#idSolicitud").val(0);
+	$("#estadoOriginal").val('');
 
 	$.ajax({
 	type : "POST",
@@ -105,6 +119,9 @@ function verDetalleSolicitud(idSolicitud){
   }).done(function(data) {	
   	
   	if(data != null){
+  		
+  		$("#idSolicitud").val(data.idSolicitud);
+		$("#estadoOriginal").val(data.estado);
   		
 		$("#tbxTitulo").val(data.libro.titulo);
 		$("#tbxIsbn").val(data.libro.isbn);
@@ -140,10 +157,83 @@ function verDetalleSolicitud(idSolicitud){
 		//Datos solicitud
 		$("#tbxFechaReserva").val(data.fechaReserva);
 		$("#tbxFechaDevolucion").val(data.fechaDevolucion);
+		
+		//Despliega el boton de accion segun el estado de la solicitud
+		if(data.estado == "FINALIZADO"){
+			$("#btnAccionSolicitud").hide();
+		}else{
+			$("#btnAccionSolicitud").show();
 			
+			if(data.estado == "EN PROCESO"){
+				$("#btnAccionSolicitud").val('PRESTAR');
+			}else if(data.estado == "PRESTADO" || data.estado == "EN MORA"){
+				$("#btnAccionSolicitud").val('REGRESAR');
+			}
+		}
+				
 	}
   	
   });
 
 }
+
+/**
+ * Funcion engargada de gestionar la solicitud
+ */
+function gestionSolicitud(){
+	
+	var estadoFinalSolicitud = "";
+	
+	/////////////////////////Se fija el estado en el cual quedara la solicitud.
+    //Si la solicitud esta en estado "EN PROCESO", pasa a estado "PRESTADO"
+	if($("#estadoOriginal").val() == "EN PROCESO"){
+		estadoFinalSolicitud = "PRESTADO";
+	}else{
+		//De lo contrario indica que se esta regresando un libro.
+		estadoFinalSolicitud = "FINALIZADO";
+	}
+	
+  $.ajax({
+	type : "POST",
+	async: false,
+	url : "../controllers/SolicitudController.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "actualizarSolicitudes",
+      idSolicitud: $("#idSolicitud").val(),
+      estado : estadoFinalSolicitud
+    }
+  }).done(function(data) {
+
+  	if(data == 1){
+  		//Si la solicitud tenia estado es "EN  MORA", se gestiona la funcionalidad de multas.
+  		if($("#estadoOriginal").val() == "EN MORA"){
+  			llamarMultas();
+  		}
+  		
+	  	  //$("#msgValidacion").removeClass("bad");
+		  $("#msgValidacion").addClass("good");
+		  $("#msgValidacion").text("La información se almaceno exitosamente");
+		  $("#msgValidacion").css("display", "block");
+  		
+  	}else{
+  		//Error almacenando los datos
+  		  $("#msgValidacion").addClass("bad");
+		  $("#msgValidacion").text("Error almacenando la información, intenta enviar los datos nuevamente...");
+		  $("#msgValidacion").css("display", "block");
+  	}	
+  		
+  });
+ 
+	
+}
+
+/**
+ * Funcion encargada de desplegar la funcionalidad de multas
+ */
+function llamarMultas(){
+	
+}
+
+
 
