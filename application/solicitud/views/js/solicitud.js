@@ -27,9 +27,13 @@ $(document).ready(function() {
         },
         Cancelar: function() {	
           $( this ).dialog( "close" );
+          
+          //Se recarga la pagina para visualizar los datos modificados de la funcion anterior, luego de 1 segundo
+  		  setTimeout('location.reload()', 1000);
+          
         }
       }
-    });
+    }).parent('.ui-dialog').find('.ui-dialog-titlebar-close').hide(); //Se oculta el boton cerrar (x)
   
   ////////////Si esta en la interfaz de ListarSolicitudes
   if ($('#tblListaSolicitudes').length){
@@ -246,6 +250,9 @@ function gestionSolicitud(){
   		//Si la solicitud tenia estado es "EN  MORA", se gestiona la funcionalidad de multas.
   		if($("#estadoOriginal").val() == "EN MORA"){
   			llamarMultas();
+  		}else{
+  			//Se recarga la pagina para visualizar los datos modificados, luego de 1 segundo
+  			setTimeout('location.reload()', 1000);
   		}
   		
 	  	  //$("#msgValidacion").removeClass("bad");
@@ -317,6 +324,9 @@ function guardarMulta(){
 	    }
 	  }).done(function(data) {
 		$("#dialogMultas").dialog( "close" );
+		
+  		//Se recarga la pagina para visualizar los datos modificados, luego de 1 segundo
+  		setTimeout('location.reload()', 1000);
 	});
 	
 }
