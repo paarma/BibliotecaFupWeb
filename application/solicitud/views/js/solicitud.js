@@ -3,6 +3,34 @@ $(document).ready(function() {
   $("#msgValidacion").text("");
   $("#msgValidacion").hide();
   
+  $("#tbxValorCancelado").numeric();
+  
+    //Dialog multas
+  $("#dialogMultas").dialog({
+      autoOpen: false,
+      resizable: false,
+      /*height:370,*/
+      width: 350,
+      modal: true,
+      show: {
+        effect: "clip",
+        duration: 300
+      },
+      hide: {
+        effect: "explode",
+        duration: 300
+      },
+      buttons: {
+        Aceptar: function() {          
+          //$( this ).dialog( "close" );
+          guardarMulta();
+        },
+        Cancelar: function() {	
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  
   ////////////Si esta en la interfaz de ListarSolicitudes
   if ($('#tblListaSolicitudes').length){
 	  $("#panelDetalleSolicitud").hide();
@@ -26,6 +54,14 @@ function inicializar(){
 	
 	$("#idSolicitud").val(0);
 	$("#estadoOriginal").val('');
+	$("#diasMora").val(0);
+	
+	$("#msgValidacion").text("");
+    $("#msgValidacion").css("display", "none");
+    
+    //Se limpia la tabla de listado solicitudes
+    //$("#tblListaSolicitudes tbody").remove();
+    //$("#tblListaSolicitudes td").parent().remove();
 	
 	////////////Si esta en la interfaz de ListarSolicitudes
 	if ($('#tblListaSolicitudes').length){
@@ -105,6 +141,7 @@ function verDetalleSolicitud(idSolicitud){
 	
 	$("#idSolicitud").val(0);
 	$("#estadoOriginal").val('');
+	$("#diasMora").val(0);
 
 	$.ajax({
 	type : "POST",
@@ -225,7 +262,6 @@ function gestionSolicitud(){
   		
   });
  
-	
 }
 
 /**
@@ -233,7 +269,56 @@ function gestionSolicitud(){
  */
 function llamarMultas(){
 	
+ //Se obtiene el valor de la multa
+  $.ajax({
+	type : "POST",
+	async: false,
+	url : "../controllers/SolicitudController.php",
+	data : {
+	  llamadoAjax : "true",
+	  opcion : "obtenerDatosMulta",
+	  fechaReserva : $("#tbxFechaReserva").val()
+	    }
+	  }).done(function(data) {
+		
+		//Se obtiene los dias de mora concatenados con el valor base de la multa
+		var arrayData = data.split('_');
+		
+		var diasMora = arrayData[0];
+		var valorMultaBase = arrayData[1];
+		var valorTotal = diasMora * valorMultaBase; 
+		
+		$("#diasMora").val(diasMora);
+		$("#tbxValorSugerido").val(valorTotal);
+	  	$("#dialogMultas").dialog( "open" );
+	  	
+	});
+	
 }
 
+
+/**
+ * Funcion engargada de guardar las multas
+ */
+function guardarMulta(){
+	
+ $.ajax({
+	type : "POST",
+	async: false,
+	url : "../controllers/SolicitudController.php",
+	data : {
+	  llamadoAjax : "true",
+	  opcion : "guardarMulta",
+	  idSolicitud : $("#idSolicitud").val(),
+	  valorSugerido : $("#tbxValorSugerido").val(),
+	  valorCancelado : $("#tbxValorCancelado").val(),
+	  diasMora : $("#diasMora").val(),
+	  nota : $("#tbxNota").val()
+	    }
+	  }).done(function(data) {
+		$("#dialogMultas").dialog( "close" );
+	});
+	
+}
 
 

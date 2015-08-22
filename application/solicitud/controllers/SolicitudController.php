@@ -40,8 +40,50 @@
 		    }else{
 		       echo true;
 		    }
+		break;
+		
+		case 'obtenerDatosMulta':
 			
-		break;		
+			$fechaActual = new DateTime();
+			$fechaReserva = new DateTime($_POST['fechaReserva']);
+			
+			$diasDiferencia = 0;
+			$valorMultaBase = 0;
+			
+			$diferencia = $fechaReserva->diff($fechaActual);
+			
+			//echo $diasDiferencia->format('%R%a días');
+			$diasDiferencia = $diferencia->format('%a');
+			
+			$response = $client->call('buscarValorMulta');
+			if($response != null){
+				$valorMultaBase = $response[0]['VALOR'];
+			}
+			
+			//Retorna los dias de mora concatenado con el valor base de la multa
+
+			echo $diasDiferencia.'_'.$valorMultaBase; die();
+						
+		break;
+		
+		case 'guardarMulta':
+			
+			$param = array('idSolicitud' => $_POST['idSolicitud'],
+			'valorSugerido' => $_POST['valorSugerido'],
+			'valorCancelado' => $_POST['valorCancelado'],
+			'diasMora' => $_POST['diasMora'],
+			'nota' => $_POST['nota']);
+			
+			$response = $client->call('guardarMulta',$param);
+			if($response == 0){
+		       //Error almacenando en la BD
+		       echo false;
+		    }else{
+		       echo true;
+		    }
+			
+		break;
+				
 	}
  }
  

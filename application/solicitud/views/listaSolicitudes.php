@@ -35,6 +35,7 @@ if(!isset($_SESSION['usuarioLogueado']))
 		  	
 		  	<input type="hidden" id="idSolicitud" name="idSolicitud" value="0">
             <input type="hidden" id="estadoOriginal" name="estadoOriginal" value="">
+            <input type="hidden" id="diasMora" name="diasMora" value="0">
 		  	
               <table id="tblListaSolicitudes" cellpadding="0" cellspacing="0" border="0" class="display" width="100%">
               <thead>
@@ -222,6 +223,40 @@ if(!isset($_SESSION['usuarioLogueado']))
 		  <!-- Fin panel detalle solicitud -->	
             
           </form>
+          
+          <!-- Dialog Multas-->
+          <div id="dialogMultas" title="Gestionar Multa">
+          	<table>
+          		<tr>
+          			<td>
+          				Valor sugerido:  &nbsp;  $
+          			</td>
+          			<td>
+          				<input type="text" id="tbxValorSugerido" name="tbxValorSugerido" disabled="true" />
+          			</td>
+          		</tr>
+          		
+          		<tr>
+          			<td>
+          				Valor cancelado: $
+          			</td>
+          			<td>
+          				<input type="text" id="tbxValorCancelado" name="tbxValorCancelado" />
+          			</td>
+          		</tr>
+          		
+          		<tr>
+          			<td>
+          				Nota:
+          			</td>
+          			<td>
+          				<input type="text" id="tbxNota" name="tbxNota" class="textoMayusculas" />
+          			</td>
+          		</tr>
+          		
+          	</table>			
+          </div>
+          <!-- Fin dialog agregarAutor-->
 
           <br />
           <div id="msgValidacion"></div>
