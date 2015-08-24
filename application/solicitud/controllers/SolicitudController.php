@@ -83,6 +83,51 @@
 		    }
 			
 		break;
+		
+		case 'buscarSolicitud':
+			
+		$libro = new Libro();
+		$usuario = new Usuario();
+		$solicitud = new Solicitud();
+		
+		//Libro
+		if(trim($_POST['titulo']) != ""){
+			$libro->setTitulo(trim($_POST['titulo']));
+		}
+		
+		if(trim($_POST['isbn']) != ""){
+			$libro->setIsbn(trim($_POST['isbn']));
+		}
+				
+		if(trim($_POST['codTopografico']) != ""){
+			$libro->setCodigoTopografico(trim($_POST['codTopografico']));
+		}
+		
+		//Usuario
+		if(trim($_POST['codUsuario']) != ""){
+			$usuario->setCodigo(trim($_POST['codUsuario']));
+		}
+		
+		if(trim($_POST['cedula']) != ""){
+			$usuario->setCedula(trim($_POST['cedula']));
+		}
+		
+		//Solicitud
+		if(trim($_POST['fechaSolicitud']) != ""){
+			$solicitud->setFechaSolicitud(trim($_POST['fechaSolicitud']));
+		}
+
+		if(trim($_POST['estadoSolicitud']) != ""){
+			$solicitud->setEstado(trim($_POST['estadoSolicitud']));
+		}	
+			
+		$solicitud->setUsuario($usuario);
+		$solicitud->setLibro($libro);
+		
+		$_SESSION['solicitudBuscar'] = $solicitud;
+		echo true;
+			
+		break;
 				
 	}
  }

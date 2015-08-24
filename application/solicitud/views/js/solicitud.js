@@ -4,6 +4,12 @@ $(document).ready(function() {
   $("#msgValidacion").hide();
   
   $("#tbxValorCancelado").numeric();
+  $("#tbxCodUsuario").numeric();
+  
+  $("#tbxFechaSolicitud").datepicker({
+	changeMonth : true,
+	changeYear : true
+  });
   
     //Dialog multas
   $("#dialogMultas").dialog({
@@ -47,6 +53,13 @@ $(document).ready(function() {
   $("#btnAccionSolicitud").click(function(){
   	gestionSolicitud();
   });
+  
+  
+    //Boton buscar solicitud
+  $("#btnBuscarSolicitud").click(function(){
+  	buscarSolicitud();
+  });
+  
     
 });
 
@@ -167,7 +180,7 @@ function verDetalleSolicitud(idSolicitud){
 		$("#tbxTitulo").val(data.libro.titulo);
 		$("#tbxIsbn").val(data.libro.isbn);
 		$("#tbxCodTopografico").val(data.libro.codigoTopografico);
-		$("#tbxTemas").val(data.temas);
+		$("#tbxTemas").val(data.libro.temas);
 		
 		if(data.libro.editorial != null){
 			$("#tbxEditorial").val(data.libro.editorial.descripcion);
@@ -329,6 +342,33 @@ function guardarMulta(){
   		setTimeout('location.reload()', 1000);
 	});
 	
+}
+
+
+/**
+ * Funcion encargada de buscar una solicitud
+ */
+function buscarSolicitud(){
+  
+  $.ajax({
+	type : "POST",
+	async: false,
+	url : "../controllers/SolicitudController.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "buscarSolicitud",
+      titulo: $("#tbxTitulo").val(),
+      isbn: $("#tbxIsbn").val(),
+      codTopografico: $("#tbxCodTopografico").val(),
+      codUsuario: $("#tbxCodUsuario").val(),
+      cedula: $("#tbxCedula").val(),
+      fechaSolicitud: $("#tbxFechaSolicitud").val(),
+      estadoSolicitud: $("#cbxEstadoSolicitud").val()
+    }
+  }).done(function(data) {
+  		$("#formSearchSolicitud").submit();
+  });
+
 }
 
 
