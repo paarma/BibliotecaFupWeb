@@ -44,7 +44,7 @@
     <hr/>
     </ul>
     
-    <li class="icn_jump_back"><a href='<?php echo BASEURL.'application/general/controllers/CerrarSesion.php'; ?>'>Salir</a></li>
+    <li class="icn_jump_back"><a href='<?php echo BASEURL.'util/CerrarSesion.php'; ?>'>Salir</a></li>
   
     
     <footer>

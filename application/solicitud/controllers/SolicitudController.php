@@ -131,6 +131,40 @@
 				
 	}
  }
+
+
+  //Reservando libro
+ if (isset($_POST['accionFormReservar']) && $_POST['accionFormReservar'] == 'reservar') {
+ 	
+	 $fechaActual = date("Y-m-d"); //Fecha solicitud
+	 $fechaReserva = $_POST['tbxFechaReserva'];
+	 $idUsuario = $_SESSION['usuarioLogueado']->getIdUsuario();
+	 $idLibro = $_POST['idLibro'];
+	 $estado = "EN PROCESO";
+	 
+	 //Se agregan dos dias a la fecha de reserva
+	 $fechaDevolucion = new DateTime($fechaReserva);
+	 $fechaDevolucion->add(new DateInterval('P2D'));
+	 
+	 $fechaDevolucion = $fechaDevolucion->format('Y-m-d');;
+	 
+	 $param = array('fechaSolicitud' => $fechaActual,
+	 'fechaReserva' => $fechaReserva,
+	 'fechaDevolucion' => $fechaDevolucion,
+	 'idUsuario' => $idUsuario,
+	 'idLibro' => $idLibro,
+	 'estado' => $estado);
+
+	$response = (int) $client->call('reservar',$param);
+	
+	if($response == 0){
+       //Error almacenando en la BD
+       header('location:' . BASEURL . 'application/libro/views/reservar.php?m=2');
+    }else{
+       header('location:' . BASEURL . 'application/libro/views/reservar.php?m=3');
+    } 
+	
+ }
  
  
  ?>

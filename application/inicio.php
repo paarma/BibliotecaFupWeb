@@ -28,7 +28,7 @@ include_once BASEPATH.'util/VariablesGlobales.php';
 	if($_SESSION['usuarioLogueado']->getRol() == "ADMINISTRADOR"){
 		include_once BASEPATH.'application/menuAdmin.php'; 
 	}else{
-		include_once BASEPATH.'application/menuAdmin.php'; 
+		include_once BASEPATH.'application/menuUser.php'; 
 	}
 	
 	
