@@ -14,7 +14,7 @@
     <h3>Mis Libros</h3>
     <ul id="menuMisLibros" class="toggle">
       <li class="icn_categories"><a href='<?php echo BASEURL.'application/libro/views/misLibros.php'; ?>'>Listado mis libros</a></li>
-      <li class="icn_search"><a href='<?php echo BASEURL.'application/solicitud/views/buscarSolicitudAdmin.php'; ?>'>Buscar</a></li>
+      <li class="icn_search"><a href='<?php echo BASEURL.'application/libro/views/buscarMisLibros.php'; ?>'>Buscar</a></li>
     <hr/>
     </ul>
     

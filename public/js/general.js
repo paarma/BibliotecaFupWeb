@@ -80,6 +80,14 @@ $(document).ready(function(){
   $("#menuSolicitudes").click(function(){
   	inicializarVariablesSession();
   });
+  
+  $("#menuReservarUser").click(function(){
+  	inicializarVariablesSession();
+  });
+  
+  $("#menuMisLibros").click(function(){
+  	inicializarVariablesSession();
+  });
 
 });
 

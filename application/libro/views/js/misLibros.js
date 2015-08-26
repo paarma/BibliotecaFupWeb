@@ -11,6 +11,12 @@ $(document).ready(function() {
 	
   inicializar(); 
   
+    //Boton buscar libro
+  $("#btnBuscarLibro").click(function(){
+  	buscarLibro();
+  });
+  
+  
 });
 
 
@@ -18,6 +24,10 @@ $(document).ready(function() {
  *Funcion encargada de inicialiar variables 
  */
 function inicializar(){
+	
+	//Cargar combos
+	cargarCombos('EDITORIAL','cbxEditorial');
+	cargarCombos('AUTOR','cbxAutor');
 	
 	////////////Si esta en la interfaz de ListarMisLibros
 	if ($('#tblListaMisLibros').length){
@@ -151,3 +161,89 @@ function verDetalleSolicitud(idSolicitud){
   });
 
 }
+
+
+/**
+ *Funcion encargada de cargar los combos dinamicamente 
+ * @param {Object} tabla
+ * @param {Object} combo
+ */
+function cargarCombos(tabla,combo){
+	
+  $.ajax({
+    type : "POST",
+    async: false,
+    dataType: 'json',
+    url : $("#baseUrl").val()+"util/CargarCombos.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "cargarCombo",
+      tabla : tabla
+    }
+  }).done(function(data) {
+      var html = "";
+      html +=  '<option value="">Seleccione...</option>';
+
+      var selected = "";
+      
+      $.each(data, function (index, item) 
+      {
+        
+        if(tabla == 'EDITORIAL'){
+          html += '<option value='+item.ID_EDITORIAL+'>'+item.DESCRIPCION+'</option>';
+        }
+        
+        if(tabla == 'AREA'){
+          html += '<option value='+item.ID_AREA+'>'+item.DESCRIPCION+'</option>';
+        }
+        
+        if(tabla == 'SEDE'){
+          html += '<option value='+item.ID_SEDE+'>'+item.DESCRIPCION+'</option>';
+        }
+        
+        if(tabla == 'PAIS'){
+          html += '<option value='+item.ID_PAIS+'>'+item.NOMBRE+'</option>';
+        }
+        
+        if(tabla == 'AUTOR'){
+          	var nombreAutor = item.PRIMER_NOMBRE+" "+item.SEGUNDO_NOMBRE+" "+
+          	item.PRIMER_APELLIDO+" "+item.SEGUNDO_APELLIDO;
+          	
+          html += '<option value='+item.ID_AUTOR+'>'+nombreAutor+" "+'</option>';
+        }
+        
+      });
+
+      $('#'+combo).append(html);   
+  });
+
+}
+
+
+/**
+ *Funcion encargada de setear los datos de busqueda de un libro 
+ */
+ function buscarLibro(){
+	
+  $.ajax({
+	type : "POST",
+	async: false,
+	url : "../../../util/ControllerGeneral.php",
+	data : {
+      llamadoAjax : "true",
+      opcion : "buscarLibro",
+      titulo: $("#tbxTitulo").val(),
+      isbn: $("#tbxIsbn").val(),
+      codTopografico: $("#tbxCodTopografico").val(),
+      temas: $("#tbxTemas").val(),
+      idEditorial: $("#cbxEditorial").val(),
+      idAutor: $("#cbxAutor").val()
+    }
+  }).done(function(data) {
+  		
+  	   $("#formSearchLibro").submit();
+  		
+  	});
+	
+}
+

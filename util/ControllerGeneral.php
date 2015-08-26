@@ -155,6 +155,16 @@
 			
 			$_SESSION['libroBuscar'] = $libro;
 			
+			//Para el caso de "Mis Libros"
+					//Si el usuario logueado tiene rol "Usuario"
+					if(isset($_SESSION['usuarioLogueado']) && 
+						$_SESSION['usuarioLogueado']->getRol() == "USUARIO"){
+							
+						$_SESSION['solicitudBuscar']->setLibro($libro);		
+						$_SESSION['solicitudBuscar']->getUsuario()->setIdUsuario(
+							$_SESSION['usuarioLogueado']->getIdUsuario());
+					}
+			
 			echo true;
 		break;
 		
