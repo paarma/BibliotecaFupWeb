@@ -51,6 +51,16 @@
  	
  	<!-- Campo oculto que contiene el valor de la ruta (Url del aplicativo)-->
  	<input type="hidden" id="baseUrl" name="baseUrl" value="<?php echo BASEURL; ?>" />
+ 	
+ 	<!-- Campo oculto que contiene el rol del usuario logueado-->
+ 	<?php 
+ 		if(isset($_SESSION['usuarioLogueado'])){
+ 			?>
+ 			<input type="hidden" id="rolUser" name="rolUser" value="<?php echo $_SESSION['usuarioLogueado']->getRol(); ?>" />
+ 			<?php 			
+ 		}
+ 	?>
+ 	
 
   <!-- <header id="header">
     <hgroup>

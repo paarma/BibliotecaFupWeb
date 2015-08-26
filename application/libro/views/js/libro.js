@@ -575,7 +575,16 @@ function verDetalleLibro(idLibro){
       idAutor: $("#cbxAutor").val()
     }
   }).done(function(data) {
+  	
+  		//Se el usuario loguedo es Administrador
+  		if($("#rolUser").val() == "ADMINISTRADOR"){
+  			$('#formSearchLibro').attr('action', 'listaLibrosAdmin.php');
+  		}else{
+  			$('#formSearchLibro').attr('action', 'reservar.php');
+  		}	
+  		
   		$("#formSearchLibro").submit();
+  		
   	});
 	
 }

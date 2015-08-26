@@ -20,7 +20,16 @@ if(!isset($_SESSION['usuarioLogueado']))
     </div>
   </section><!-- end of secondary bar -->
   
-<?php include_once BASEPATH.'application/menuAdmin.php'; ?>
+<?php 
+
+	//Se verifica el rol de usuario para determinar que menu cargar
+	if($_SESSION['usuarioLogueado']->getRol() == "ADMINISTRADOR"){
+		include_once BASEPATH.'application/menuAdmin.php'; 
+	}else{
+		include_once BASEPATH.'application/menuUser.php'; 
+	}
+
+?>
   
   <script type="text/javascript" src="<?php echo BASEURL;?>application/libro/views/js/reglasLibro.js"></script>
   <script type="text/javascript" src="<?php echo BASEURL;?>application/libro/views/js/libro.js"></script>
@@ -31,7 +40,7 @@ if(!isset($_SESSION['usuarioLogueado']))
       <header><h3>Informaci&oacute;n de B&uacute;squeda</h3></header>
         <div class="module_content">
           
-          <form id="formSearchLibro" method="post" action="../views/listaLibrosAdmin.php">
+          <form id="formSearchLibro" method="post" action="">
             
             <table>
               <tr>

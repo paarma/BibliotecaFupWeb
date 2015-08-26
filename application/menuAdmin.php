@@ -7,7 +7,7 @@
     <ul class="toggle">
       <li class="icn_new_article"><a id="menuCrearLibroAdmin" href='<?php echo BASEURL.'application/libro/views/crearLibro.php'; ?>'>Crear Libro</a></li>
       <li class="icn_categories"><a id="menuLibrosAdmin" href='<?php echo BASEURL.'application/libro/views/listaLibrosAdmin.php'; ?>'>Listado Libros</a></li>
-      <li class="icn_search"><a id="menuBuscarLibroAdmin" href='<?php echo BASEURL.'application/libro/views/buscarLibroAdmin.php'; ?>'>Buscar</a></li>
+      <li class="icn_search"><a id="menuBuscarLibroAdmin" href='<?php echo BASEURL.'application/libro/views/buscarLibro.php'; ?>'>Buscar</a></li>
 
     <hr/>
     </ul>

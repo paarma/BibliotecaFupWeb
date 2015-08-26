@@ -6,7 +6,7 @@
     <h3>Reservar</h3>
     <ul id="menuReservarUser" class="toggle">
       <li class="icn_categories"><a href='<?php echo BASEURL.'application/libro/views/reservar.php'; ?>'>Listado Libros</a></li>
-      <li class="icn_search"><a href='<?php echo BASEURL.'application/libro/views/buscarLibroAdmin.php'; ?>'>Buscar</a></li>
+      <li class="icn_search"><a href='<?php echo BASEURL.'application/libro/views/buscarLibro.php'; ?>'>Buscar</a></li>
 
     <hr/>
     </ul>
