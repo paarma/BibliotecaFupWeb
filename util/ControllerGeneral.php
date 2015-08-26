@@ -114,6 +114,13 @@
 			$_SESSION['solicitudBuscar'] = new Solicitud();
 				$_SESSION['solicitudBuscar']->setUsuario(new Usuario());
 				$_SESSION['solicitudBuscar']->setLibro(new Libro());
+				
+			//Si el usuario logueado tiene rol "Usuario"
+			if(isset($_SESSION['usuarioLogueado']) && 
+				$_SESSION['usuarioLogueado']->getRol() == "USUARIO"){
+				$_SESSION['solicitudBuscar']->getUsuario()->setIdUsuario(
+					$_SESSION['usuarioLogueado']->getIdUsuario());
+			}	
 			
 			echo true;
 		break;
@@ -370,6 +377,13 @@
 		 $_SESSION['solicitudBuscar'] = new Solicitud();
 			$_SESSION['solicitudBuscar']->setUsuario(new Usuario());
 			$_SESSION['solicitudBuscar']->setLibro(new Libro());
+			
+			//Si el usuario logueado tiene rol "Usuario"
+			if(isset($_SESSION['usuarioLogueado']) && 
+				$_SESSION['usuarioLogueado']->getRol() == "USUARIO"){
+				$_SESSION['solicitudBuscar']->getUsuario()->setIdUsuario(
+					$_SESSION['usuarioLogueado']->getIdUsuario());
+			}		
 
 		 echo json_encode($listaSolicitudes);
 		 break;

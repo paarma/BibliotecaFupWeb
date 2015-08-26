@@ -118,7 +118,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Cantidad:
                 </td>
                 <td>
-                  <input type="text" id="tbxCantidad" name="tbxCantidad" />
+                  <input type="text" id="tbxCantidad" name="tbxCantidad" value="1" />
                 </td>
               </tr>
               

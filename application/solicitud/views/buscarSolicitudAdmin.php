@@ -47,7 +47,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   <input type="text" id="tbxTitulo" name="tbxTitulo" class="textoMayusculas" />
                 </td>
                 
-                <td style="width: 20%;">
+                <td style="width: 10%;">
                   ISBN:
                 </td>
                 <td>
@@ -78,7 +78,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   <input type="text" id="tbxCodUsuario" name="tbxCodUsuario" class="textoMayusculas" />
                 </td>
                 
-                <td style="width: 20%;">
+                <td style="width: 10%;">
                   Cedula:
                 </td>
                 <td>
