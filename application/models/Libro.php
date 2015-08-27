@@ -119,7 +119,7 @@
     }
 
     public function getRadicado() {
-        return $this->$radicado;
+        return $this->radicado;
     }
 
     public function setRadicado($radicado) {

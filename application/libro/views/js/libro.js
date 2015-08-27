@@ -72,6 +72,11 @@ $(document).ready(function() {
   	buscarLibro();
   });
   
+  //Reporte listadoLibros
+  $("#idRepoDocentes").click(function(){
+  	$("#formReporte").submit();
+  });
+    
     
 });
 
@@ -476,6 +481,13 @@ function buscarLibros(){
          "sPaginationType": "full_numbers"
       });
 	
+	//Si existen datos, se muestra el boton para generar reportes
+	if(html != ""){
+		$("#divRepoListaLibros").show();
+	}else{
+		$("#divRepoListaLibros").hide();
+	}
+	
     
   });
 
@@ -588,5 +600,4 @@ function verDetalleLibro(idLibro){
   	});
 	
 }
-
 

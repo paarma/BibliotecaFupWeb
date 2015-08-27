@@ -74,6 +74,42 @@
     }
 	
  }
+
+//Reporte listadoLibros
+if(isset($_POST['accionFormReporte']) && $_POST['accionFormReporte'] == 'reporteListadoLibros'){
+					
+	$nombreReporte = "LibrosFUP";
+
+	$idEditorial = "";
+		if($_SESSION['libroBuscar']->getEditorial() != null){
+			$idEditorial = $_SESSION['libroBuscar']->getEditorial()->getIdEditorial();
+		}
+		
+		$param = array('titulo' => $_SESSION['libroBuscar']->getTitulo(), 
+		'isbn' => $_SESSION['libroBuscar']->getIsbn(),
+		'codTopografico' => $_SESSION['libroBuscar']->getCodigoTopografico(),
+		'temas' => $_SESSION['libroBuscar']->getTemas(),
+		'editorial' => $idEditorial,
+		'autor' => $_SESSION['libroBuscar']->getIdAutor());
+		
+		$response = $client->call('listadoLibros',$param);
+	
+	 $listaLibros = array();
+	 //$listaLibros = new ArrayObject();
+	 		
+	 if(count($response) > 0 ){
+	 	foreach($response as $item){
+	 		//echo $item['TITULO'];
+	 		$libro = obtenerLibroSoap($item);
+			//$listaLibros->append($libro); //para el caso de ArrayObject
+			$listaLibros[] = $libro;
+	 	}
+	 }
+	
+	require_once BASEPATH . 'library/export_excel.php';
+	include_once(BASEPATH . 'application/libro/views/repoListadoLibros.php');
+	
+}
  
  
  ?>

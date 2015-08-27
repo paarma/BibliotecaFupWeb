@@ -44,7 +44,7 @@ if(!isset($_SESSION['usuarioLogueado']))
               </thead>
             </table>
             <br>
-            
+             
           <!-- Panel detalle libro -->
           <div id="panelDetalleLibro" align="center">
           	<h3>Detalle Libro</h3>
@@ -202,6 +202,16 @@ if(!isset($_SESSION['usuarioLogueado']))
 		  <!-- Fin panel detalle libro -->	
             
           </form>
+        
+        <!-- Reporte -->  
+       <div id="divRepoListaLibros" style="display: none;">
+           <form id="formReporte" name="formReporte" method="post" action="../controllers/LibroController.php">
+	           	<input type="hidden" id="accionFormReporte" name="accionFormReporte" value="reporteListadoLibros">
+	            <b>Exportar: </b> 
+	            <img id="idRepoDocentes" width="3%;" style="cursor:pointer;" src="../../../public/images/icn_excel.png" title="Exportar">
+	            <br>
+           </form> 
+        </div>
 
           <br />
           <div id="msgValidacion" class="bad"></div>
