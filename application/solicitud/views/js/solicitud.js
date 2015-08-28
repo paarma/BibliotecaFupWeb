@@ -60,6 +60,12 @@ $(document).ready(function() {
   	buscarSolicitud();
   });
   
+  
+  //Reporte listadoReservas
+  $("#idRepoReservas").click(function(){
+  	$("#formReporte").submit();
+  });
+  
     
 });
 
@@ -138,6 +144,13 @@ function listarSolicitudes(){
          "bJQueryUI": true,
          "sPaginationType": "full_numbers"
       });
+	
+	//Si existen datos, se muestra el boton para generar reportes
+	if(html != ""){
+		$("#divRepoListaReservas").show();
+	}else{
+		$("#divRepoListaReservas").hide();
+	}
 	
     
   });

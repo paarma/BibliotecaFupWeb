@@ -224,6 +224,16 @@ if(!isset($_SESSION['usuarioLogueado']))
             
           </form>
           
+       <!-- Reporte -->  
+       <div id="divRepoListaReservas" style="display: none;">
+           <form id="formReporte" name="formReporte" method="post" action="../controllers/SolicitudController.php">
+	           	<input type="hidden" id="accionFormReporte" name="accionFormReporte" value="reporteListadoReservas">
+	            <b>Exportar: </b> 
+	            <img id="idRepoReservas" width="3%;" style="cursor:pointer;" src="../../../public/images/icn_excel.png" title="Exportar">
+	            <br>
+           </form> 
+        </div>
+          
           <!-- Dialog Multas-->
           <div id="dialogMultas" title="Gestionar Multa">
           	<table>

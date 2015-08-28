@@ -167,4 +167,65 @@
  }
  
  
+ //Reporte listadoReservas
+if(isset($_POST['accionFormReporte']) && $_POST['accionFormReporte'] == 'reporteListadoReservas'){
+					
+	$nombreReporte = "reservasFUP";
+
+	//Buscar por editorial
+	$idEditorial = "";
+	if($_SESSION['solicitudBuscar']->getLibro()->getEditorial() != null){
+		$idEditorial = $_SESSION['solicitudBuscar']->getEditorial()->getIdEditorial();
+	}
+	
+	//Buscar por fechaSolicitud
+	$fechaSolicitud = "";
+	if($_SESSION['solicitudBuscar']->getFechaSolicitud() != null){
+		$fechaSolicitud = $_SESSION['solicitudBuscar']->getFechaSolicitud();
+	}
+	
+	$param = array('titulo' => $_SESSION['solicitudBuscar']->getLibro()->getTitulo(), 
+	'isbn' => $_SESSION['solicitudBuscar']->getLibro()->getIsbn(),
+	'codTopografico' => $_SESSION['solicitudBuscar']->getLibro()->getCodigoTopografico(),
+	'temas' => $_SESSION['solicitudBuscar']->getLibro()->getTemas(),
+	'editorial' => $idEditorial,
+	'idUsuarioReserva' => $_SESSION['solicitudBuscar']->getUsuario()->getIdUsuario(),
+	'estadoReserva' => $_SESSION['solicitudBuscar']->getEstado(),
+	'codUsuario' => $_SESSION['solicitudBuscar']->getUsuario()->getCodigo(), 
+	'cedulaUsuario' => $_SESSION['solicitudBuscar']->getUsuario()->getCedula(), 
+	'fechaSolicitud' => $fechaSolicitud, 
+	'autor' => $_SESSION['solicitudBuscar']->getLibro()->getIdAutor());
+	
+	$response = $client->call('listadoReservas',$param);
+
+	 $listaSolicitudes = array();
+	 		
+	 if(count($response) > 0 ){
+	 	foreach($response as $item){
+	
+	 		$libroBd = buscarLibroPorId($item['ID_LIBRO_SOL']);
+			$usuarioBd = buscarUsuarioPorId($item['ID_USUARIO_SOL']);
+			
+			$solicitud = new Solicitud();
+			$solicitud->setIdSolicitud($item['ID_SOLICITUD']);
+			
+			$solicitud->setUsuario($usuarioBd);
+			$solicitud->setLibro($libroBd);
+			$solicitud->setEstado($item['ESTADO_SOL']);
+			
+			//Fechas
+			$solicitud->setFechaSolicitud($item['FECHA_SOLICITUD']);
+			$solicitud->setFechaReserva($item['FECHA_RESERVA']);
+			$solicitud->setFechaDevolucion($item['FECHA_DEVOLUCION']);
+			$solicitud->setFechaEntrega($item['FECHA_ENTREGA']);
+	
+			$listaSolicitudes[] = $solicitud;
+	 	}
+	 }
+	
+	require_once BASEPATH . 'library/export_excel.php';
+	include_once(BASEPATH . 'application/solicitud/views/repoListadoSolicitudes.php');
+	
+}
+ 
  ?>
