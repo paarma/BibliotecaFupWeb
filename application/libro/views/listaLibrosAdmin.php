@@ -208,7 +208,7 @@ if(!isset($_SESSION['usuarioLogueado']))
            <form id="formReporte" name="formReporte" method="post" action="../controllers/LibroController.php">
 	           	<input type="hidden" id="accionFormReporte" name="accionFormReporte" value="reporteListadoLibros">
 	            <b>Exportar: </b> 
-	            <img id="idRepoDocentes" width="3%;" style="cursor:pointer;" src="../../../public/images/icn_excel.png" title="Exportar">
+	            <img id="idRepoLibros" width="3%;" style="cursor:pointer;" src="../../../public/images/icn_excel.png" title="Exportar">
 	            <br>
            </form> 
         </div>

@@ -23,6 +23,12 @@ $(document).ready(function() {
   	validarGuardar();		
   });	
   //////////////////////////Fin guardar libro.  
+  
+  //Reporte listadoUsuarios
+  $("#idRepoUsuarios").click(function(){
+  	$("#formReporte").submit();
+  });
+  
     
 });
 
@@ -249,6 +255,12 @@ function buscarUsuarios(){
          "sPaginationType": "full_numbers"
       });
 	
+		//Si existen datos, se muestra el boton para generar reportes
+		if(html != ""){
+			$("#divRepoListaUsuarios").show();
+		}else{
+			$("#divRepoListaUsuarios").hide();
+		}
     
   });
 

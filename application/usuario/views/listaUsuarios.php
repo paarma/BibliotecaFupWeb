@@ -152,6 +152,16 @@ if(!isset($_SESSION['usuarioLogueado']))
 		  <!-- Fin panel detalle libro -->	
             
           </form>
+          
+	       <!-- Reporte -->  
+	       <div id="divRepoListaUsuarios" style="display: none;">
+	           <form id="formReporte" name="formReporte" method="post" action="../controllers/UsuarioController.php">
+		           	<input type="hidden" id="accionFormReporte" name="accionFormReporte" value="reporteListadoUsuarios">
+		            <b>Exportar: </b> 
+		            <img id="idRepoUsuarios" width="3%;" style="cursor:pointer;" src="../../../public/images/icn_excel.png" title="Exportar">
+		            <br>
+	           </form> 
+	        </div>
 
           <br />
           <div id="msgValidacion" class="bad"></div>

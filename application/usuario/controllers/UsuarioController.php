@@ -94,5 +94,35 @@
     }
 	
  }
+
+
+//Reporte listadoUsuarios
+if(isset($_POST['accionFormReporte']) && $_POST['accionFormReporte'] == 'reporteListadoUsuarios'){
+					
+	$nombreReporte = "UsuariosFUP";
+
+	$param = array('cedula' => $_SESSION['usuarioBuscar']->getCedula(), 
+	'primerNombre' => $_SESSION['usuarioBuscar']->getPrimerNombre(),
+	'segundoNombre' => $_SESSION['usuarioBuscar']->getSegundoNombre(),
+	'primerApellido' => $_SESSION['usuarioBuscar']->getPrimerApellido(),
+	'segundoApellido' => $_SESSION['usuarioBuscar']->getSegundoApellido(),
+	'codigo' => $_SESSION['usuarioBuscar']->getCodigo(),
+	'rol' => $_SESSION['usuarioBuscar']->getRol());
+	
+	$response = $client->call('listadoUsuarios',$param);
+
+	 $listaUsuarios = array();
+	 		
+	 if(count($response) > 0 ){
+	 	foreach($response as $item){
+	 		$usuario = obtenerUsuarioSoap($item);
+			$listaUsuarios[] = $usuario;
+	 	}
+	 }
+	
+	require_once BASEPATH . 'library/export_excel.php';
+	include_once(BASEPATH . 'application/usuario/views/repoListadoUsuarios.php');
+	
+}
  
  ?>

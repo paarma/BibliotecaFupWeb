@@ -73,7 +73,7 @@ $(document).ready(function() {
   });
   
   //Reporte listadoLibros
-  $("#idRepoDocentes").click(function(){
+  $("#idRepoLibros").click(function(){
   	$("#formReporte").submit();
   });
     
