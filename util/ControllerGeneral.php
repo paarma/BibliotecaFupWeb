@@ -57,7 +57,7 @@
 		 	}
 		 }
 
-		 $_SESSION['libroBuscar'] = new Libro();
+		 //$_SESSION['libroBuscar'] = new Libro();
 		 
 		 echo json_encode($listaLibros);
 				
@@ -189,7 +189,7 @@
 			 	}
 			 }
 	
-			 $_SESSION['usuarioBuscar'] = new Usuario();
+			 //$_SESSION['usuarioBuscar'] = new Usuario();
 			 
 			 echo json_encode($listaUsuarios);
 		break;
@@ -384,9 +384,9 @@
 		 	}
 		 }
 		 
-		 $_SESSION['solicitudBuscar'] = new Solicitud();
+		 /*$_SESSION['solicitudBuscar'] = new Solicitud();
 			$_SESSION['solicitudBuscar']->setUsuario(new Usuario());
-			$_SESSION['solicitudBuscar']->setLibro(new Libro());
+			$_SESSION['solicitudBuscar']->setLibro(new Libro()); */
 			
 			//Si el usuario logueado tiene rol "Usuario"
 			if(isset($_SESSION['usuarioLogueado']) && 
