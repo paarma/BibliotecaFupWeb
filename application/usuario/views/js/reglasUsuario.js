@@ -11,6 +11,9 @@ $(document).ready(function() {
       tbxPrimerNombre: {required: true},
       tbxPrimerApellido: { required: true},
       tbxCodigo: { required: true},
+      tbxClave: { required: true},
+      tbxEmail: {email: true},
+      cbxRol: { required: true},
       /*telefono: { minlength: 2, maxlength: 15},
       mensaje: { required:true, minlength: 2},*/
     },

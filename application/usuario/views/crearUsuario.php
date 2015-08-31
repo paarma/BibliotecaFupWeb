@@ -124,7 +124,7 @@ if(!isset($_SESSION['usuarioLogueado']))
               
              <tr>
                 <td>
-                  Clave:
+                  Clave: *
                 </td>
                 <td>
                   <input type="text" id="tbxClave" name="tbxClave" />
@@ -133,7 +133,7 @@ if(!isset($_SESSION['usuarioLogueado']))
               
              <tr>
                 <td>
-                  Rol:
+                  Rol: *
                 </td>
                 <td>
                   <select id="cbxRol" name="cbxRol">
