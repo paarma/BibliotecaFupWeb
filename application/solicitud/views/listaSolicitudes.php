@@ -211,6 +211,16 @@ if(!isset($_SESSION['usuarioLogueado']))
                   <input type="text" id="tbxFechaDevolucion" name="tbxFechaDevolucion" disabled="true" />
                 </td>
               </tr>
+              
+              <tr>
+                <td>
+                  Estado Reserva:
+                </td>
+                <td>
+                  <input type="text" id="tbxEstadoReserva" name="tbxEstadoReserva" disabled="true" />
+                </td>
+              </tr>
+              
 			</table>
 
 			<br>

@@ -224,6 +224,27 @@ function verDetalleSolicitud(idSolicitud){
 		//Datos solicitud
 		$("#tbxFechaReserva").val(data.fechaReserva);
 		$("#tbxFechaDevolucion").val(data.fechaDevolucion);
+		$("#tbxEstadoReserva").val(data.estado);
+		
+		//Estilo CSS al campo estadoReserva
+		$("#tbxEstadoReserva").css('background-color', '#FFFFFF');
+		$("#tbxEstadoReserva").css('color', '#434343');
+		
+		if(data.estado == "PRESTADO"){
+			$("#tbxEstadoReserva").css('background-color', '#3E663B');
+			$("#tbxEstadoReserva").css('color', '#FFFFFF');
+		}
+		
+		if(data.estado == "EN MORA"){
+			$("#tbxEstadoReserva").css('background-color', '#D82020');
+			$("#tbxEstadoReserva").css('color', '#FFFFFF');
+		}
+		
+		if(data.estado == "FINALIZADO"){
+			$("#tbxEstadoReserva").css('background-color', '#858585');
+			$("#tbxEstadoReserva").css('color', '#FFFFFF');
+		}
+		
 		
 		//Despliega el boton de accion segun el estado de la solicitud
 		if(data.estado == "FINALIZADO"){
