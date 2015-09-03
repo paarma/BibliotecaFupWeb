@@ -7,7 +7,13 @@
  */
  
  function __autoload($className){
- 	require_once $_SERVER["DOCUMENT_ROOT"]."/BibliotecaFupWeb/application/models/".$className.".php";
+ 	//require_once $_SERVER["DOCUMENT_ROOT"]."/BibliotecaFupWeb/application/models/".$className.".php";
+ 	
+ 	  if (file_exists($_SERVER["DOCUMENT_ROOT"]."/BibliotecaFupWeb/application/models/".$className.".php")) {
+          require_once $_SERVER["DOCUMENT_ROOT"]."/BibliotecaFupWeb/application/models/".$className.".php";
+          return true;
+      }
+      return false;
  }
 
 ?>
