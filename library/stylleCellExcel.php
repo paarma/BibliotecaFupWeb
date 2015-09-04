@@ -60,6 +60,9 @@ $estiloTituloColumnas = array(
             'color' => array(
                 'rgb' => '143860'
             )
+        ),
+        'allborders' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THIN
         )
     ),
     'alignment' =>  array(

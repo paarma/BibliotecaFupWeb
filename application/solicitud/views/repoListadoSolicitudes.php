@@ -1,92 +1,130 @@
-<!DOCTYPE html>
-<html>
+<?php
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+// Se crea el objeto PHPExcel
+$objPHPExcel = new PHPExcel();
 
-<body>
+// Se asignan las propiedades del libro excel. (Datos que se visualizan al dar  “Clic derecho > Propiedades > Detalles”)
+$objPHPExcel->getProperties()->setCreator("BibliotecaFUP") // Nombre del autor
+    ->setLastModifiedBy("BibliotecaFUP") //Ultimo usuario que lo modificó
+    ->setTitle("Reporte Excel BibliotecaFUP") // Titulo
+    ->setSubject("Reporte Excel BibliotecaFUP") //Asunto
+    ->setDescription("Reporte de Reservas") //Descripción
+    ->setKeywords("reporte reserva libros FUP") //Etiquetas
+    ->setCategory("Reporte excel"); //Categorias
+    
+    
+$tituloReporte = "FUNDACION UNIVERSITARIA DE POPAYAN";
+$subtituloReporte = "Reporte: Listado de reservas";
+$titulosColumnas = array('LIBRO', 'NOMBRES USUARIO', 'APELLIDOS USUARIO', 'COD. USUARIO',
+ 	'FECHA SOLICITUD', 'FECHA RESERVA',	'FECHA ENTREGA', 'ESTADO');    
 
-<h3>FUNDACION UNIVERSITARIA DE POPAYAN</h3>
-<h3>Reporte: Listado de reservas</h3>
+// Se combinan las celdas A1 hasta D1, para colocar ahí el titulo del reporte
+$objPHPExcel->setActiveSheetIndex(0)->mergeCells('A1:D1');
 
-  <table border="1" bordercolor="#000000">
-  <!-- bgcolor="#ECF6FC" -->
-      <th bgcolor="#0E0EC0" aling="center">LIBRO</th>
-      <th bgcolor="#0E0EC0" aling="center">NOMBRES USUARIO</th>
-      <th bgcolor="#0E0EC0" aling="center">APELLIDOS USUARIO</th>
-      <th bgcolor="#0E0EC0" aling="center">COD. USUARI</th>
-      <th bgcolor="#0E0EC0" aling="center">FECHA SOLICITUD</th>
-      <th bgcolor="#0E0EC0" aling="center">FECHA RESERVA</th>
-      <th bgcolor="#0E0EC0" aling="center">FECHA ENTREGA</th>
-      <th bgcolor="#0E0EC0" aling="center">ESTADO</th>
-      
-  <?php
+// Se agregan los titulos del reporte
+$objPHPExcel->setActiveSheetIndex(0)
+    ->setCellValue('A1',$tituloReporte) // Titulo del reporte
+    ->setCellValue('A2',$subtituloReporte) // Titulo del reporte
+    ->setCellValue('A4',  $titulosColumnas[0])  //Titulo de las columnas
+    ->setCellValue('B4',  $titulosColumnas[1])
+    ->setCellValue('C4',  $titulosColumnas[2])
+    ->setCellValue('D4',  $titulosColumnas[3])
+    ->setCellValue('E4',  $titulosColumnas[4])
+    ->setCellValue('F4',  $titulosColumnas[5])
+    ->setCellValue('G4',  $titulosColumnas[6])
+	->setCellValue('H4',  $titulosColumnas[7]);
+	
+
+//Se agregan los datos de las solicitudes
+ 
+ $i = 5; //Numero de fila donde se va a comenzar a escribir los datos
+ 
   $iterator = new ArrayIterator($listaSolicitudes);
   if($iterator->count()>0){
      while($iterator->valid()){
-       echo '<tr>';
-	   
+     	
+	   $libro = "";
 	   if($iterator->current()->getLibro() != null){
-	   		echo '<td>'.$iterator->current()->getLibro()->getTitulo().'</td>';
-	   }else{
-	   		echo '<td></td>';
+			$libro = $iterator->current()->getLibro()->getTitulo();
 	   }
 	   
+	   $nombreUser = "";
+	   $apellidoUser = "";
+	   $codigoUser = "";
 	   if($iterator->current()->getUsuario() != null){
-	   		
-		   $nombre = $iterator->current()->getUsuario()->getPrimerNombre()." ";
-		   $nombre .= $iterator->current()->getUsuario()->getSegundoNombre();
-		
-	   		echo '<td>'.$nombre.'</td>';
-	   }else{
-	   		echo '<td></td>';
+			$nombreUser = $iterator->current()->getUsuario()->getPrimerNombre();
+		    $nombreUser .= $iterator->current()->getUsuario()->getSegundoNombre();
+			
+			$apellidoUser = $iterator->current()->getUsuario()->getPrimerApellido();
+		    $apellidoUser .= $iterator->current()->getUsuario()->getSegundoApellido();
+			
+			$codigoUser = $iterator->current()->getUsuario()->getCodigo();
 	   }
 	   
-	   if($iterator->current()->getUsuario() != null){
-	   		
-		   $apellido = $iterator->current()->getUsuario()->getPrimerApellido()." ";
-		   $apellido .= $iterator->current()->getUsuario()->getSegundoApellido();
-		
-	   		echo '<td>'.$apellido.'</td>';
-	   }else{
-	   		echo '<td></td>';
-	   }
-	   
-	   if($iterator->current()->getUsuario() != null){
-	   		echo '<td>'.$iterator->current()->getUsuario()->getCodigo().'</td>';
-	   }else{
-	   		echo '<td></td>';
-	   }
-	   
+	   $fechaSolicitud = "";
 	   if($iterator->current()->getFechaSolicitud() != null){
-	   		echo '<td>'.$iterator->current()->getFechaSolicitud().'</td>';
-	   }else{
-	   		echo '<td></td>';
+			$fechaSolicitud = $iterator->current()->getFechaSolicitud();
 	   }
-	   
+	   	   
+	   $fechaReserva = "";
 	   if($iterator->current()->getFechaReserva() != null){
-	   		echo '<td>'.$iterator->current()->getFechaReserva().'</td>';
-	   }else{
-	   		echo '<td></td>';
+			$fechaReserva = $iterator->current()->getFechaReserva();
 	   }
-
+	   
+	   $fechaEntrega = "";
 	   if($iterator->current()->getFechaEntrega() != null){
-	   		echo '<td>'.$iterator->current()->getFechaEntrega().'</td>';
-	   }else{
-	   		echo '<td></td>';
-	   }
-	   
-	   echo '<td>'.$iterator->current()->getEstado().'</td>';
-	   
-       echo '</tr>';
-       $iterator->next();
+			$fechaEntrega = $iterator->current()->getFechaEntrega();
+	   }	 
+		 
+		$objPHPExcel->setActiveSheetIndex(0)
+         ->setCellValue('A'.$i, $libro)
+		 ->setCellValue('B'.$i, $nombreUser)
+		 ->setCellValue('C'.$i, $apellidoUser)
+		 ->setCellValue('D'.$i, $codigoUser)
+		 ->setCellValue('E'.$i, $fechaSolicitud)
+		 ->setCellValue('F'.$i, $fechaReserva)
+		 ->setCellValue('G'.$i, $fechaEntrega)
+		 ->setCellValue('H'.$i, $iterator->current()->getEstado());
+     
+     	$i++;
+        $iterator->next();
      }
   }
 
-  ?> 
-      
-  </table>
 
-</body>
-</html>
+//Formato para las celdas (Estilos)
+include_once(BASEPATH . 'library/stylleCellExcel.php');
+
+//Se aplican los formatos
+$objPHPExcel->getActiveSheet()->getStyle('A1:D1')->applyFromArray($estiloTituloReporte);
+$objPHPExcel->getActiveSheet()->getStyle('A4:H4')->applyFromArray($estiloTituloColumnas);
+$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A5:H".($i-1));
+
+
+//Se fija el ancho de las columnas A-C
+for($i = 'A'; $i <= 'C'; $i++){
+    $objPHPExcel->setActiveSheetIndex(0)->getColumnDimension($i)->setWidth(32);
+}
+
+//Se fija el ancho de las columnas D-H
+for($i = 'D'; $i <= 'H'; $i++){
+    $objPHPExcel->setActiveSheetIndex(0)->getColumnDimension($i)->setWidth(18);
+}
+
+
+// Se asigna el nombre a la hoja
+$objPHPExcel->getActiveSheet()->setTitle('Reservas');
+ 
+// Se activa la hoja para que sea la que se muestre cuando el archivo se abre
+$objPHPExcel->setActiveSheetIndex(0);
+ 
+// Inmovilizar paneles
+//$objPHPExcel->getActiveSheet(0)->freezePane('A4');
+$objPHPExcel->getActiveSheet(0)->freezePaneByColumnAndRow(0,4);
+
+// Se manda el archivo en formato 2007
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+$objWriter->save('php://output');
+exit;
+	    
+?>    
