@@ -121,6 +121,7 @@ if(isset($_POST['accionFormReporte']) && $_POST['accionFormReporte'] == 'reporte
 	 }
 	
 	require_once BASEPATH . 'library/export_excel.php';
+	require_once BASEPATH . 'library/PHPExcel/PHPExcel.php';
 	include_once(BASEPATH . 'application/usuario/views/repoListadoUsuarios.php');
 	
 }
