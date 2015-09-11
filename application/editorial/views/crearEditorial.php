@@ -44,7 +44,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Editorial: *
                 </td>
                 <td>
-                  <input type="text" id="tbxEditorial" name="tbxEditorial" class="textoMayusculas" />
+                  <input type="text" id="tbxEditorial" name="tbxEditorial" size="40" class="textoMayusculas" />
                 </td>
               </tr>
               

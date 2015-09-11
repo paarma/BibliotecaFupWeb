@@ -50,19 +50,19 @@ if(!isset($_SESSION['usuarioLogueado']))
           	<h3>Detalle Libro</h3>
           
           <hr />   			
-			<table id="tblDetalleLibro" width="80%" border="0">
+			<table id="tblDetalleLibro" width="90%" border="0">
               <tr>
-                <td>
+                <td width="15%">
                   T&iacute;tulo:
                 </td>
-                <td>
-                  <input type="text" id="tbxTitulo" name="tbxTitulo" class="textoMayusculas" disabled="true" />
+                <td width="35%">
+                  <input type="text" id="tbxTitulo" name="tbxTitulo" class="textoMayusculas" size="35" disabled="true" />
                 </td>
                 
-                <td>
+                <td width="15%">
                   ISBN:
                 </td>
-                <td>
+                <td width="35%">
                   <input type="text" id="tbxIsbn" name="tbxIsbn" class="textoMayusculas" disabled="true" />
                 </td>
               </tr>
@@ -79,7 +79,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Temas:
                 </td>
                 <td>
-                  <input type="text" id="tbxTemas" name="tbxTemas" class="textoMayusculas" disabled="true" />
+                  <input type="text" id="tbxTemas" name="tbxTemas" class="textoMayusculas" size="35" disabled="true" />
                 </td>
               </tr>
               

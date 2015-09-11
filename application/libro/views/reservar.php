@@ -54,11 +54,11 @@ if(!isset($_SESSION['usuarioLogueado']))
           <hr />   			
 			<table id="tblDetalleLibro" width="90%" border="0">
               <tr>
-                <td style="width: 20%;">
+                <td style="width: 15%;">
                   T&iacute;tulo:
                 </td>
-                <td style="width: 30%;">
-                  <input type="text" id="tbxTitulo" name="tbxTitulo" class="textoMayusculas" disabled="true" />
+                <td style="width: 35%;">
+                  <input type="text" id="tbxTitulo" name="tbxTitulo" class="textoMayusculas" size="35" disabled="true" />
                 </td>
                 
                 <td style="width: 10%;">
@@ -81,7 +81,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Temas:
                 </td>
                 <td>
-                  <input type="text" id="tbxTemas" name="tbxTemas" class="textoMayusculas" disabled="true" />
+                  <input type="text" id="tbxTemas" name="tbxTemas" class="textoMayusculas" size="35" disabled="true" />
                 </td>
               </tr>
               

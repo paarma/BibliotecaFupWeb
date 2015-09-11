@@ -38,7 +38,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   T&iacute;tulo:
                 </td>
                 <td>
-                  <input type="text" id="tbxTitulo" name="tbxTitulo" class="textoMayusculas" />
+                  <input type="text" id="tbxTitulo" name="tbxTitulo" size="40" class="textoMayusculas" />
                 </td>
               </tr>
               
@@ -65,7 +65,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Temas:
                 </td>
                 <td>
-                  <input type="text" id="tbxTemas" name="tbxTemas" class="textoMayusculas" />
+                  <input type="text" id="tbxTemas" name="tbxTemas" size="40" class="textoMayusculas" />
                 </td>
               </tr>
               
