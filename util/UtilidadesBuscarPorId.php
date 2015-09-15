@@ -144,6 +144,124 @@
     return $lib;
 }
 
+
+/**
+ * Metodo encardado de setear los valores desde la BD (Soap) a un Libro.
+ * @param libroSoap Objeto Soap que contiene los datos de libro para ser setados.
+ * @return
+ */
+ function obtenerLibroSoapNew($libroSoap){
+
+    $lib = new Libro();
+    $lib->setIdLibro($libroSoap["ID_LIBRO"]);
+
+    if($libroSoap["TITULO"] != null){
+        $lib->setTitulo($libroSoap["TITULO"]);
+    }
+
+    if($libroSoap["ISBN"] != null){
+        $lib->setIsbn($libroSoap["ISBN"]);
+    }
+
+    if($libroSoap["COD_TOPOGRAFICO"] != null){
+        $lib->setCodigoTopografico($libroSoap["COD_TOPOGRAFICO"]);
+    }
+
+    if($libroSoap["TEMAS"] != null){
+        $lib->setTemas($libroSoap["TEMAS"]);
+    }
+
+    if($libroSoap["PAGINAS"] != null) {
+        $lib->setPaginas($libroSoap["PAGINAS"]);
+    }
+
+    if($libroSoap["VALOR"] != null) {
+        $lib->setValor($libroSoap["VALOR"]);
+    }
+
+    if($libroSoap["RADICADO"] != null) {
+        $lib->setRadicado($libroSoap["RADICADO"]);
+    }
+
+    if($libroSoap["FECHA_INGRESO"] != null) {
+        $lib->setFechaIngreso($libroSoap["FECHA_INGRESO"]);
+    }
+
+    if($libroSoap["SERIE"] != null) {
+        $lib->setSerie($libroSoap["SERIE"]);
+    }
+
+    if($libroSoap["ANIO"] != null) {
+        $lib->setAnio($libroSoap["ANIO"]);
+    }
+
+    //Editorial
+    if($libroSoap["ID_EDITORIAL"] != null) {
+    	
+		$editorial = new Editorial();
+		
+		$editorial->setIdEditorial($libroSoap["ID_EDITORIAL"]);
+		$editorial->setDescripcion($libroSoap["DES_EDITORIAL"]);
+		
+        $lib->setEditorial($editorial);
+    }
+
+    //Area
+    if($libroSoap["ID_AREA"] != null) {
+    	
+		$area = new Area();
+		
+		$area->setIdArea($libroSoap["ID_AREA"]);
+		$area->setDescripcion($libroSoap["DES_AREA"]);
+		
+        $lib->setArea($area);
+    }
+
+    //Sede
+    if($libroSoap["ID_SEDE"] != null) {
+    	
+		$sede = new Sede();
+		
+		$sede->setIdSede($libroSoap["ID_SEDE"]);
+		$sede->setDescripcion($libroSoap["DES_SEDE"]);
+		
+        $lib->setSede($sede);
+    }
+
+    //Ciudad
+    if($libroSoap["ID_CIUDAD"] != null) {
+    	
+		$ciudad = new Ciudad();
+		
+		$ciudad->setIdCiudad($libroSoap["ID_CIUDAD"]);
+		$ciudad->setNombre($libroSoap["NOM_CIUDAD"]);
+		
+		$pais = new Pais();
+		
+		$pais->setIdPais($libroSoap["ID_PAIS"]);
+        $pais->setNombre($libroSoap["NOM_PAIS"]);
+		
+		$ciudad->setPais($pais);
+		
+        $lib->setCiudad($ciudad);
+    }
+
+    if($libroSoap["ADQUISICION"] != null) {
+        $lib->setAdquisicion($libroSoap["ADQUISICION"]);
+    }
+
+    if($libroSoap["EST_LIBRO"] != null) {
+        $lib->setEstado($libroSoap["EST_LIBRO"]);
+    }
+
+    if($libroSoap["CANTIDAD"] != null) {
+        $lib->setCantidad($libroSoap["CANTIDAD"]);
+    }
+
+    return $lib;
+}
+
+
 /**
  * Funcion encargada de obtener una Editorial segun si ID
  */
