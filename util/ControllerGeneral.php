@@ -367,15 +367,24 @@
 			'fechaSolicitud' => $fechaSolicitud, 
 			'autor' => $_SESSION['solicitudBuscar']->getLibro()->getIdAutor());
 			
-			$response = $client->call('listadoReservas',$param);
+			//Antiguo metodo llamado reservas
+			//$response = $client->call('listadoReservas',$param);
+			
+			//Metodo actual para el llamado a reservas (con datos de objetos relacionales)
+			$response = $client->call('listadoReservasNew',$param);
 
 		 $listaSolicitudes = array();
 		 		
 		 if(count($response) > 0 ){
 		 	foreach($response as $item){
-
-		 		$libroBd = buscarLibroPorId($item['ID_LIBRO_SOL']);
-				$usuarioBd = buscarUsuarioPorId($item['ID_USUARIO_SOL']);
+				
+				//Antiguos metodos seteando datos a la reserva
+		 		//$libroBd = buscarLibroPorId($item['ID_LIBRO_SOL']);
+				//$usuarioBd = buscarUsuarioPorId($item['ID_USUARIO_SOL']);
+				
+				//Metodos actuales seteo datos a la reserva
+				$libroBd = obtenerLibroSoapNew($item);
+				$usuarioBd = obtenerUsuarioSoap($item);
 				
 				$solicitud = new Solicitud();
 				$solicitud->setIdSolicitud($item['ID_SOLICITUD']);
