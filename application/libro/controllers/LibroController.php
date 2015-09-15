@@ -92,7 +92,11 @@ if(isset($_POST['accionFormReporte']) && $_POST['accionFormReporte'] == 'reporte
 		'editorial' => $idEditorial,
 		'autor' => $_SESSION['libroBuscar']->getIdAutor());
 		
-		$response = $client->call('listadoLibros',$param);
+		//Metodo anterior para el listado de libros
+		//$response = $client->call('listadoLibros',$param);
+		
+		//Metodo actual para el listado de libros (con los datos de objetos relacionales)
+		$response = $client->call('listadoLibrosNew',$param);
 	
 	 $listaLibros = array();
 	 //$listaLibros = new ArrayObject();
@@ -100,7 +104,13 @@ if(isset($_POST['accionFormReporte']) && $_POST['accionFormReporte'] == 'reporte
 	 if(count($response) > 0 ){
 	 	foreach($response as $item){
 	 		//echo $item['TITULO'];
-	 		$libro = obtenerLibroSoap($item);
+	 		
+ 			//Metodo anterior para el seteo de datos relacionales
+	 		//$libro = obtenerLibroSoap($item);
+	 		
+	 		//Metodo actual para el seteo de datos relacionales
+	 		$libro = obtenerLibroSoapNew($item);
+	 		
 			//$listaLibros->append($libro); //para el caso de ArrayObject
 			$listaLibros[] = $libro;
 	 	}
