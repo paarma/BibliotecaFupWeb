@@ -93,11 +93,16 @@
 			}*/
 			
 			$param = array('idLibro' => $idLibro);
-			$response = $client->call('buscarLibroPorId',$param);
+			
+			//Metodo anterior para obtener los datos del libro
+			//$response = $client->call('buscarLibroPorId',$param);
+			
+			//Metodo actual para obtener los datos del libro con los datos de sus objetos relacionados
+			$response = $client->call('buscarLibroPorIdNew',$param);
 			
 			if(count($response) > 0 ){
 			 	foreach($response as $item){
-			 		$libro = obtenerLibroSoap($item);
+			 		$libro = obtenerLibroSoapNew($item);
 					$_SESSION['libroSeleccionadoAdmin'] = $libro;
 					break;
 			 	}
