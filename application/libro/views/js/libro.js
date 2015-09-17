@@ -214,6 +214,43 @@ function cargarDatosLibroSeleccionado(){
   });  	
   	
  }
+ 
+ 
+ /**
+ *Funcion encargada de obtener los autores asociados de un determinado libro 
+ *Establecida para el caso de ver los detalles de un libro (no edicion)
+ */
+ function cargarAutoresAsociadosVista(idLibro){
+ 	
+ 	//Se limpia la tabla
+ 	$("#tblAutores tr").remove();
+ 	
+ $.ajax({
+    type : "POST",
+    async: false,
+    dataType: 'json',
+    url : "../controllers/LibroController.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "cargarAutoresAsociados",
+      idLibro : idLibro
+    }
+  }).done(function(data) {
+
+	  var fila = "";
+      $.each(data, function (index, item) 
+      {
+		var nombreAutor = item.PRIMER_NOMBRE+" "+item.SEGUNDO_NOMBRE+" "+item.PRIMER_APELLIDO+" "+item.SEGUNDO_APELLIDO;
+		  
+		fila += '<tr>';
+		fila += '<td>&#8226;'+nombreAutor+'</td>';
+		fila += '</tr>';
+      });
+			  
+	  $("#tblAutores").append(fila);	
+  });  	
+  	
+ }
 
 
 /**
@@ -559,7 +596,10 @@ function verDetalleLibro(idLibro){
 		}
 		
 		$("#tbxAdquisicion").val(data.adquisicion);	
-		$("#tbxEstado").val(data.estado);			
+		$("#tbxEstado").val(data.estado);	
+		
+		//Autores Asociados
+		cargarAutoresAsociadosVista(idLibro);		
 		
 	}
   	

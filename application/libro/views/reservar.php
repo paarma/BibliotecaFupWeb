@@ -175,6 +175,21 @@ if(!isset($_SESSION['usuarioLogueado']))
                 
               </tr>
               
+              <!-- Autores -->
+              <tr style="height: 60px;">
+              	
+              	<td>
+                  <div style="margin-top: 10px;">
+                  	Autores:
+                  </div>
+                </td>
+              	
+              	<td colspan="2">
+              		<table id="tblAutores" name="tblAutores" style="margin-top: 10px;">
+              		</table>
+              	</td>
+              </tr>
+              
 			</table>
 			
 			<br>
