@@ -425,7 +425,12 @@
 		case 'verDetalleSolicitud':
 			
 			$idSolicitud = $_POST['idSolicitud'];
-			echo json_encode(buscarSolicitudPorId($idSolicitud));
+			
+			//Metodo anterior para buscar una solicitud segun su ID
+			//echo json_encode(buscarSolicitudPorId($idSolicitud));
+			
+			//Metodo actual para buscar una solicitud con sus objetos relacionados segun su ID 
+			echo json_encode(buscarSolicitudPorIdNew($idSolicitud));
 			
 		break;
  	}	
