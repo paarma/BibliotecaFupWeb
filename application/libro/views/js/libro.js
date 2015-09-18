@@ -175,6 +175,9 @@ function cargarDatosLibroSeleccionado(){
 		
 		cargarAutoresAsociados(data.idLibro);			
 		
+		//Si existe libroSeleccionado (editar) se oculta el campo cantidad ya que no es editable
+		$("#rowCantidad").hide();
+		
 	}
 	
   });
@@ -566,7 +569,10 @@ function verDetalleLibro(idLibro){
 		$("#tbxValor").val(data.valor);
 		$("#tbxRadicado").val(data.radicado);
 		$("#tbxSerie").val(data.serie);
-		$("#tbxCantidad").val(data.cantidad);
+		
+		//Se omite la cantiad
+		//$("#tbxCantidad").val(data.cantidad);
+		
 		$("#tbxAnio").val(data.anio);
 		
 		if(data.editorial != null){

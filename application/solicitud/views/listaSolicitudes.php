@@ -106,11 +106,20 @@ if(!isset($_SESSION['usuarioLogueado']))
               </tr>
               
               <tr>
+              	
+              	<!-- Se omite la cantidad 
                 <td>
                   Cantidad:
                 </td>
                 <td>
                   <input type="text" id="tbxCantidad" name="tbxCantidad" disabled="true" />
+                </td> -->
+                
+                <td>
+                  &Aacute;rea:
+                </td>
+                <td>
+                  <input type="text" id="tbxArea" name="tbxArea" disabled="true" />
                 </td>
                 
                 <td>
@@ -128,12 +137,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                 <td>
                   <input type="text" id="tbxEstadoLibro" name="tbxEstadoLibro" disabled="true" />
                 </td>
-                <td>
-                  &Aacute;rea:
-                </td>
-                <td>
-                  <input type="text" id="tbxArea" name="tbxArea" disabled="true" />
-                </td>
+                
               </tr>
 			</table>
 			

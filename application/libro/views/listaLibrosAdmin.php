@@ -116,11 +116,20 @@ if(!isset($_SESSION['usuarioLogueado']))
               </tr>
               
               <tr>
+              	
+              	<!-- Se omite la cantidad 
                 <td>
                   Cantidad:
                 </td>
                 <td>
                   <input type="text" id="tbxCantidad" name="tbxCantidad" disabled="true" />
+                </td> -->
+                
+                <td>
+                  Estado:
+                </td>
+                <td>
+                  <input type="text" id="tbxEstado" name="tbxEstado" disabled="true" />
                 </td>
                 
                 <td>
@@ -179,15 +188,6 @@ if(!isset($_SESSION['usuarioLogueado']))
                   <input type="text" id="tbxCiudad" name="tbxCiudad" disabled="true" />
                 </td>
                 
-              </tr>
-              
-              <tr>
-                <td>
-                  Estado:
-                </td>
-                <td>
-                  <input type="text" id="tbxEstado" name="tbxEstado" disabled="true" />
-                </td>
               </tr>
               
               <!-- Autores -->

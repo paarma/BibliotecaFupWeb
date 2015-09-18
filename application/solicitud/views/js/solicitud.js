@@ -202,7 +202,10 @@ function verDetalleSolicitud(idSolicitud){
 		}
 		
 		$("#tbxValor").val(data.libro.valor);
-		$("#tbxCantidad").val(data.libro.cantidad);
+		
+		//Se omite la cantidad del libro
+		//$("#tbxCantidad").val(data.libro.cantidad);
+		
 		$("#tbxAnio").val(data.libro.anio);
 		$("#tbxEstadoLibro").val(data.libro.estado);
 		

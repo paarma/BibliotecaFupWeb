@@ -113,7 +113,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                 </td>
               </tr>
               
-              <tr>
+              <tr id="rowCantidad">
                 <td>
                   Cantidad:
                 </td>

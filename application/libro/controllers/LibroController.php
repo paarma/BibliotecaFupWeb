@@ -61,7 +61,11 @@
 	'idCiudad' => $_POST['cbxCiudad'], 'cantidad' => trim($_POST['tbxCantidad']),
 	'idAutoresConcatenados' => $_POST['arrayAutores']);
 	
-	$response = (int) $client->call('guardarLibro',$param);
+	//Anterior metodo para el llamado a guardar libro
+	//$response = (int) $client->call('guardarLibro',$param);
+	
+	//Metodo actual para guardar libro (almacena cada libro de manera indicidual segun la canatidad)
+	$response = (int) $client->call('guardarLibroNew',$param);
 	
 	//Se inicializa la variable libroSeleccionado
 	$_SESSION['libroSeleccionadoAdmin'] = null;
