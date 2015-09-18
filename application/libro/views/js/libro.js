@@ -408,13 +408,15 @@ function validarGuardar(){
 	 */
 	if($("#idLibro").val() == 0){
 		//Validacion ISBN
-		if($("#tbxIsbn").val().trim() != ""){
+		
+		//Se omite validacion de ISBN repetido
+		/*if($("#tbxIsbn").val().trim() != ""){
 		  if(verficarDatoEnBd('LIBRO','ISBN',$("#tbxIsbn").val().trim())){
 		    $("#msgValidacion").text("ISBN ya registrado");
 		    $("#msgValidacion").show();
 		    validaciones = false;
 		  }
-		}
+		}*/
 		
 		//Validacion Cod.Topografico
 		if($("#tbxCodTopografico").val().trim() != ""){
@@ -431,13 +433,15 @@ function validarGuardar(){
 	 */
 	if($("#idLibro").val() != 0){
 		//Validacion ISBN
-		if($("#tbxIsbn").val().trim() != "" && $("#isbnOriginal").val() != $("#tbxIsbn").val().trim()){
+		
+		//Se omite validacion de ISBN repetido
+		/*if($("#tbxIsbn").val().trim() != "" && $("#isbnOriginal").val() != $("#tbxIsbn").val().trim()){
 		  if(verficarDatoEnBd('LIBRO','ISBN',$("#tbxIsbn").val().trim())){
 		    $("#msgValidacion").text("ISBN ya registrado");
 		    $("#msgValidacion").show();
 		    validaciones = false;
 		  }
-		}
+		}*/
 		
 		//Validacion Cod.Topografico
 		if($("#tbxCodTopografico").val().trim() != "" && 
