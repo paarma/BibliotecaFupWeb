@@ -17,7 +17,7 @@ $tituloReporte = "FUNDACION UNIVERSITARIA DE POPAYAN";
 $subtituloReporte = "Reporte: Listado de libros";
 $titulosColumnas = array('TITULO', 'VALOR', 'ADQUISICION', 'ISBN', 'RADICADO', 'FECHA INGRESO',
 	'COD. TOPOGRAFICO', 'SERIE', 'SEDE', 'EDITORIAL', 'AREA', 'AÑO', 'TEMAS',
-	'PAGINAS', 'CIUDAD', 'CANTIDAD');
+	'PAGINAS', 'CIUDAD', 'ACTIVO');
 
 // Se combinan las celdas A1 hasta D1, para colocar ahí el titulo del reporte
 $objPHPExcel->setActiveSheetIndex(0)->mergeCells('A1:D1');
@@ -94,7 +94,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 		 ->setCellValue('M'.$i, $iterator->current()->getTemas())
 		 ->setCellValue('N'.$i, $iterator->current()->getPaginas())
 		 ->setCellValue('O'.$i, $ciudad)
-		 ->setCellValue('P'.$i, $iterator->current()->getCantidad());
+		 ->setCellValue('P'.$i, $iterator->current()->getDisponibilidad());
      
      	$i++;
         $iterator->next();
