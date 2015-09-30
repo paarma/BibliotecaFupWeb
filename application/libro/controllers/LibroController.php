@@ -57,7 +57,8 @@
 	'idSede' => $_POST['cbxSede'], 'idEditorial' => $_POST['cbxEditorial'], 
 	'idArea' => $_POST['cbxArea'], 'anio' => trim($_POST['tbxAnio']), 
 	'temas' => strtoupper(trim($_POST['tbxTemas'])), 'paginas' => trim($_POST['tbxPaginas']), 
-	'disponibilidad' => "", 'idUsuario' => (int) $_SESSION['usuarioLogueado']->getIdUsuario(), 
+	'disponibilidad' => $_POST['cbxDisponibilidad'], 
+	'idUsuario' => (int) $_SESSION['usuarioLogueado']->getIdUsuario(), 
 	'idCiudad' => $_POST['cbxCiudad'], 'cantidad' => trim($_POST['tbxCantidad']),
 	'idAutoresConcatenados' => $_POST['arrayAutores']);
 	

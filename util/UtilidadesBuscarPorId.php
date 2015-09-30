@@ -257,6 +257,10 @@
     if($libroSoap["CANTIDAD"] != null) {
         $lib->setCantidad($libroSoap["CANTIDAD"]);
     }
+    
+    if($libroSoap["DISPONIBILIDAD"] != null) {
+        $lib->setDisponibilidad($libroSoap["DISPONIBILIDAD"]);
+    }
 
     return $lib;
 }

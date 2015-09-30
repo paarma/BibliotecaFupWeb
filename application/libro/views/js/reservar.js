@@ -162,8 +162,8 @@ function verDetalleLibro(idLibro){
 		$("#tbxEstado").val(data.estado);
 		$("#tbxAnio").val(data.anio);
 		
-		//Se verifica la disponibilidad segun la cantidad de copias del libro
-        if(data.cantidad > 0){
+		//Se verifica la disponibilidad segun la cantidad del libro y su misma disponibilidad
+        if(data.cantidad > 0 && data.disponibilidad == "SI"){
             $("#tbxDisponiblidad").val("SI");
             $("#tbxFechaReserva").removeAttr('disabled'); //Se remueve el atributo
             $("#btnReservar").show();

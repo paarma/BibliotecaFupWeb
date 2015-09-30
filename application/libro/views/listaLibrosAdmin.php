@@ -190,6 +190,15 @@ if(!isset($_SESSION['usuarioLogueado']))
                 
               </tr>
               
+              <tr>
+              	<td>
+              		Activo:
+              	</td>
+              	<td colspan="2">
+                  <input type="text" id="tbxDisponibilidad" name="tbxDisponibilidad" disabled="true" />
+                </td>
+              </tr>
+              
               <!-- Autores -->
               <tr style="height: 60px;">
               	

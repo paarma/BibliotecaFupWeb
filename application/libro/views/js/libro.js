@@ -172,6 +172,7 @@ function cargarDatosLibroSeleccionado(){
 		
 		$("#cbxAdquisicion").val(data.adquisicion);	
 		$("#cbxEstado").val(data.estado);
+		$("#cbxDisponibilidad").val(data.disponibilidad);
 		
 		cargarAutoresAsociados(data.idLibro);			
 		
@@ -604,9 +605,10 @@ function verDetalleLibro(idLibro){
 			$("#tbxPais").val('');
 			$("#tbxCiudad").val('');
 		}
-		
+
 		$("#tbxAdquisicion").val(data.adquisicion);	
 		$("#tbxEstado").val(data.estado);	
+		$("#tbxDisponibilidad").val(data.disponibilidad);	
 		
 		//Autores Asociados
 		cargarAutoresAsociadosVista(idLibro);		

@@ -210,6 +210,18 @@ if(!isset($_SESSION['usuarioLogueado']))
               
               <tr>
                 <td>
+                  Activo:
+                </td>
+                <td>
+                  <select id="cbxDisponibilidad" name="cbxDisponibilidad">
+                  	<option value="SI">SI</option>
+                  	<option value="NO">NO</option>
+                  </select>
+                </td>
+              </tr>
+              
+              <tr>
+                <td>
                   Autores:
                   
                 </td>
