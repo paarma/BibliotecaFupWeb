@@ -61,6 +61,9 @@
  		}
  	?>
  	
+ 	<!-- div loading-->
+ 	<div id="divLoading"></div>
+ 	
 
   <!-- <header id="header">
     <hgroup>

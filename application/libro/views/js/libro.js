@@ -483,6 +483,7 @@ function cargarAutores(){
 	$("#arrayAutores").val(arrayAutoresCargados);	
 }
 
+
 /**
  *Funcion encargada de listar los libros 
  */
@@ -496,9 +497,13 @@ function buscarLibros(){
     data : {
       llamadoAjax : "true",
       opcion : "listadoLibros"
-    }
-  }).done(function(data) {
-  	
+    },
+    beforeSend: function() {
+		
+		$("#divLoading").show();
+    },
+    success: function(data) {
+
   	  var html = "";
       $.each(data, function (index, item) 
       {
@@ -526,17 +531,23 @@ function buscarLibros(){
          "sPaginationType": "full_numbers"
       });
 	
-	//Si existen datos, se muestra el boton para generar reportes
-	if(html != ""){
-		$("#divRepoListaLibros").show();
-	}else{
-		$("#divRepoListaLibros").hide();
-	}
-	
+		//Si existen datos, se muestra el boton para generar reportes
+		if(html != ""){
+			$("#divRepoListaLibros").show();
+		}else{
+			$("#divRepoListaLibros").hide();
+		}
+
+    },
+    complete: function() {
+    	
+        $("#divLoading").hide();
+    }
     
   });
-
-}
+  
+  
+}  
 
 
 /**

@@ -64,9 +64,13 @@ function listarLibros(){
     data : {
       llamadoAjax : "true",
       opcion : "listadoLibros"
-    }
-  }).done(function(data) {
-  	
+    },
+    beforeSend: function() {
+		
+		$("#divLoading").show();
+    },
+    success: function(data) {
+
   	  var html = "";
       $.each(data, function (index, item) 
       {
@@ -93,9 +97,15 @@ function listarLibros(){
          "bJQueryUI": true,
          "sPaginationType": "full_numbers"
       });
-	
+
+    },
+    complete: function() {
+    	
+        $("#divLoading").hide();
+    }
     
   });
+  
 
 }
 

@@ -948,6 +948,21 @@ select, input[type=text]{
 	color: #434343; 
 }
 
+/*Div loading*/
+#divLoading {
+	
+	background: url(../images/loading4.gif) center no-repeat;
+	height: 60px;
+	width: 60px;
+	display: none;
+	
+	position:absolute;
+	left:50%;
+	top:50%;
+	z-index:999;
+}
+
+
 /*Boton search*/
 .btnSearch {
 	background-image:url(../images/icn_search.png) !important;
