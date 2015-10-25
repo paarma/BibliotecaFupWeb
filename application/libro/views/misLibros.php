@@ -39,7 +39,8 @@ if(!isset($_SESSION['usuarioLogueado']))
                   <th>ISBN</th>
                   <th style="width: 20%;">Cod. topografico</th>
                   <th style="width: 20%;">Editorial</th>
-                  <th style="width: 10%;">Detalles</th>
+                  <th style="width: 20%;">Estado</th>
+                  <th style="width: 5%;">Detalles</th>
                 </tr>
               </thead>
             </table>
@@ -56,7 +57,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   T&iacute;tulo:
                 </td>
                 <td>
-                  <input type="text" id="tbxTitulo" name="tbxTitulo" class="textoMayusculas" disabled="true" />
+                  <input type="text" id="tbxTitulo" name="tbxTitulo" class="textoMayusculas" size="35" disabled="true" />
                 </td>
                 
                 <td>
@@ -79,7 +80,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Temas:
                 </td>
                 <td>
-                  <input type="text" id="tbxTemas" name="tbxTemas" class="textoMayusculas" disabled="true" />
+                  <input type="text" id="tbxTemas" name="tbxTemas" class="textoMayusculas" size="35" disabled="true" />
                 </td>
               </tr>
               

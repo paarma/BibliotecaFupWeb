@@ -170,7 +170,7 @@ if(!isset($_SESSION['usuarioLogueado']))
                   Fecha Reserva:
                 </td>
                 <td>
-                  <input type="text" id="tbxFechaReserva" name="tbxFechaReserva" disabled="true" />
+                  <input type="text" id="tbxFechaReserva" name="tbxFechaReserva" disabled="true" readonly="readonly" />
                 </td>
                 
               </tr>

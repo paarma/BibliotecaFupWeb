@@ -76,6 +76,8 @@ function listarMisLibros(){
       		html += '<td></td>';
       	}
       	
+      	html += '<td>'+item.estado+'</td>';
+      	
       	html += '<td><input type="radio" name="rbtSeleccion" value='+item.idSolicitud+' onClick="verDetalleSolicitud('+item.idSolicitud+')" ></td>';
       	html += '</tr>';
       	      	

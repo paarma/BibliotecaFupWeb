@@ -6,7 +6,8 @@ $(document).ready(function() {
   
   $("#tbxFechaReserva").datepicker({
 	changeMonth : true,
-	changeYear : false
+	changeYear : false,
+	minDate: 0 //Deshabilitar fechas anteriores a la fecha actual
   });
   
   
