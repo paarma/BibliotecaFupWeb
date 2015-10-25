@@ -34,6 +34,10 @@ $(document).ready(function() {
  */
 function inicializar(){
 	
+	$("#msgValidacion").text("");
+    $("#msgValidacion").css("display", "none");
+	
+	
 	$("#idLibro").val(0);
 	
 	////////////Si esta en la interfaz de ListarLibros
@@ -117,6 +121,12 @@ function listarLibros(){
  */
 function verDetalleLibro(idLibro){
 	
+	$("#msgValidacion").text("");
+    $("#msgValidacion").css("display", "none");
+    
+    $("#msnResultado").text("");
+	
+	
 	//$("#formListarlibros")[0].reset();
 	$("#panelDetalleLibro").show();
 	$("#tbxFechaReserva").val('');
@@ -187,6 +197,9 @@ function verDetalleLibro(idLibro){
         
         //Autores Asociados
 		cargarAutoresAsociadosVista(idLibro);
+		
+		//Verificar cantidad maxima de reservas
+		verificarCantidadReservas();
         
 	}
   	
@@ -229,6 +242,48 @@ function verDetalleLibro(idLibro){
 	  $("#tblAutores").append(fila);	
   });  	
   	
+ }
+ 
+ /**
+  * Funcion encargada de verificar si el usuario sobrepasa la cantidad maxima de reservas
+  * la cual especifica que el usuario puede reservar un maximo de 3 libros
+  * contempla las solicitues en estado:  PRESTADO o EN PROCESO o EN MORA
+  */
+ function verificarCantidadReservas(){
+ 	
+ $.ajax({
+    type : "POST",
+    async: false,
+    dataType: 'json',
+    url : "../../../util/ControllerGeneral.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "listadoSolicitudes"
+    }
+  }).done(function(data) {
+  	  
+  	  var cantidad = 0;
+  	  		
+  	  $.each(data, function (index, item) 
+      {
+      	
+      	if(item.estado == "EN PROCESO" || item.estado == "PRESTADO" || item.estado == "EN MORA"){
+      		cantidad ++;
+      	}
+      	
+      });
+      
+  	
+	  if(cantidad >= 3){
+	  	$("#btnReservar").hide();
+	  	
+	  	$("#msgValidacion").addClass("bad");
+		$("#msgValidacion").text("Ha alcanzado el limite de reservas (3 libros)");
+		$("#msgValidacion").css("display", "block");
+	  }
+	
+  });
+ 	
  }
 
 

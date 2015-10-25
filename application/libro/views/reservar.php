@@ -207,11 +207,11 @@ if(!isset($_SESSION['usuarioLogueado']))
           <div id="msgValidacion" class="bad"></div>
           
          <?php if (isset($_GET['m']) && $_GET['m'] == '1'): ?>
-                  <div class="bad" >Error! Hay campos obligatorios que se encuentran vacios...</div>
+                  <div id="msnResultado" class="bad" >Error! Hay campos obligatorios que se encuentran vacios...</div>
          <?php elseif (isset($_GET['m']) && $_GET['m'] == '2'): ?>
-                  <div class="bad">Error almacenando la información, intenta enviar los datos nuevamente...</div>   
+                  <div id="msnResultado" class="bad">Error almacenando la información, intenta enviar los datos nuevamente...</div>   
          <?php elseif (isset($_GET['m']) && $_GET['m'] == '3'): ?>
-                  <div class="good">La información se almaceno exitosamente</div>          
+                  <div id="msnResultado" class="good">La información se almaceno exitosamente</div>          
         <?php endif; ?>
           
         </div>
