@@ -129,6 +129,33 @@
 			
 		break;
 				
+				
+		case 'verificarDisponibilidadDate':
+			
+			$idLibro = $_POST['idLibro'];
+			$fechaReserva = $_POST['fechaReserva'];
+			
+			//Se calculan las dos fechas siguientes (los dos días mas a partir de la fecha de reserva)
+			$fechaReserva2  = new DateTime($fechaReserva);
+			$fechaReserva2->add(new DateInterval('P1D')); //Se suma un dia para obtener la fecha individual
+			$fechaReserva2 = $fechaReserva2->format('Y-m-d');
+			
+			$fechaReserva3  = new DateTime($fechaReserva);
+			$fechaReserva3->add(new DateInterval('P2D')); //Se suma dos dias para obtener la fecha individual
+			$fechaReserva3 = $fechaReserva3->format('Y-m-d');
+			
+			$rangoFechas = $fechaReserva.",".$fechaReserva2.",".$fechaReserva3;
+			//echo $fechaReserva." <<< ".$fechaReserva2." <<<< ".$fechaReserva3;
+			
+			$param = array('idLibro' => $idLibro,
+			'rangoFechasReserva' => $rangoFechas);
+			
+			$response = (int) $client->call('verificarDisponibilidadDate',$param);
+			
+			echo $response;
+			
+		break;
+				
 	}
  }
 

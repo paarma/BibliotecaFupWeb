@@ -11,6 +11,11 @@ $(document).ready(function() {
   });
   
   
+  $("#tbxFechaReserva").change(function(){
+  	verificarDisponibilidadDate();
+  });
+  
+  
    //Reservar
   $("#formListarlibros").validate({
     rules: {
@@ -277,11 +282,59 @@ function verDetalleLibro(idLibro){
 	  if(cantidad >= 3){
 	  	$("#btnReservar").hide();
 	  	
+	  	$("#tbxFechaReserva").attr('disabled',true); //Se agrega el atributo
+	  	
 	  	$("#msgValidacion").addClass("bad");
 		$("#msgValidacion").text("Ha alcanzado el limite de reservas (3 libros)");
 		$("#msgValidacion").css("display", "block");
 	  }
 	
+  });
+ 	
+ }
+ 
+ 
+ /**
+  * Funcion encargada de verificar la disponibilidad de un libro segun fecha de reserva
+  */
+ function verificarDisponibilidadDate(){
+ 	
+ 	$.ajax({
+    type : "POST",
+    async: false,
+    url : "../../solicitud/controllers/SolicitudController.php",
+    data : {
+      llamadoAjax : "true",
+      opcion : "verificarDisponibilidadDate",
+      idLibro : $("#idLibro").val(),
+      fechaReserva : $("#tbxFechaReserva").val()
+    },
+    beforeSend: function() {
+		
+		$("#divLoading").show();
+    },
+    success: function(data) {
+		
+		//Si el ressultado = 1 indica que el libro NO esta disponible en el rengo de fechas indicada
+		if(data == 1){
+			$("#btnReservar").hide();
+			
+			$("#msgValidacion").addClass("bad");
+			$("#msgValidacion").text("Libro no disponible para la fecha indicada");
+			$("#msgValidacion").css("display", "block");
+		}else{
+			
+			$("#btnReservar").show();
+			
+			$("#msgValidacion").text("");
+    		$("#msgValidacion").css("display", "none");
+		}
+		
+    },
+    complete: function() {
+        $("#divLoading").hide();
+    }
+    
   });
  	
  }
