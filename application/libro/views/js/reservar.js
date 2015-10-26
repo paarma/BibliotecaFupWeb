@@ -315,8 +315,8 @@ function verDetalleLibro(idLibro){
     },
     success: function(data) {
 		
-		//Si el ressultado = 1 indica que el libro NO esta disponible en el rengo de fechas indicada
-		if(data == 1){
+		//Si el ressultado > 0 indica que el libro NO esta disponible en el rengo de fechas indicada
+		if(data > 0){
 			$("#btnReservar").hide();
 			
 			$("#msgValidacion").addClass("bad");
